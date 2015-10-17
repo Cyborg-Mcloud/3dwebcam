@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+		xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.designge.3dwebcam"
+	    versionCode="2" 
+        version   = "1.0.1"
+		package="com.designge.3dwebcam"
+		>
+    <name>3D Webcam</name>
+	<icon src="logo.jpg" />
+
+	<preference name="phonegap-version" value="3.7.0" /> 
+	<preference name="orientation" value="landscape" />
+	<preference name="fullscreen" value="true" />
+	<preference name="webviewbounce" value="false" />  
+	<preference name="DisallowOverscroll" value="true" />
+    <description>
+    3D Webcam
+    </description>
+	
+
+    <author href="http://design.ge" email="uabashidze@gmail.com">
+        Cyborg-Mcloud
+    </author>
+
+ <gap:platform name="ios" />
+<gap:platform name="android" />
+
+ 
+    <plugins>
+
+    </plugins>
+
+
+
+	<feature name="App">
+	  <param name="android-package" value="com.designge.3dwebcam"/>
+	</feature>
+	<feature name="InAppBrowser">
+		<param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+	</feature>
+  <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+    </feature>
+<feature name="http://api.phonegap.com/1.0/file"/>
+
+
+</widget>
