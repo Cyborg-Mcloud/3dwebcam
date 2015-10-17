@@ -2,10 +2,10 @@
 
 <widget xmlns     = "http://www.w3.org/ns/widgets"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.designge.3dwebcama"
+        id        = "com.designge.theedwebcam"
 	    versionCode="2" 
         version   = "1.0.1"
-		package="com.designge.3dwebcama"
+		package="com.designge.theedwebcam"
 		>
     <name>3D Webcam</name>
 	<icon src="logo.jpg" />
@@ -36,7 +36,7 @@
 
 
 	<feature name="App">
-	  <param name="android-package" value="com.designge.3dwebcama"/>
+	  <param name="android-package" value="com.designge.theedwebcam"/>
 	</feature>
 	<feature name="InAppBrowser">
 		<param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
