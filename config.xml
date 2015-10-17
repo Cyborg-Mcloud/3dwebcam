@@ -2,10 +2,10 @@
 
 <widget xmlns     = "http://www.w3.org/ns/widgets"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.designge.3dwebcam"
+        id        = "com.designge.3dwebcama"
 	    versionCode="2" 
         version   = "1.0.1"
-		package="com.designge.3dwebcam"
+		package="com.designge.3dwebcama"
 		>
     <name>3D Webcam</name>
 	<icon src="logo.jpg" />
@@ -15,13 +15,14 @@
 	<preference name="fullscreen" value="true" />
 	<preference name="webviewbounce" value="false" />  
 	<preference name="DisallowOverscroll" value="true" />
-    <description>
+  
+	<description>
     3D Webcam
     </description>
 	
 
     <author href="http://design.ge" email="uabashidze@gmail.com">
-        Cyborg-Mcloud
+        Cyb Mcloud
     </author>
 
  <gap:platform name="ios" />
@@ -35,7 +36,7 @@
 
 
 	<feature name="App">
-	  <param name="android-package" value="com.designge.3dwebcam"/>
+	  <param name="android-package" value="com.designge.3dwebcama"/>
 	</feature>
 	<feature name="InAppBrowser">
 		<param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
