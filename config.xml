@@ -10,7 +10,7 @@
     <name>3D Webcam</name>
 	<icon src="logo.jpg" />
 
-	<preference name="phonegap-version" value="cli-5.1.1" /> 
+	<preference name="phonegap-version" value="3.7.0" /> 
 	<preference name="orientation" value="landscape" />
 	<preference name="fullscreen" value="true" />
 	<preference name="webviewbounce" value="false" />  
