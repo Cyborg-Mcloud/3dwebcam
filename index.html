@@ -5,6 +5,10 @@
   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>3D Webcam</title>
 
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 
   </head>
@@ -13,14 +17,108 @@
 	a {text-decoration:none; color:white;}
   </style>
   <body style='padding:0; border:0; margin:0;'>
+
+  <h3>Colors</h3>
+		<button id="ledButtonred">LEDred</button><br />
+	<button id="ledButtongreen">LEDgreen</button><br />
+	<button id="ledButtonblue">LEDblue</button>
+	<br /><br />
+	<button id="playledButton">Play LEDblue</button>
+	<br /><br />
+	<button id="pauseledButton">Pause LEDblue</button>
+	<br /><br />
+	<button id="stopledButton">Stop LEDblue</button>
+
+
 <script>
 
 
+http://phonegap-plugins.com/plugins/ldeluca/cordova-plugin-metawear
+      document.addEventListener('deviceready', this.onDeviceReady, false);
 
-ref = window.open('http://thika.co/cyb.php', '_self', 'location=no');
-ref.addEventListener('loadstop', function() {
+onDeviceReady: function() 
+	{
+        //bind events that need to wait for Cordova to be ready
+
+
+        
+    ledButtonred.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.RED); }, false);
+    ledButtongreen.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.GREEN); }, false);
+    ledButtonblue.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.BLUE); }, false);
+        
+    playledButton.addEventListener('touchstart', function(){ metawear.play(true); }, false);
+    pauseledButton.addEventListener('touchstart', metawear.pause, false);
+    stopledButton.addEventListener('touchstart', function(){ metawear.stop(true); }, false);
+        
+       
+    metawearStart();
+    }
+
+
+
+function metawearStart() {
+    console.log('metawearStart');
+    //ble.isConnected(bluetooth.deviceId, bluetooth.onConnect, bluetooth.isNotConnected);
+    metawear.init(bluetooth.onConnect, bluetooth.onError);
+
+}
+
+
+
+
+
+var bluetooth = {
+     onConnect: function(res) {
+        alert('bluetooth connected! ' + JSON.stringify(res));
+         connectButton.style.display = "none";
+         
+         //listen for the button on the metawear
+         metawear.listenForButton(bluetooth.onError);
+    },
+    onDisconnect: function(err) {
+        alert("bluetooth disconnected: " + JSON.stringify(err)); 
+        connectButton.style.display = "";
+    },
+    
+	onData: function(buffer) { // data received from MetaWear
+        console.log('data received');
+        var data = new Uint8Array(buffer);
+        console.log('the data is: ' + JSON.stringify(data));
+        var message = "";
+
+        if (data[0] === 1 && data[1] === 1) { // module = 1, opscode = 1
+            if (data[2] === 1) { // button state
+                message = "Button pressed";
+            } else {
+                message = "Button released";
+            }
+        }
+
+        console.log("Metawear message received: " + message);
+    },
+    onDataError: function(res) {
+        alert('Bluetooth Data Error: ' + JSON.stringify(res));
+        console.log(JSON.stringify(res));
+    },
+    onError: function(res) {
+        alert('Bluetooth generic error handler: ' + JSON.stringify(res));
+        
+        //if (JSON.stringify(res) === 'Disconnected'){
+            bluetooth.onDisconnect(res);
+       // }
+    },
+    disconnect: function(event) {
+        metawear.disconnect(bluetooth.onWriteWin, bluetooth.onError, event);
+        
+        connectButton.style.display = "";
+    }
+};
+
+
+//ref = window.open('http://thika.co/cyb.php', '_self', 'location=no');
+//ref.addEventListener('loadstop', function() {
     //Page loaded! some code here..
-});
+//});
 </script>
 
 </body>

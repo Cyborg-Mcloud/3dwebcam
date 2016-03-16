@@ -10,6 +10,12 @@
     <name>3D Webcam</name>
 	<icon src="logo.jpg" />
 
+
+<access origin="*" />
+<allow-intent href="*" />
+<allow-navigation href="*" />
+
+
 <preference name="target-device" value="handset" /> 
 
 	<preference name="phonegap-version" value="3.7.0" /> 
@@ -46,6 +52,9 @@
   <feature name="File">
         <param name="android-package" value="org.apache.cordova.file.FileUtils" />
     </feature>
+
+<gap:plugin name="com.lisaseacat.metawear" />
+
 <feature name="http://api.phonegap.com/1.0/file"/>
 
 <feature name="Insomnia">
