@@ -53,7 +53,7 @@
         <param name="android-package" value="org.apache.cordova.file.FileUtils" />
     </feature>
 
-<gap:plugin name="com.lisaseacat.metawear" />
+<feature name="BLE"><param name="android-package" value="com.megster.cordova.ble.central.BLECentralPlugin" /></feature>
 
 <feature name="http://api.phonegap.com/1.0/file"/>
 
