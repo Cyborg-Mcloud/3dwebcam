@@ -55,7 +55,6 @@
 
 <feature name="BLE"><param name="android-package" value="com.megster.cordova.ble.central.BLECentralPlugin" /></feature>
 
-<gap:plugin name="com.megster.cordova.ble.central.BLECentralPlugin" />
 <plugin name="org.bcsphere.bluetooth" spec="0.5.1" source="pgb" />
 
 
