@@ -62,8 +62,8 @@ var metawear = {
     },
     subscribeForIncomingData: function() {
         console.log(arguments);        
-        ble.notify(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
-mycikli();
+        ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
+
     },
     accLOCK : false,
     
