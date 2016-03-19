@@ -63,7 +63,7 @@ var metawear = {
     subscribeForIncomingData: function() {
         console.log(arguments);        
       //  ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
-		ble.startNotification(metawear.deviceId, "180f", "2A19", metawear.onDataReceived, metawear.onDataReceivedError);
+		ble.startNotification(metawear.deviceId, "180a", "2a24", metawear.onDataReceived, metawear.onDataReceivedError);
     },
     accLOCK : false,
     
