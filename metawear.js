@@ -310,4 +310,3 @@ var metawear = {
         metawear.deviceId = "";
     }
 };
-module.exports = metawear;

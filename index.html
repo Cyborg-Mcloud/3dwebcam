@@ -110,7 +110,7 @@ function onDeviceReady()
 
 function metawearStart() {
     console.log('metawearStart');
-    ble.isConnected(bluetooth.deviceId, bluetooth.onConnect, bluetooth.isNotConnected);
+  //  ble.isConnected(bluetooth.deviceId, bluetooth.onConnect, bluetooth.isNotConnected);
     metawear.init(bluetooth.onConnect, bluetooth.onError);
 
 }
