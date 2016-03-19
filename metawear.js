@@ -17,8 +17,8 @@
  * under the License.
  */
 
-var cordova = require('cordova'),
-    exec = require('cordova/exec');
+//var cordova = require('cordova'),
+  //  exec = require('cordova/exec');
 
 var metawear = {
         deviceId : "",
