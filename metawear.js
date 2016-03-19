@@ -50,7 +50,7 @@ var metawear = {
     writeData: function(buffer, success, failure) { // to to be sent to MetaWear
         if (!success) {
             success = function() {
-                //console.log( "Sent: " + JSON.stringify(new Uint8Array(buffer)) );
+                console.log( "Sent: " + JSON.stringify(new Uint8Array(buffer)) );
             };
         }
 
@@ -66,7 +66,7 @@ var metawear = {
     accLOCK : false,
     onDataReceived : function(buffer) { // data received from MetaWear
         var data = new Uint8Array(buffer);
-        //console.log('the data is: ' + JSON.stringify(data));
+        console.log('the data is: ' + JSON.stringify(data));
         var message = "";
 
         if (data[0] === 1 && data[1] === 1) { // module = 1, opscode = 1
