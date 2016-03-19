@@ -124,7 +124,7 @@ function metawearStart() {
 
 function meta_startx()
 {
-		ble.read(metawear.deviceId, "180f", "2A19", metawear.onDataReceived, metawear.onDataReceivedError);
+		ble.read(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
 
 }
 
