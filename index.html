@@ -32,59 +32,60 @@
 
 
 <script>
+var metawear = {
+    serviceUUID: "326a9000-85cb-9195-d9dd-464cfbbae75a",
+    txCharacteristic: "326a9001-85cb-9195-d9dd-464cfbbae75a", // transmit is from the phone's perspective
+    rxCharacteristic: "326a9006-85cb-9195-d9dd-464cfbbae75a"  // receive is from the phone's perspective
+};
 
-
-/*http://phonegap-plugins.com/plugins/ldeluca/cordova-plugin-metawear*/
- document.addEventListener('deviceready', onDeviceReady, false);
-
-function onDeviceReady()
-	{
-        //bind events that need to wait for Cordova to be ready
-
-
-        
-    ledButtonred.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.RED); }, false);
-    ledButtongreen.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.GREEN); }, false);
-    ledButtonblue.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.BLUE); }, false);
-        
-    playledButton.addEventListener('touchstart', function(){ metawear.play(true); }, false);
-  //  pauseledButton.addEventListener('touchstart', metawear.pause, false);
-    stopledButton.addEventListener('touchstart', function(){ metawear.stop(true); }, false);
-        
-       
-    metawearStart();
-    }
-
-
-
-function metawearStart() {
-    console.log('metawearStart');
-    //ble.isConnected(bluetooth.deviceId, bluetooth.onConnect, bluetooth.isNotConnected);
-    metawear.init(bluetooth.onConnect, bluetooth.onError);
-
-}
-
-
-
-
-
-var bluetooth = {
-     onConnect: function(res) {
-        alert('bluetooth connected! ' + JSON.stringify(res));
-         connectButton.style.display = "none";
-         
-         //listen for the button on the metawear
-         metawear.listenForButton(bluetooth.onError);
+var app = {
+    deviceId: "",
+    initialize: function() {
+        this.bindEvents();
+        detailPage.hidden = true;
     },
-    onDisconnect: function(err) {
-        alert("bluetooth disconnected: " + JSON.stringify(err)); 
-        connectButton.style.display = "";
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+        refreshButton.addEventListener('touchstart', this.refreshDeviceList, false);
+        motorButton.addEventListener('click', this.onMotorButton, false);
+        buzzerButton.addEventListener('click', this.onBuzzerButton, false);
+        disconnectButton.addEventListener('touchstart', this.disconnect, false);
+        deviceList.addEventListener('touchstart', this.connect, false); // assume not scrolling
     },
-    
-	onData: function(buffer) { // data received from MetaWear
-        console.log('data received');
+    onDeviceReady: function() {
+        app.refreshDeviceList();
+    },
+    refreshDeviceList: function() {
+        deviceList.innerHTML = ''; // empties the list
+        if (cordova.platformId === 'android') { // Android filtering is broken
+            ble.scan([], 5, app.onDiscoverDevice, app.onError);
+        } else {
+            ble.scan([metawear.serviceUUID], 5, app.onDiscoverDevice, app.onError);
+        }
+    },
+    onDiscoverDevice: function(device) {
+        var listItem = document.createElement('li'),
+            html = '<b>' + device.name + '</b><br/>' +
+                'RSSI: ' + device.rssi + '&nbsp;|&nbsp;' +
+                device.id;
+
+        listItem.dataset.deviceId = device.id;
+        listItem.innerHTML = html;
+        deviceList.appendChild(listItem);
+    },
+    connect: function(e) {
+        app.deviceId = e.target.dataset.deviceId;
+
+        var onConnect = function() {
+            app.enableButtonFeedback(app.subscribeForIncomingData, app.onError);
+            app.showDetailPage();
+        };
+
+        ble.connect(app.deviceId, onConnect, app.onError);
+    },
+    onData: function(buffer) { // data received from MetaWear
+
         var data = new Uint8Array(buffer);
-        console.log('the data is: ' + JSON.stringify(data));
         var message = "";
 
         if (data[0] === 1 && data[1] === 1) { // module = 1, opscode = 1
@@ -95,23 +96,75 @@ var bluetooth = {
             }
         }
 
-        console.log("Metawear message received: " + message);
+        resultDiv.innerHTML = resultDiv.innerHTML + message + "<br/>";
+        resultDiv.scrollTop = resultDiv.scrollHeight;
     },
-    onDataError: function(res) {
-        alert('Bluetooth Data Error: ' + JSON.stringify(res));
-        console.log(JSON.stringify(res));
+    writeData: function(buffer, success, failure) { // to to be sent to MetaWear
+
+        if (!success) {
+            success = function() {
+                console.log("success");
+                resultDiv.innerHTML = resultDiv.innerHTML + "Sent: " + JSON.stringify(new Uint8Array(buffer)) + "<br/>";
+                resultDiv.scrollTop = resultDiv.scrollHeight;
+            };
+        }
+
+        if (!failure) {
+            failure = app.onError;
+        }
+
+        ble.writeCommand(app.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
     },
-    onError: function(res) {
-        alert('Bluetooth generic error handler: ' + JSON.stringify(res));
-        
-        //if (JSON.stringify(res) === 'Disconnected'){
-            bluetooth.onDisconnect(res);
-       // }
+    subscribeForIncomingData: function() {
+        ble.notify(app.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, app.onData, app.onError);
+    },
+    enableButtonFeedback: function(success, failure) {
+        var data = new Uint8Array(6);
+        data[0] = 0x01; // mechanical switch
+        data[1] = 0x01; // switch state ops code
+        data[2] = 0x01; // enable
+
+        app.writeData(data.buffer, success, failure);
+    },
+    onMotorButton: function(event) {
+        var pulseWidth = pulseWidthInput.value;
+        var data = new Uint8Array(6);
+        data[0] = 0x07; // module
+        data[1] = 0x01; // pulse ops code
+        data[2] = 0x80; // Motor
+        data[3] = pulseWidth & 0xFF; // Pulse Width
+        data[4] = pulseWidth >> 8; // Pulse Width
+        data[5] = 0x00; // Some magic bullshit
+
+        app.writeData(data.buffer);
+    },
+    onBuzzerButton: function(event) {
+        var pulseWidth = pulseWidthInput.value;
+        var data = new Uint8Array(6);
+        data[0] = 0x07; // module
+        data[1] = 0x01; // pulse ops code
+        data[2] = 0xF8; // Buzzer
+        data[3] = pulseWidth & 0xFF; // Pulse Width
+        data[4] = pulseWidth >> 8; // Pulse Width
+        data[5] = 0x01; // Some magic?
+
+        app.writeData(data.buffer);
     },
     disconnect: function(event) {
-        metawear.disconnect(bluetooth.onWriteWin, bluetooth.onError, event);
-        
-        connectButton.style.display = "";
+        ble.disconnect(app.deviceId, app.showMainPage, app.onError);
+        app.deviceId = "";
+    },
+    showMainPage: function() {
+        mainPage.hidden = false;
+        detailPage.hidden = true;
+    },
+    showDetailPage: function() {
+        mainPage.hidden = true;
+        detailPage.hidden = false;
+        resultDiv.innerHTML = "<i>Press the button on the MetaWear</i><br/>";
+    },
+    onError: function(reason) {
+        alert("ERROR: " + reason); // real apps should use notification.alert
     }
 };
 
