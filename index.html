@@ -31,6 +31,8 @@
 	<button id="pauseledButton">Pause LEDblue</button>
 	<br /><br />
 	<button id="stopledButton">Stop LEDblue</button>
+<Br><br>
+	<button id="startmyx">Start X</button>
 
 
 <script>
@@ -96,7 +98,8 @@ function onDeviceReady()
 	{
         //bind events that need to wait for Cordova to be ready
 
-
+startmyx.addEventListener('touchstart', function(){		 meta_startx(); }, false);
+    
         
     ledButtonred.addEventListener('touchstart', function(){		 metawear.startAccelerometer(); }, false);
     ledButtongreen.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.GREEN); }, false);
@@ -119,6 +122,15 @@ function metawearStart() {
 
 }
 
+function meta_startx()
+{
+        var datax = new Uint8Array(3);
+        datax[0] = 0x03; // module accelerometer
+        datax[1] = 0x02; // 
+        datax[2] = 0x01; // start
+        metawear.writeData(datax.buffer);
+
+}
 
 
 

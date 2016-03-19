@@ -57,8 +57,8 @@ var metawear = {
         if (!failure) {
             failure = metawear.onError;
         }
-        ble.writeCommand(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
-//        ble.writeWithoutResponse(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
+//        ble.writeCommand(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
+        ble.writeWithoutResponse(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
     },
     subscribeForIncomingData: function() {
         console.log(arguments);        
@@ -265,23 +265,23 @@ var metawear = {
         metawear.writeData(data.buffer);
         
         //track x
-        var datax = new Uint8Array(3);
-        datax[0] = 0x03; // module accelerometer
-        datax[1] = 0x02; // 
-        datax[2] = 0x01; // start
-        metawear.writeData(datax.buffer);
+//        var datax = new Uint8Array(3);
+//        datax[0] = 0x03; // module accelerometer
+//       datax[1] = 0x02; // 
+//        datax[2] = 0x01; // start
+//        metawear.writeData(datax.buffer);
         //track y
-        var datay = new Uint8Array(3);
-        datay[0] = 0x03; // module accelerometer
-        datay[1] = 0x04; // 
-        datay[2] = 0x01; // start
-        metawear.writeData(datay.buffer);
+//        var datay = new Uint8Array(3);
+//        datay[0] = 0x03; // module accelerometer
+//        datay[1] = 0x04; // 
+//        datay[2] = 0x01; // start
+//        metawear.writeData(datay.buffer);
         //track z
-        var dataz = new Uint8Array(3);
-        dataz[0] = 0x03; // module accelerometer
-        dataz[1] = 0x01; // 
-        dataz[2] = 0x01; // start
-        metawear.writeData(dataz.buffer);
+//        var dataz = new Uint8Array(3);
+//        dataz[0] = 0x03; // module accelerometer
+//        dataz[1] = 0x01; // 
+//        dataz[2] = 0x01; // start
+//        metawear.writeData(dataz.buffer);
     },
     stopAccelerometer : function(){
         console.log("stopAccelerometer called");
