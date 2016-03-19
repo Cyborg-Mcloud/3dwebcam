@@ -43,7 +43,7 @@ var bluetooth = {
          console.log('bluetooth connected! ' + JSON.stringify(res));
          //listen for the button on the metawear
          metawear.listenForButton(bluetooth.onError);
-		 metawear.startAccelerometer();
+
     },
     onDisconnect: function(err) {
         console.log("bluetooth disconnected: " + JSON.stringify(err)); 
@@ -96,7 +96,7 @@ function onDeviceReady()
 
 
         
-    ledButtonred.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.RED); }, false);
+    ledButtonred.addEventListener('touchstart', function(){		 metawear.startAccelerometer(); }, false);
     ledButtongreen.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.GREEN); }, false);
     ledButtonblue.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.BLUE); }, false);
         
