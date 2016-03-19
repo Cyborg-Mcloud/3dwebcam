@@ -93,7 +93,7 @@ var metawear = {
             + ",[5]" + d5
             + ",[6]" + d6
             + ",[7]" + d7;
-            //console.log("ACCELEROMETER MESSAGE: " + message);
+            console.log("ACCELEROMETER MESSAGE: " + message);
             
             //compare against old values
             /*var xdiff = Math.abs(metawear.accelerometerVALS.x - d5);
@@ -136,7 +136,7 @@ var metawear = {
             
         }
 
-        //console.log("MESSAGE FROM ONDATA: " + message);
+        console.log("MESSAGE FROM ONDATA: " + message);
     },
     onDataReceivedError: function(res) {
         console.log('Bluetooth Data Error: ' + JSON.stringify(res));

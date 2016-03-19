@@ -38,15 +38,16 @@
 
 var bluetooth = {
      onConnect: function(res) {
-        alert('bluetooth connected! ' + JSON.stringify(res));
+
          connectButton.style.display = "none";
-         
+         console.log('bluetooth connected! ' + JSON.stringify(res));
          //listen for the button on the metawear
          metawear.listenForButton(bluetooth.onError);
     },
     onDisconnect: function(err) {
-        alert("bluetooth disconnected: " + JSON.stringify(err)); 
-        connectButton.style.display = "";
+        console.log("bluetooth disconnected: " + JSON.stringify(err)); 
+        
+		connectButton.style.display = "";
     },
     
 	onData: function(buffer) { // data received from MetaWear
@@ -66,11 +67,11 @@ var bluetooth = {
         console.log("Metawear message received: " + message);
     },
     onDataError: function(res) {
-        alert('Bluetooth Data Error: ' + JSON.stringify(res));
+        console.log('Bluetooth Data Error: ' + JSON.stringify(res));
         console.log(JSON.stringify(res));
     },
     onError: function(res) {
-        alert('Bluetooth generic error handler: ' + JSON.stringify(res));
+        console.log('Bluetooth generic error handler: ' + JSON.stringify(res));
         
         //if (JSON.stringify(res) === 'Disconnected'){
             bluetooth.onDisconnect(res);
@@ -110,7 +111,7 @@ function onDeviceReady()
 
 function metawearStart() {
     console.log('metawearStart');
-  //  ble.isConnected(bluetooth.deviceId, bluetooth.onConnect, bluetooth.isNotConnected);
+    ble.isConnected(bluetooth.deviceId, bluetooth.onConnect, bluetooth.isNotConnected);
     metawear.init(bluetooth.onConnect, bluetooth.onError);
 
 }
