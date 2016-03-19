@@ -57,7 +57,8 @@ var metawear = {
         if (!failure) {
             failure = metawear.onError;
         }
-        ble.writeCommand(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
+//        ble.writeCommand(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
+        ble.writeWithoutResponse(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
     },
     subscribeForIncomingData: function() {
         console.log(arguments);        
