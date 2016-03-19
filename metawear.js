@@ -50,15 +50,15 @@ var metawear = {
     writeData: function(buffer, success, failure) { // to to be sent to MetaWear
         if (!success) {
             success = function() {
-                console.log( "Sent: " + JSON.stringify(new Uint8Array(buffer)) );
+//                console.log( "Sent: " + JSON.stringify(new Uint8Array(buffer)) );
             };
         }
-
+  console.log( "Sent: " + JSON.stringify(new Uint8Array(buffer)) );
         if (!failure) {
             failure = metawear.onError;
         }
-//        ble.writeCommand(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
-        ble.writeWithoutResponse(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
+        ble.writeCommand(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
+//        ble.writeWithoutResponse(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
     },
     subscribeForIncomingData: function() {
         console.log(arguments);        
