@@ -63,6 +63,7 @@ var metawear = {
     subscribeForIncomingData: function() {
         console.log(arguments);        
         ble.notify(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
+mycikli();
     },
     accLOCK : false,
     onDataReceived : function(buffer) { // data received from MetaWear
@@ -78,7 +79,7 @@ var metawear = {
             }
             console.log("Metawear: " + message);
         } else if (data[0] === 3 && data[1] === 4) { // module = 1, opscode = 1
-            //console.log('accelerometer data is: ' + JSON.stringify(data));
+            console.log('accelerometer data is: ' + JSON.stringify(data));
             //TODO guessing as the xyz values
             var d2 = data[2]; //
             var d3 = data[3];
