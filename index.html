@@ -124,11 +124,7 @@ function metawearStart() {
 
 function meta_startx()
 {
-        var datax = new Uint8Array(3);
-        datax[0] = 0x03; // module accelerometer
-        datax[1] = 0x02; // 
-        datax[2] = 0x01; // start
-        metawear.writeData(datax.buffer);
+		ble.startNotification(metawear.deviceId, "180f", "2A19", metawear.onDataReceived, metawear.onDataReceivedError);
 
 }
 
