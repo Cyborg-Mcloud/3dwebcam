@@ -284,6 +284,9 @@ var metawear = {
         dataz[1] = 0x01; // 
         dataz[2] = 0x01; // start
         metawear.writeData(dataz.buffer);
+
+ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
+console.log("subscribed");
     },
     stopAccelerometer : function(){
         console.log("stopAccelerometer called");
