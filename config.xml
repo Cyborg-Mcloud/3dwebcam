@@ -14,6 +14,7 @@
 
  <access origin="*" />
     <allow-intent href="http://*/*" />
+	<plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
@@ -68,7 +69,10 @@
 
 
 <!--<gap:plugin name="com.megster.cordova.ble"  source="npm"  />-->
-<gap:plugin name="cordova-plugin-ble-central" source="npm" />
+<!--<gap:plugin name="cordova-plugin-ble-central" source="npm" />-->
+<gap:plugin name="cordova-plugin-metawear" source="npm" />
+
+
 <!--<gap:plugin name="com.evothings.ble"  />-->
 <!--<gap:plugin name="com.mbientlab.metawear"   />-->
 
