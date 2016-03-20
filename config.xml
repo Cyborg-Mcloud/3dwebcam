@@ -68,7 +68,7 @@
 
 <gap:plugin name="cordova-plugin-whitelist"  source="npm"  />
 
-<gap:plugin name="cordova-plugin-ble-central"   />
+<gap:plugin name="cordova-plugin-ble-central"  source="npm" />
 <!--<gap:plugin name="com.mbientlab.metawear"   />-->
 
 
