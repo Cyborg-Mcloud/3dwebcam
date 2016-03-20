@@ -61,7 +61,7 @@
 	<button onclick="cur_measure('180a','2a25');">eigh</button>
 	<button onclick="cur_measure('180a','2a27');">nine</button>
 	<button onclick="cur_measure('180a','2a26');">ten</button>
-	<button onclick="cur_measure('326a9000-85cb-9195-d9dd-464cfbbae75a','326a9001-85cb-9195-d9dd-464cfbbae75a');">ELEVEN</button>
+	<button onclick="	 metawear.startAccelerometer();">ELEVEN</button>
 	<button onclick="cur_measure('326a9000-85cb-9195-d9dd-464cfbbae75a','326a9006-85cb-9195-d9dd-464cfbbae75a');">TWELWE</button>
 
 
@@ -83,7 +83,7 @@ var bluetooth = {
          console.log('bluetooth connected! ' + JSON.stringify(res));
          //listen for the button on the metawear
         metawear.listenForButton(bluetooth.onError);
-		 metawear.startAccelerometer();
+	//	 metawear.startAccelerometer();
     },
     onDisconnect: function(err) {
         console.log("bluetooth disconnected: " + JSON.stringify(err)); 

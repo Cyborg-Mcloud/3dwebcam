@@ -254,6 +254,10 @@ var metawear = {
        z : 22
     },
     startAccelerometer : function(){
+
+
+//https://github.com/brainexe/node-metawear/blob/master/src/registers/accelerometer.js
+
         console.log("startAccelerometer called");
         //start the accelerometer
        var data = new Uint8Array(4);
