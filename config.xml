@@ -70,7 +70,7 @@
 
 <!--<gap:plugin name="com.megster.cordova.ble"  source="npm"  />-->
 <!--<gap:plugin name="cordova-plugin-ble-central" source="npm" />-->
-<gap:plugin name="cordova-plugin-metawear" source="npm" />
+<gap:plugin name="cordova-plugin-metawear"  />
 
 
 <!--<gap:plugin name="com.evothings.ble"  />-->
