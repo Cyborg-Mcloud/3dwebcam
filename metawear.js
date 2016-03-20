@@ -25,7 +25,7 @@ var metawear = {
     // this is MetaWear's UART service
     serviceUUID: "326a9000-85cb-9195-d9dd-464cfbbae75a",
     txCharacteristic: "326a9001-85cb-9195-d9dd-464cfbbae75a", // transmit is from the phone's perspective
-    rxCharacteristic: "326a9006-85cb-9195-d9dd-464cfbbae75a",  // receive is from the phone's perspective
+    rxCharacteristic: "326a9007-85cb-9195-d9dd-464cfbbae75a",  // receive is from the phone's perspective
     
 	init: function (successCallback, failureCallback) {
     	console.log('initializing the metawear plugin');
