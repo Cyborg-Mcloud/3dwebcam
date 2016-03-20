@@ -154,6 +154,12 @@ function metawearStart() {
 
 }
 
+function cur_measure(sid, prop)
+{
+curSID=sid;
+curPROP=prop;
+}
+
 function meta_startx()
 {
 ble.read(metawear.deviceId, curSID, curPROP, metawear.onDataReceived, metawear.onDataReceivedError);
