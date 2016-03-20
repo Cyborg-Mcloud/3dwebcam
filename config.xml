@@ -68,7 +68,7 @@
 
 
 <gap:plugin name="com.megster.cordova.ble"  source="npm"  />
-<gap:plugin name="com.mbientlab.metawear"  source="npm"  />
+<gap:plugin name="com.mbientlab.metawear"   />
 
 
 
