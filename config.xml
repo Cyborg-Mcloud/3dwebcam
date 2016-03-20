@@ -66,7 +66,7 @@
 
 <!--<feature name="BLE"><param name="android-package" value="com.megster.cordova.ble.central.BLECentralPlugin" /></feature>-->
 
-<gap:plugin name="cordova-plugin-whitelist"   />
+<gap:plugin name="cordova-plugin-whitelist"  source="npm"  />
 
 <gap:plugin name="cordova-plugin-ble-central"   />
 <!--<gap:plugin name="com.mbientlab.metawear"   />-->
