@@ -78,7 +78,7 @@ var bluetooth = {
          connectButton.style.display = "none";
          console.log('bluetooth connected! ' + JSON.stringify(res));
          //listen for the button on the metawear
-       //  metawear.listenForButton(bluetooth.onError);
+        metawear.listenForButton(bluetooth.onError);
 		 metawear.startAccelerometer();
     },
     onDisconnect: function(err) {
@@ -149,7 +149,7 @@ startmyx.addEventListener('touchstart', function(){		 meta_startx(); }, false);
 
 function metawearStart() {
     console.log('metawearStart');
-    ble.isConnected(bluetooth.deviceId, bluetooth.onConnect, bluetooth.isNotConnected);
+//    ble.isConnected(bluetooth.deviceId, bluetooth.onConnect, bluetooth.isNotConnected);
     metawear.init(bluetooth.onConnect, bluetooth.onError);
 
 }
