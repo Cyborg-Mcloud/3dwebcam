@@ -263,7 +263,7 @@ var metawear = {
         data[3] = 0x00;
         data[4] = 0x20; //
         data[5] = 0x00;
-        data[6] = 0x00;
+        data[6] = 0x01;
 
         metawear.writeData(data.buffer);
         
