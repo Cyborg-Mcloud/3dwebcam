@@ -18,6 +18,8 @@
 	a {text-decoration:none; color:white;}
   </style>
   <body style='padding:0; border:0; margin:0;'>
+  <Table>
+  <tr><td>
                 <button id="disconnectButton">Disconnect</button>
                 <button id="connectButton">Connect</button>
 
@@ -32,13 +34,43 @@
 	<br /><br />
 	<button id="stopledButton">Stop LEDblue</button>
 <Br><br>
-	<button id="startmyx">Start X</button>
 
+</td>
+<td>
+
+<!--{"service":"1800","characteristic":"2a00","properties":["Read","Write"]},
+{"service":"1800","characteristic":"2a01","properties":["Read"]},
+{"service":"1800","characteristic":"2a04","properties":["Read"]},
+{"service":"1801","characteristic":"2a05","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]},
+{"service":"180f","characteristic":"2a19","properties":["Read","Notify"],"descriptors":[{"uuid":"2902"}]},
+{"service":"180a","characteristic":"2a29","properties":["Read"]},
+{"service":"180a","characteristic":"2a24","properties":["Read"]},
+{"service":"180a","characteristic":"2a25","properties":["Read"]},
+{"service":"180a","characteristic":"2a27","properties":["Read"]},
+{"service":"180a","characteristic":"2a26","properties":["Read"]},
+{"service":"326a9000-85cb-9195-d9dd-464cfbbae75a","characteristic":"326a9001-85cb-9195-d9dd-464cfbbae75a","properties":["Read","WriteWithoutResponse","Write"]},
+{"service":"326a9000-85cb-9195-d9dd-464cfbbae75a","characteristic":"326a9006-85cb-9195-d9dd-464cfbbae75a","properties":["Read","Notify"],"descriptors":[{"uuid":"2902"}]}]}
+-->
+	<button onclick="cur_measure('1800','2a00');">one</button>
+	<button onclick="cur_measure('1800','2a01');">two</button>
+	<button onclick="cur_measure('1800','2a04');">tree</button>
+	<button onclick="cur_measure('1801','2a05');">four</button>
+	<button onclick="cur_measure('180f','2a19');">five</button>
+	<button onclick="cur_measure('180a','2a29');">six</button>
+	<button onclick="cur_measure('180a','2a24');">seven</button>
+	<button onclick="cur_measure('180a','2a25');">eigh</button>
+	<button onclick="cur_measure('180a','2a27');">nine</button>
+	<button onclick="cur_measure('180a','2a26');">ten</button>
+	<button onclick="cur_measure('326a9000-85cb-9195-d9dd-464cfbbae75a','326a9001-85cb-9195-d9dd-464cfbbae75a');">ELEVEN</button>
+	<button onclick="cur_measure('326a9000-85cb-9195-d9dd-464cfbbae75a','326a9006-85cb-9195-d9dd-464cfbbae75a');">TWELWE</button>
+
+</td>
+</tr></table>
 
 <script>
 
-
-
+var curSID="1800";
+var curPROP="2a00";
 
 var bluetooth = {
      onConnect: function(res) {
@@ -46,7 +78,7 @@ var bluetooth = {
          connectButton.style.display = "none";
          console.log('bluetooth connected! ' + JSON.stringify(res));
          //listen for the button on the metawear
-         metawear.listenForButton(bluetooth.onError);
+       //  metawear.listenForButton(bluetooth.onError);
 		 metawear.startAccelerometer();
     },
     onDisconnect: function(err) {
@@ -124,8 +156,7 @@ function metawearStart() {
 
 function meta_startx()
 {
-		ble.read(metawear.deviceId, "180a", "2a24", metawear.onDataReceived, metawear.onDataReceivedError);
-
+ble.read(metawear.deviceId, curSID, curPROP, metawear.onDataReceived, metawear.onDataReceivedError);
 }
 
 //ref = window.open('http://thika.co/cyb.php', '_self', 'location=no');
