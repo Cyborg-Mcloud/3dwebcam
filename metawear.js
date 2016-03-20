@@ -256,38 +256,48 @@ var metawear = {
     startAccelerometer : function(){
         console.log("startAccelerometer called");
         //start the accelerometer
-        var data = new Uint8Array(7);
-        data[0] = 0x03; // module accelerometer
-        data[1] = 0x03; // 
-        data[2] = 0x01; // 
-        data[3] = 0x00;
-        data[4] = 0x20; //
-        data[5] = 0x00;
-        data[6] = 0x01;
+       var data = new Uint8Array(4);
+		data[0] = 0x03;
+		data[1] = 0x0d;
+		data[2] = 0x04; // TODO configurable values
+		data[3] = 0x0a;
+        metawear.writeData(data.buffer);
 
+        //start the accelerometer
+        var data = new Uint8Array(6);
+        data[0] = 0x03; // module accelerometer
+        data[1] = 0x0a; // 
+        data[2] = 0x00; // 
+        data[3] = 0x14;
+        data[4] = 0x14; //
+        data[5] = 0x14;
         metawear.writeData(data.buffer);
         
-        //track x
-        var datax = new Uint8Array(3);
-        datax[0] = 0x03; // module accelerometer
-       datax[1] = 0x02; // 
-        datax[2] = 0x01; // start
-        metawear.writeData(datax.buffer);
-        //track y
-        var datay = new Uint8Array(3);
-        datay[0] = 0x03; // module accelerometer
-        datay[1] = 0x04; // 
-        datay[2] = 0x01; // start
-        metawear.writeData(datay.buffer);
-        //track z
-        var dataz = new Uint8Array(3);
-        dataz[0] = 0x03; // module accelerometer
-        dataz[1] = 0x01; // 
-        dataz[2] = 0x01; // start
-        metawear.writeData(dataz.buffer);
+		 data = new Uint8Array(4);
+		data[0] = 0x03;
+		data[1] = 0x03;
+		data[2] = 0x20;
+		data[3] = 0x0c;
+        metawear.writeData(data.buffer);
 
-ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
-console.log("subscribed");
+
+		data = new Uint8Array(7);
+		data[0] = 0x03;
+		data[1] = 0x07;
+		data[2] = 0x07; // TODO configurable values
+		data[3] = 0x30;
+		data[4] = 0x81;
+		data[5] = 0x0b;
+		data[6] = 0xc0;
+        metawear.writeData(data.buffer);
+
+		data = new Uint8Array(3);
+		data[0] = 0x03;
+		data[1] = 0x01;
+		data[2] = 0x01;
+        metawear.writeData(data.buffer);
+
+
     },
     stopAccelerometer : function(){
         console.log("stopAccelerometer called");
