@@ -69,7 +69,7 @@
 
 
 <gap:plugin name="com.megster.cordova.ble"  source="npm"  />
-<gap:plugin name="com-lisaseacat-metawear"   />
+<gap:plugin name="com-lisaseacat-metawear"  source="npm" />
 
 
 
