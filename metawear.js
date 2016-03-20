@@ -304,7 +304,12 @@ var metawear = {
 		data[1] = 0x01;
 		data[2] = 0x01;
         metawear.writeData(data.buffer);
-
+		
+		var datax = new Uint8Array(3);
+        datax[0] = 0x03; // module accelerometer
+        datax[1] = 0x02; // 
+        datax[2] = 0x01; // stop
+        metawear.writeData(datax.buffer);
 
     },
     stopAccelerometer : function(){
