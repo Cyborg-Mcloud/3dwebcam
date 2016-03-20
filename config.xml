@@ -68,7 +68,8 @@
 
 
 <!--<gap:plugin name="com.megster.cordova.ble"  source="npm"  />-->
-<gap:plugin name="com.evothings.ble"  />
+<gap:plugin name="cordova-plugin-ble-central" source="npm" />
+<!--<gap:plugin name="com.evothings.ble"  />-->
 <!--<gap:plugin name="com.mbientlab.metawear"   />-->
 
 
