@@ -47,23 +47,24 @@
              metawear.mwdevice.connect(ourBoard, connectedCallback, errorCallback);
          }
          function connectDisconnect(){
-             var finit = $("span");
+           //  var finit = $("span");
              if(connected){
                  metawear.mwdevice.disconnect();
-                 $("#connect_disconnect").siblings().find(finit).text("Connect");
+				document.getElementById("connect_disconnect").value="Connect";
                  connected = false;
             }else{
                  initializeConnect();
              }
          }
          var connectedCallback = function(result){
-             $("#connection_status").text(result);
+
+			 document.getElementById("connection_status").value=result;
              console.log("Status : " + result);
-             var finit = $("span");
              
              if(result === 'CONNECTED'){
                connected = true;
-               $("#connect_disconnect").siblings().find(finit).text("Disconnect");
+				document.getElementById("connect_disconnect").value="Disconnect";
+
              }
              
              alert("Status: " + result);
@@ -74,22 +75,23 @@
              alert("Error: " + result);
          }
          var successCallback = function(result){
-             $("#rssi").text(result);
+
+			document.getElementById("rssi").innerHTML=result;
          } 
          var accelerometerCallback = function(result){
              var results = "x: " + result.x + " y: " + result.y + " z: " + result.z;
-             $("#accelerometer").text(results);
+			document.getElementById("rssi").innerHTML=results;
          }
          function accelerometerStartStop(){
-             var finit = $("span");
+
              if(accelerometerState === 'stopped'){
                  metawear.mwdevice.startAccelerometer(accelerometerCallback, errorCallback);
-                 $("#accelerometer_button").siblings().find(finit).text("Stop Accelerometer");
+	 			document.getElementById("accelerometer_button").value="Stop Accelerometer";
                  accelerometerState = 'started';
             }else{
                  metawear.mwdevice.stopAccelerometer();
                  accelerometerState = 'stopped';
-                 $("#accelerometer_button").siblings().find(finit).text("Start Accelerometer");
+	 			document.getElementById("accelerometer_button").value="Start Accelerometer";
              }
          }
         </script> 
