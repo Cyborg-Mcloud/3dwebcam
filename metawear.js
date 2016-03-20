@@ -231,21 +231,22 @@ var metawear = {
         dataz[2] = 0x01; // start
         metawear.writeData(dataz.buffer);
 
-       var datat = new Uint8Array(3);
-        datat[0] = 0x04; // module accelerometer
-        datat[1] = 0x01; // 
-        datat[2] = 0x01; // start
-        metawear.writeData(datat.buffer);
+        console.log("startAccelerometer called");
+        //start the accelerometer
+        var data = new Uint8Array(7);
+        data[0] = 0x03; // module accelerometer
+        data[1] = 0x03; // 
+        data[2] = 0x01; // 
+        data[3] = 0x00;
+        data[4] = 0x20; //
+        data[5] = 0x00;
+        data[6] = 0x01;
+
+        metawear.writeData(data.buffer);
 
 
-       var datat1 = new Uint8Array(3);
-        datat1[0] = 0x04; // module accelerometer
-        datat1[1] = 0x03; // 
-        datat1[2] = 0x01; // start
-        metawear.writeData(datat1.buffer);
 
-
-		ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
+//		ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
 console.log("subscribed");
     },
     stopAccelerometer : function(){
