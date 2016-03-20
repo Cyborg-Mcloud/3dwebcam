@@ -58,10 +58,13 @@ var metawear = {
         if (!failure) {
             failure = metawear.onError;
         }
-        ble.writeCommand(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
-//        ble.writeWithoutResponse(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
+     //   ble.writeCommand(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
+        ble.writeWithoutResponse(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
     },
-    subscribeForIncomingData: function() {
+  
+	
+	
+	subscribeForIncomingData: function() {
         console.log(arguments);        
 		ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
 	//	ble.startNotification(metawear.deviceId, "180f", "2a19", metawear.onDataReceived, metawear.onDataReceivedError);
@@ -147,18 +150,18 @@ var metawear = {
         console.log("MESSAGE FROM ONDATA: " + message);
     },
     onDataReceivedError: function(res) {
-        console.log('Bluetooth Data Error: ' + JSON.stringify(res));
+        console.log(' Data Error: ' + JSON.stringify(res));
     },
     listenForButton : function(failureCallback, onDataReceived, onDataReceivedError){
         if (typeof onDataReceived == 'function'){
             console.log('replacing generic onDataReceived handler');
             //replace the generic one
-            metawear.onDataReceived = onDataReceived;   
+          //  metawear.onDataReceived = onDataReceived;   
         }
         if (typeof onDataReceivedError == 'function'){
             console.log('replacing generic onDataReceivedError handler');
             //replace the generic one
-            metawear.onDataReceivedError = onDataReceivedError;   
+       //     metawear.onDataReceivedError = onDataReceivedError;   
         }
       metawear.enableButtonFeedback( metawear.subscribeForIncomingData, failureCallback);  
     },
@@ -284,7 +287,7 @@ var metawear = {
 		 data = new Uint8Array(4);
 		data[0] = 0x03;
 		data[1] = 0x03;
-		data[2] = 0x20;
+		data[2] = 0x20 | 0x07;
 		data[3] = 0x0c;
         metawear.writeData(data.buffer);
 

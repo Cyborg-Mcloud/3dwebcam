@@ -64,6 +64,9 @@
 	<button onclick="	 metawear.startAccelerometer();">accel</button>
 	<button onclick="cur_measure('326a9000-85cb-9195-d9dd-464cfbbae75a','326a9006-85cb-9195-d9dd-464cfbbae75a');">TWELWE</button>
 
+<Br><br>
+<input type='text' size=3 name='data1'><input type='text' size=3 name='data2'><input type='text' size=3 name='data2'><input type='text' size=3 name='data4'><input type='text' size=3 name='data5'><input type='text' size=3 name='data6'><input type='text' size=3 name='data7'><br>
+<input type=button value='Send'>
 
 
 </td>
@@ -73,43 +76,21 @@
 
 
 
+function onConnSucc(res)
+{
+ connectButton.style.display = "none";
+         console.log('Meta connected! ' + JSON.stringify(res));
+         //listen for the button on the metawear
+        metawear.listenForButton(onMyError);
+}
+
+function onMyError(res)
+{
+ console.log(' generic error handler: ' + JSON.stringify(res));
+}
+
 var curSID="1800";
 var curPROP="2a00";
-
-var bluetooth = {
-     onConnect: function(res) {
-
-         connectButton.style.display = "none";
-         console.log('bluetooth connected! ' + JSON.stringify(res));
-         //listen for the button on the metawear
-        metawear.listenForButton(bluetooth.onError);
-	//	 metawear.startAccelerometer();
-    },
-    onDisconnect: function(err) {
-        console.log("bluetooth disconnected: " + JSON.stringify(err)); 
-        
-		connectButton.style.display = "";
-    },
-    
-
-    onDataError: function(res) {
-        console.log('Bluetooth Data Error: ' + JSON.stringify(res));
-        console.log(JSON.stringify(res));
-    },
-    onError: function(res) {
-        console.log('Bluetooth generic error handler: ' + JSON.stringify(res));
-        
-        //if (JSON.stringify(res) === 'Disconnected'){
-            bluetooth.onDisconnect(res);
-       // }
-    },
-    disconnect: function(event) {
-        metawear.disconnect(bluetooth.onWriteWin, bluetooth.onError, event);
-        
-        connectButton.style.display = "";
-    }
-};
-
 
 
 /*http://phonegap-plugins.com/plugins/ldeluca/cordova-plugin-metawear*/
@@ -138,8 +119,8 @@ startmyx.addEventListener('touchstart', function(){		 meta_startx(); }, false);
 
 function metawearStart() {
     console.log('metawearStart');
-//    ble.isConnected(bluetooth.deviceId, bluetooth.onConnect, bluetooth.isNotConnected);
-    metawear.init(bluetooth.onConnect, bluetooth.onError);
+
+    metawear.init(onConnSucc, onMyError);
 
 }
 
