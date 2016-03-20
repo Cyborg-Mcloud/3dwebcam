@@ -25,7 +25,7 @@ var metawear = {
     // this is MetaWear's UART service
     serviceUUID: "326a9000-85cb-9195-d9dd-464cfbbae75a",
     txCharacteristic: "326a9001-85cb-9195-d9dd-464cfbbae75a", // transmit is from the phone's perspective
-    rxCharacteristic: "326a9006-85cb-9195-d9dd-464cfbbae75a",  // receive is from the phone's perspective
+    rxCharacteristic: "326a9007-85cb-9195-d9dd-464cfbbae75a",  // receive is from the phone's perspective
     
 	init: function (successCallback, failureCallback) {
     	console.log('initializing the metawear plugin');
@@ -285,20 +285,6 @@ var metawear = {
         dataz[1] = 0x01; // 
         dataz[2] = 0x01; // start
         metawear.writeData(dataz.buffer);
-
-       var datat = new Uint8Array(3);
-        datat[0] = 0x04; // module accelerometer
-        datat[1] = 0x01; // 
-        datat[2] = 0x01; // start
-        metawear.writeData(datat.buffer);
-
-
-       var datat1 = new Uint8Array(3);
-        datat1[0] = 0x04; // module accelerometer
-        datat1[1] = 0x03; // 
-        datat1[2] = 0x01; // start
-        metawear.writeData(datat1.buffer);
-
 
 ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
 console.log("subscribed");
