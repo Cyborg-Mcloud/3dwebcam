@@ -125,7 +125,7 @@ var bluetooth = {
          connectButton.style.display = "none";
          console.log('bluetooth connected! ' + JSON.stringify(res));
          //listen for the button on the metawear
-       // metawear.listenForButton(bluetooth.onError);
+        metawear.listenForButton(bluetooth.onError);
 		 metawear.startAccelerometer();
     },
     onDisconnect: function(err) {

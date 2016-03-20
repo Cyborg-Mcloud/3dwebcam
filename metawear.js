@@ -63,7 +63,7 @@ var metawear = {
     },
     subscribeForIncomingData: function() {
         console.log(arguments);        
-      //  ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
+		ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
 //		ble.startNotification(metawear.deviceId, "180a", "2a24", metawear.onDataReceived, metawear.onDataReceivedError);
     },
     accLOCK : false,
@@ -156,7 +156,7 @@ var metawear = {
             //replace the generic one
             metawear.onDataReceivedError = onDataReceivedError;   
         }
-//      metawear.enableButtonFeedback( metawear.subscribeForIncomingData, failureCallback);  
+      metawear.enableButtonFeedback( metawear.subscribeForIncomingData, failureCallback);  
     },
     enableButtonFeedback: function(success, failure) {
         var data = new Uint8Array(6);
