@@ -58,14 +58,14 @@ var metawear = {
         if (!failure) {
             failure = metawear.onError;
         }
-//        ble.writeCommand(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
-        ble.writeWithoutResponse(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
+        ble.writeCommand(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
+//        ble.writeWithoutResponse(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
     },
     subscribeForIncomingData: function() {
         console.log(arguments);        
 		ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
-		ble.startNotification(metawear.deviceId, "180f", "2a19", metawear.onDataReceived, metawear.onDataReceivedError);
-		ble.startNotification(metawear.deviceId, "326a9000-85cb-9195-d9dd-464cfbbae75a", "326a9008-85cb-9195-d9dd-464cfbbae75a", metawear.onDataReceived, metawear.onDataReceivedError);
+	//	ble.startNotification(metawear.deviceId, "180f", "2a19", metawear.onDataReceived, metawear.onDataReceivedError);
+//		ble.startNotification(metawear.deviceId, "326a9000-85cb-9195-d9dd-464cfbbae75a", "326a9008-85cb-9195-d9dd-464cfbbae75a", metawear.onDataReceived, metawear.onDataReceivedError);
 
 
 //		ble.startNotification(metawear.deviceId, "180a", "2a24", metawear.onDataReceived, metawear.onDataReceivedError);
