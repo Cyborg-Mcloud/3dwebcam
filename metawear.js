@@ -99,39 +99,7 @@ var metawear = {
             + ",[7]" + d7;
             console.log("ACCELEROMETER MESSAGE: " + message);
             
-            //compare against old values
-            /*var xdiff = Math.abs(metawear.accelerometerVALS.x - d5);
-            if (xdiff > 100 && metawear.accelerometerVALS.x !== 22 && metawear.accLOCK === false){
-                metawear.accLOCK = true;
-                console.log("x value changes more than 30 degrees: " + xdiff);
-                console.log("ACCELEROMETER MESSAGE: " + message);
-                metawear.setLED(metawear.COLOR.RED); 
-                metawear.play(true);
-                
-                //after 5 seconds, turn off
-                setTimeout(function () {
-                    metawear.stop(true);
-                    metawear.accLOCK = false;
-                }, 1000);
-            }*/
-            
-            var ydiff = Math.abs(metawear.accelerometerVALS.y - d6);
-            if (ydiff > 100 && metawear.accelerometerVALS.x !== 22 && metawear.accLOCK === false){
-                metawear.accLOCK = true;
-                console.log("y value changes more than 30 degrees: " + ydiff + " old val: " + metawear.accelerometerVALS.y + " new: " + d6);
-                console.log("ACCELEROMETER MESSAGE: " + message);
-                
-                metawear.setLED(metawear.COLOR.GREEN);   
-                metawear.play(true);
-                
-                
-                
-                //after 5 seconds, turn off
-                setTimeout(function () {
-                    metawear.stop(true);
-                    metawear.accLOCK = false;
-                }, 1000);
-            }
+        
             
             //reset accelerometer values
             metawear.accelerometerVALS.x = d5;
@@ -224,30 +192,7 @@ var metawear = {
         
          metawear.writeData(data.buffer);    
     },
-    motor: function(pulseLength) {
-        var pulseWidth = pulseLength;
-        var data = new Uint8Array(6);
-        data[0] = 0x07; // module
-        data[1] = 0x01; // pulse ops code
-        data[2] = 0x80; // Motor
-        data[3] = pulseWidth & 0xFF; // Pulse Width
-        data[4] = pulseWidth >> 8; // Pulse Width
-        data[5] = 0x00; // Some magic bullshit
-
-        metawear.writeData(data.buffer);
-    },
-    buzzer: function(pulseLength) {
-        var pulseWidth = pulseLength;
-        var data = new Uint8Array(6);
-        data[0] = 0x07; // module
-        data[1] = 0x01; // pulse ops code
-        data[2] = 0xF8; // Buzzer
-        data[3] = pulseWidth & 0xFF; // Pulse Width
-        data[4] = pulseWidth >> 8; // Pulse Width
-        data[5] = 0x01; // Some magic?
-
-        metawear.writeData(data.buffer);
-    },
+ 
     accelerometerVALS : {
        x : 22,
        y : 22,
@@ -300,7 +245,7 @@ var metawear = {
         metawear.writeData(datat1.buffer);
 
 
-ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
+		ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
 console.log("subscribed");
     },
     stopAccelerometer : function(){
