@@ -331,8 +331,18 @@ var metawear = {
     disconnect: function(onSuccess, onError, event) {
         //make sure that the accelerometer is stopped
 		console.log("stop called");
+
         metawear.stopAccelerometer();
+
+		var data = new Uint8Array(3);        
+        data[0] = 0x02; // 
+        data[1] = 0x02; // 
+        // if 0 then just stop. if 1 then cancel the pattern
+        data[2] = ((clearPattern === true) ? 0x01 : 0x00); 
+        
+         metawear.writeData(data.buffer);    
         ble.disconnect(metawear.deviceId, onSuccess, onError);
         metawear.deviceId = "";
+
     }
 };
