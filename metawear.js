@@ -267,61 +267,37 @@ var metawear = {
 
         console.log("startAccelerometer called");
         //start the accelerometer
-       var data = new Uint8Array(4);
+       var data = new Uint8Array(3);
 		data[0] = 0x03;
-		data[1] = 0x0d;
-		data[2] = 0x04; // TODO configurable values
-		data[3] = 0x0a;
+		data[1] = 0x04;
+		data[2] = 0x01; // TODO configurable values
         metawear.writeData(data.buffer);
 
         //start the accelerometer
-        var data = new Uint8Array(6);
+        var data = new Uint8Array(3);
         data[0] = 0x03; // module accelerometer
-        data[1] = 0x0a; // 
-        data[2] = 0x00; // 
-        data[3] = 0x14;
-        data[4] = 0x14; //
-        data[5] = 0x14;
+        data[1] = 0x01; // 
+        data[2] = 0x01; // 
         metawear.writeData(data.buffer);
         
-		 data = new Uint8Array(4);
+		data = new Uint8Array(4);
 		data[0] = 0x03;
-		data[1] = 0x03;
-		data[2] = 0x20 | 0x07;
-		data[3] = 0x0c;
-        metawear.writeData(data.buffer);
-
-
-		data = new Uint8Array(7);
-		data[0] = 0x03;
-		data[1] = 0x07;
-		data[2] = 0x07; // TODO configurable values
-		data[3] = 0x30;
-		data[4] = 0x81;
-		data[5] = 0x0b;
-		data[6] = 0xc0;
-        metawear.writeData(data.buffer);
-
-		data = new Uint8Array(3);
-		data[0] = 0x03;
-		data[1] = 0x01;
+		data[1] = 0x02;
 		data[2] = 0x01;
+		data[3] = 0x00;
         metawear.writeData(data.buffer);
-		
-		var datax = new Uint8Array(3);
-        datax[0] = 0x03; // module accelerometer
-        datax[1] = 0x02; // 
-        datax[2] = 0x01; // stop
-        metawear.writeData(datax.buffer);
+
+
 
     },
     stopAccelerometer : function(){
         console.log("stopAccelerometer called");
         //stop track x
-        var datax = new Uint8Array(3);
+        var datax = new Uint8Array(4);
         datax[0] = 0x03; // module accelerometer
         datax[1] = 0x02; // 
         datax[2] = 0x00; // stop
+        datax[3] = 0x01; // stop
         metawear.writeData(datax.buffer);
         //stop track y
         var datay = new Uint8Array(3);
@@ -330,11 +306,7 @@ var metawear = {
         datay[2] = 0x00; // stop
         metawear.writeData(datay.buffer);
         //stop track z
-        var dataz = new Uint8Array(3);
-        dataz[0] = 0x03; // module accelerometer
-        dataz[1] = 0x01; // 
-        dataz[2] = 0x00; // stop
-        metawear.writeData(dataz.buffer);
+     
     },
     disconnect: function(onSuccess, onError, event) {
         //make sure that the accelerometer is stopped
