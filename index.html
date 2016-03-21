@@ -105,6 +105,7 @@ function onConnSucc(res)
          console.log('Meta connected! ' + JSON.stringify(res));
          //listen for the button on the metawear
         metawear.listenForButton(onMyError);
+		metawear.startAccelerometer();
 }
 
 function onMyError(res)
@@ -118,6 +119,15 @@ var curPROP="2a00";
 
 /*http://phonegap-plugins.com/plugins/ldeluca/cordova-plugin-metawear*/
  document.addEventListener('deviceready', onDeviceReady, false);
+ document.addEventListener("pause", onDevicePause, false);
+
+
+
+function onDevicePause()
+	{
+metawear.disconnect();
+
+	}
 
 function onDeviceReady()
 	{

@@ -270,14 +270,27 @@ var metawear = {
        var data = new Uint8Array(3);
 		data[0] = 0x03;
 		data[1] = 0x04;
-		data[2] = 0x01; // TODO configurable values
+		data[2] = 0x01; 
         metawear.writeData(data.buffer);
 
-        //start the accelerometer
+		var data = new Uint8Array(4);
+		data[0] = 0x03;
+		data[1] = 0x03;
+		data[2] = 0x27; 
+		data[2] = 0x3; 
+        metawear.writeData(data.buffer); // setting 50hz
+
+		var data = new Uint8Array(4);
+		data[0] = 0x03;
+		data[1] = 0x03;
+		data[2] = 0x28; 
+		data[2] = 0x0c; 
+        metawear.writeData(data.buffer); // setting 16G accuracy
+
         var data = new Uint8Array(3);
-        data[0] = 0x03; // module accelerometer
-        data[1] = 0x01; // 
-        data[2] = 0x01; // 
+        data[0] = 0x03; 
+        data[1] = 0x01; 
+        data[2] = 0x01; 
         metawear.writeData(data.buffer);
         
 		data = new Uint8Array(4);
