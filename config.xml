@@ -30,7 +30,8 @@
 <preference name="target-device" value="handset" /> 
 
 	<preference name="phonegap-version" value="cli-5.2.0" /> 
-	<preference name="orientation" value="landscape" />
+<!--	<preference name="orientation" value="landscape" />-->
+	<preference name="orientation" value="portrait" />
 
 	<preference name="webviewbounce" value="false" />  
 	<preference name="DisallowOverscroll" value="true" />
