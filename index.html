@@ -37,7 +37,7 @@
 <td>
 
 
-<div id='infodiv' name='infodiv' style='border:1px solid red; width:200px; height:200px;'></div>
+<div id='infodiv' name='infodiv' style='border:1px solid red; width:200px; height:200px; color:Black;'></div>
 
 </td>
 </tr></table>
@@ -48,11 +48,12 @@
 function onConnSucc(res)
 {
  connectButton.style.display = "none";
-         console.log('Meta connected! ' + JSON.stringify(res));
+		setTimeout("mainfunc();",200);
+		 console.log('Meta connected! ' + JSON.stringify(res));
          //listen for the button on the metawear
         metawear.listenForButton(onMyError);
 		metawear.startAccelerometer();
-		setTimeout("mainfunc();",200);
+
 }
 
 function onMyError(res)
@@ -70,6 +71,7 @@ var curPROP="2a00";
 
 function DisconSucc()
 	{
+	 connectButton.style.display = "inline";
 	console.log("stopped");
 	}	
 
@@ -114,8 +116,9 @@ function metawearStart() {
 }
 
 function mainfunc()
-{
+{console.log("displaying vars");
 document.getElementById("infodiv").innerHTML=metawear.accelerometerVALS.x + " - "+metawear.accelerometerVALS.y + " - "+ metawear.accelerometerVALS.z;
+		setTimeout("mainfunc();",200);
 }
 
 
