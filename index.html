@@ -44,16 +44,17 @@
 
 <script>
 
+var funcrun=0;
 
 function onConnSucc(res)
 {
  connectButton.style.display = "none";
-		setTimeout("mainfunc();",200);
+funcrun=1;
 		 console.log('Meta connected! ' + JSON.stringify(res));
          //listen for the button on the metawear
         metawear.listenForButton(onMyError);
 		metawear.startAccelerometer();
-
+		setTimeout("mainfunc();",200);
 }
 
 function onMyError(res)
@@ -71,6 +72,7 @@ var curPROP="2a00";
 
 function DisconSucc()
 	{
+	
 	 connectButton.style.display = "inline";
 	console.log("stopped");
 	}	
@@ -82,6 +84,7 @@ function DisconnFailure()
 
 function onDevicePause(event)
 	{
+		funcrun=0;
 metawear.disconnect(DisconSucc,DisconnFailure,event);
 
 	}
@@ -118,7 +121,10 @@ function metawearStart() {
 function mainfunc()
 {console.log("displaying vars");
 document.getElementById("infodiv").innerHTML=metawear.accelerometerVALS.x + " - "+metawear.accelerometerVALS.y + " - "+ metawear.accelerometerVALS.z;
-		setTimeout("mainfunc();",200);
+if (funcrun==1)
+{setTimeout("mainfunc();",200);
+}
+		
 }
 
 

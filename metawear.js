@@ -330,6 +330,7 @@ var metawear = {
     },
     disconnect: function(onSuccess, onError, event) {
         //make sure that the accelerometer is stopped
+		funcrun=0;
 		console.log("stop called");
 
         metawear.stopAccelerometer();
