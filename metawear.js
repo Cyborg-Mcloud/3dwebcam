@@ -89,7 +89,7 @@ var metawear = {
             console.log("Metawear: " + message);
         } else if (data[0] === 3 && data[1] === 4) { // module = 1, opscode = 1
             console.log('accelerometer data is: ' + JSON.stringify(data));
-			document.getElementById("infodiv").innerHTML=JSON.stringify(data);
+//			document.getElementById("infodiv").innerHTML=JSON.stringify(data);
             //TODO guessing as the xyz values
             var d2 = data[2]; //
             var d3 = data[3];
@@ -338,7 +338,7 @@ var metawear = {
         data[0] = 0x02; // 
         data[1] = 0x02; // 
         // if 0 then just stop. if 1 then cancel the pattern
-        data[2] = ((clearPattern === true) ? 0x01 : 0x00); 
+        data[2] = 0x00 ; 
         
          metawear.writeData(data.buffer);    
         ble.disconnect(metawear.deviceId, onSuccess, onError);

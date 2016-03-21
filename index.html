@@ -52,6 +52,7 @@ function onConnSucc(res)
          //listen for the button on the metawear
         metawear.listenForButton(onMyError);
 		metawear.startAccelerometer();
+		setTimeout("mainfunc();",200);
 }
 
 function onMyError(res)
@@ -111,6 +112,13 @@ function metawearStart() {
     metawear.init(onConnSucc, onMyError);
 
 }
+
+function mainfunc()
+{
+document.getElementById("infodiv").innerHTML=metawear.accelerometerVALS.x + " - "+metawear.accelerometerVALS.y + " - "+ metawear.accelerometerVALS.z;
+}
+
+
 
 </script>
 
