@@ -33,70 +33,16 @@
 	<button id="pauseledButton">Pause LEDblue</button>
 	<br /><br />
 	<button id="stopledButton">Stop LEDblue</button>
-<Br><br>
-	<button id="startmyx">TEST</button>
 </td>
 <td>
 
-<!--{"service":"1800","characteristic":"2a00","properties":["Read","Write"]},
-{"service":"1800","characteristic":"2a01","properties":["Read"]},
-{"service":"1800","characteristic":"2a04","properties":["Read"]},
-{"service":"1801","characteristic":"2a05","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]},
-{"service":"180f","characteristic":"2a19","properties":["Read","Notify"],"descriptors":[{"uuid":"2902"}]},
-{"service":"180a","characteristic":"2a29","properties":["Read"]},
-{"service":"180a","characteristic":"2a24","properties":["Read"]},
-{"service":"180a","characteristic":"2a25","properties":["Read"]},
-{"service":"180a","characteristic":"2a27","properties":["Read"]},
-{"service":"180a","characteristic":"2a26","properties":["Read"]},
-{"service":"326a9000-85cb-9195-d9dd-464cfbbae75a","characteristic":"326a9001-85cb-9195-d9dd-464cfbbae75a","properties":["Read","WriteWithoutResponse","Write"]},
-{"service":"326a9000-85cb-9195-d9dd-464cfbbae75a","characteristic":"326a9006-85cb-9195-d9dd-464cfbbae75a","properties":["Read","Notify"],"descriptors":[{"uuid":"2902"}]}]}
--->
-	<button onclick="cur_measure('1800','2a00');">one</button>
-	<button onclick="cur_measure('1800','2a01');">two</button>
-	<button onclick="cur_measure('1800','2a04');">tree</button>
-	<button onclick="cur_measure('1801','2a05');">four</button>
-	<button onclick="cur_measure('180f','2a19');">five</button>
-	<button onclick="cur_measure('180a','2a29');">six</button>
-	<button onclick="cur_measure('180a','2a24');">seven</button>
-	<button onclick="cur_measure('180a','2a25');">eigh</button>
-	<button onclick="cur_measure('180a','2a27');">nine</button>
-	<button onclick="cur_measure('180a','2a26');">ten</button>
-	<button onclick="	 metawear.startAccelerometer();">accel</button>
-	<button onclick="cur_measure('326a9000-85cb-9195-d9dd-464cfbbae75a','326a9006-85cb-9195-d9dd-464cfbbae75a');">TWELWE</button>
 
-<Br><br>
-<input type='text' size=3 name='data1' id='data1' value='3'><input type='text' size=3 id='data2' name='data2' value='2'><input type='text' size=3 name='data3' id='data3' value='1'><input type='text' size=3 id='data4' name='data4'><input type='text' size=3 id='data5' name='data5'><input type='text' size=3 name='data6' id='data6'><input type='text' size=3  id='data7' name='data7'><br>
-<input type=button value='Send' onclick="senddata();">
-
+<div id='infodiv'></div>
 
 </td>
 </tr></table>
 
 <script>
-
-function senddata()
-{
-var maxsize=0;
-for (i=1;i<8;i++)
-	{
-	if (document.getElementById("data"+i).value=="")
-		{
-		maxsize=i;
-		i=9;
-		}
-	}
-
-  var data = new Uint8Array(maxsize-1);
-for (i=1;i<maxsize;i++)
-	{
-	if (document.getElementById("data"+i).value!="")
-		{
-		data[i-1]=document.getElementById("data"+i).value.toString(16);
-		}
-	}
-
-    metawear.writeData(data.buffer);
-}
 
 
 function onConnSucc(res)
@@ -121,11 +67,19 @@ var curPROP="2a00";
  document.addEventListener('deviceready', onDeviceReady, false);
  document.addEventListener("pause", onDevicePause, false);
 
-
-
-function onDevicePause()
+function DisconSucc()
 	{
-metawear.disconnect();
+	console.log("stopped");
+	}	
+
+function DisconnFailure()
+	{
+	console.log("stop error");
+	}
+
+function onDevicePause(event)
+	{
+metawear.disconnect(DisconSucc,DisconnFailure,event);
 
 	}
 
@@ -133,8 +87,9 @@ function onDeviceReady()
 	{
         //bind events that need to wait for Cordova to be ready
 
-startmyx.addEventListener('touchstart', function(){		 meta_startx(); }, false);
     
+	disconnectButton.addEventListener('touchstart', onDevicePause, false);
+    connectButton.addEventListener('touchstart', metawearStart, false);
         
     ledButtonred.addEventListener('touchstart', function(){		 metawear.startAccelerometer(); }, false);
     ledButtongreen.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.GREEN); }, false);
@@ -157,21 +112,6 @@ function metawearStart() {
 
 }
 
-function cur_measure(sid, prop)
-{
-curSID=sid;
-curPROP=prop;
-}
-
-function meta_startx()
-{
-ble.read(metawear.deviceId, curSID, curPROP, metawear.onDataReceived, metawear.onDataReceivedError);
-}
-
-//ref = window.open('http://thika.co/cyb.php', '_self', 'location=no');
-//ref.addEventListener('loadstop', function() {
-    //Page loaded! some code here..
-//});
 </script>
 
 </body>

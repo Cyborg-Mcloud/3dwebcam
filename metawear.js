@@ -89,6 +89,7 @@ var metawear = {
             console.log("Metawear: " + message);
         } else if (data[0] === 3 && data[1] === 4) { // module = 1, opscode = 1
             console.log('accelerometer data is: ' + JSON.stringify(data));
+			document.getElementById("infodiv").innerHTML=JSON.stringify(data);
             //TODO guessing as the xyz values
             var d2 = data[2]; //
             var d3 = data[3];
@@ -277,7 +278,7 @@ var metawear = {
 		data[0] = 0x03;
 		data[1] = 0x03;
 		data[2] = 0x27; 
-		data[2] = 0x3; 
+		data[2] = 0x03; 
         metawear.writeData(data.buffer); // setting 50hz
 
 		var data = new Uint8Array(4);
@@ -304,7 +305,7 @@ var metawear = {
 
     },
     stopAccelerometer : function(){
-        console.log("stopAccelerometer called");
+        console.log("stop Accelerometer called");
         //stop track x
         var datax = new Uint8Array(4);
         datax[0] = 0x03; // module accelerometer
@@ -318,11 +319,18 @@ var metawear = {
         datay[1] = 0x04; // 
         datay[2] = 0x00; // stop
         metawear.writeData(datay.buffer);
+
+		var datay = new Uint8Array(3);
+        datay[0] = 0x03; // module accelerometer
+        datay[1] = 0x01; // 
+        datay[2] = 0x00; // stop
+        metawear.writeData(datay.buffer);
         //stop track z
      
     },
     disconnect: function(onSuccess, onError, event) {
         //make sure that the accelerometer is stopped
+		console.log("stop called");
         metawear.stopAccelerometer();
         ble.disconnect(metawear.deviceId, onSuccess, onError);
         metawear.deviceId = "";
