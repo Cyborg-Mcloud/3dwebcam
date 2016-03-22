@@ -37,9 +37,9 @@
 <td>
 
 
-<div id='infodiv' name='infodiv' style='border:1px solid red; width:400px; height:200px; color:Black;'></div>
-<div id='infodiv2' name='infodiv2' style='border:1px solid red; width:400px; height:200px; color:Black;'></div>
-
+<div id='infodiv' name='infodiv' style='border:1px solid red; width:400px; height:100px; color:Black;'></div>
+<div id='infodiv2' name='infodiv2' style='border:1px solid red; width:400px; height:100px; color:Black;'></div>
+<div id='infodiv2' name='infodiv3' style='border:1px solid red; width:400px; height:100px; color:Black;'></div>
 </td>
 </tr></table>
 
@@ -125,9 +125,10 @@ document.getElementById("infodiv").innerHTML=metawear.accelerometerVALS.x2 + " -
 
 document.getElementById("infodiv2").innerHTML=metawear.accelerometerVALS.x1 + " - "+metawear.accelerometerVALS.y1 + " - "+ metawear.accelerometerVALS.z1;
 
-if (funcrun==1)
-{setTimeout("mainfunc();",200);
-}
+document.getElementById("infodiv3").innerHTML=metawear.accelerometerVALS.mx + " - "+metawear.accelerometerVALS.my + " - "+ metawear.accelerometerVALS.mz+"<BR>"+metawear.accelerometerVALS.vx + " - "+metawear.accelerometerVALS.vy + " - "+ metawear.accelerometerVALS.vz;
+
+
+if (funcrun==1) {setTimeout("mainfunc();",200);	}
 		
 }
 

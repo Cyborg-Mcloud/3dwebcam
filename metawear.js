@@ -74,6 +74,9 @@ var metawear = {
 //		ble.startNotification(metawear.deviceId, "180a", "2a24", metawear.onDataReceived, metawear.onDataReceivedError);
     },
     accLOCK : false,
+
+	var cinax, cinay, cinaz;
+	var firstread=1;
     
 	onDataReceived : function(buffer) { // data received from MetaWear
         var data = new Uint8Array(buffer);
@@ -101,6 +104,30 @@ var metawear = {
             metawear.accelerometerVALS.y2 = d5;
             metawear.accelerometerVALS.z1 = d6;
             metawear.accelerometerVALS.z2 = d7;
+			
+			if (firstread==1)
+				{
+				cinax=d3;
+				cinay=d5;
+				cinaz=d7;
+				firstread=0;
+				}
+			else
+				{
+				 metawear.accelerometerVALS.vx=d3-cinax;
+				 metawear.accelerometerVALS.vy=d5-cinay;
+				 metawear.accelerometerVALS.vz=d7-cinaz;
+
+				metawear.accelerometerVALS.mx+=vx;
+				metawear.accelerometerVALS.my+=vy;
+				metawear.accelerometerVALS.mz+=vz;
+
+				cinax=d3;
+				cinay=d5;
+				cinaz=d7;
+
+
+				}
             
         }
 
@@ -219,7 +246,9 @@ var metawear = {
 		x2:22,
 		y2:22,
 		z2:22,
-
+vx:0,
+vy:0,
+vz:0,
 mx:0,
 my:0,
 mz:0
