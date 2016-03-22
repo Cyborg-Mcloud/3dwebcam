@@ -121,11 +121,9 @@ function metawearStart() {
 
 function mainfunc()
 {console.log("displaying vars");
-document.getElementById("infodiv").innerHTML=metawear.accelerometerVALS.x2 + " - "+metawear.accelerometerVALS.y2 + " - "+ metawear.accelerometerVALS.z2;
+document.getElementById("infodiv").innerHTML=metawear.accelerometerVALS.x1 + " - "+metawear.accelerometerVALS.y1 + " - "+ metawear.accelerometerVALS.z1+"<BR>"+metawear.accelerometerVALS.mx + " - "+metawear.accelerometerVALS.my + " - "+ metawear.accelerometerVALS.mz+"<BR>"+metawear.accelerometerVALS.vx + " - "+metawear.accelerometerVALS.vy + " - "+ metawear.accelerometerVALS.vz;
 
-document.getElementById("infodiv2").innerHTML=metawear.accelerometerVALS.x1 + " - "+metawear.accelerometerVALS.y1 + " - "+ metawear.accelerometerVALS.z1;
-
-document.getElementById("infodiv3").innerHTML=metawear.accelerometerVALS.mx + " - "+metawear.accelerometerVALS.my + " - "+ metawear.accelerometerVALS.mz+"<BR>"+metawear.accelerometerVALS.vx + " - "+metawear.accelerometerVALS.vy + " - "+ metawear.accelerometerVALS.vz;
+document.getElementById("infodiv2").innerHTML=metawear.accelerometerVALS.x2 + " - "+metawear.accelerometerVALS.y2 + " - "+ metawear.accelerometerVALS.z2+"<BR>"+metawear.accelerometerVALS.mgx + " - "+metawear.accelerometerVALS.mgy + " - "+ metawear.accelerometerVALS.mgz+"<BR>"+metawear.accelerometerVALS.vgx + " - "+metawear.accelerometerVALS.vgy + " - "+ metawear.accelerometerVALS.vgz;
 
 
 if (funcrun==1) {setTimeout("mainfunc();",20);	}
