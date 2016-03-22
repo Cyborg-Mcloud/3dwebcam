@@ -75,8 +75,8 @@ var metawear = {
     },
     accLOCK : false,
 
-	var cinax, cinay, cinaz;
-	var firstread=1;
+	 cinax:0, cinay:0, cinaz:0,
+	firstread:1,
     
 	onDataReceived : function(buffer) { // data received from MetaWear
         var data = new Uint8Array(buffer);
