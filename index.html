@@ -37,7 +37,8 @@
 <td>
 
 
-<div id='infodiv' name='infodiv' style='border:1px solid red; width:200px; height:200px; color:Black;'></div>
+<div id='infodiv' name='infodiv' style='border:1px solid red; width:400px; height:200px; color:Black;'></div>
+<div id='infodiv2' name='infodiv2' style='border:1px solid red; width:400px; height:200px; color:Black;'></div>
 
 </td>
 </tr></table>
@@ -120,7 +121,10 @@ function metawearStart() {
 
 function mainfunc()
 {console.log("displaying vars");
-document.getElementById("infodiv").innerHTML=metawear.accelerometerVALS.x1 + " - "+metawear.accelerometerVALS.x2 + " - "+ metawear.accelerometerVALS.y1+ " - "+ metawear.accelerometerVALS.y2+ " - "+ metawear.accelerometerVALS.z1+ " - "+ metawear.accelerometerVALS.z2;
+document.getElementById("infodiv").innerHTML=metawear.accelerometerVALS.x2 + " - "+metawear.accelerometerVALS.y2 + " - "+ metawear.accelerometerVALS.z2;
+
+document.getElementById("infodiv").innerHTML=metawear.accelerometerVALS.x1 + " - "+metawear.accelerometerVALS.y1 + " - "+ metawear.accelerometerVALS.z1;
+
 if (funcrun==1)
 {setTimeout("mainfunc();",200);
 }
