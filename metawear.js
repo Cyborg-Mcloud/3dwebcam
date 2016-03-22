@@ -89,62 +89,18 @@ var metawear = {
             console.log("Metawear: " + message);
         } else if (data[0] === 3 && data[1] === 4) { // module = 1, opscode = 1
             console.log('accelerometer data is: ' + JSON.stringify(data));
-//			document.getElementById("infodiv").innerHTML=JSON.stringify(data);
-            //TODO guessing as the xyz values
             var d2 = data[2]; //
             var d3 = data[3];
             var d4 = data[4]; //
             var d5 = data[5]; // x values
             var d6 = data[6]; // y values
             var d7 = data[7]; // z values
-            //all the rest of the values are the same
-            
-//            message = "Got accelerometer information: [2]" 
-//                + d2 + ",[3]" + d3
-//            + ",[4]" + d4
-//            + ",[5]" + d5
-//            + ",[6]" + d6
-//            + ",[7]" + d7;
-//            console.log("ACCELEROMETER MESSAGE: " + message);
-            
-            //compare against old values
-            /*var xdiff = Math.abs(metawear.accelerometerVALS.x - d5);
-            if (xdiff > 100 && metawear.accelerometerVALS.x !== 22 && metawear.accLOCK === false){
-                metawear.accLOCK = true;
-                console.log("x value changes more than 30 degrees: " + xdiff);
-                console.log("ACCELEROMETER MESSAGE: " + message);
-                metawear.setLED(metawear.COLOR.RED); 
-                metawear.play(true);
-                
-                //after 5 seconds, turn off
-                setTimeout(function () {
-                    metawear.stop(true);
-                    metawear.accLOCK = false;
-                }, 1000);
-            }*/
-            
-//            var ydiff = Math.abs(metawear.accelerometerVALS.y - d6);
-//            if (ydiff > 100 && metawear.accelerometerVALS.x !== 22 && metawear.accLOCK === false){
-//                metawear.accLOCK = true;
-//                console.log("y value changes more than 30 degrees: " + ydiff + " old val: " + metawear.accelerometerVALS.y + " new: " + d6);
-//                console.log("ACCELEROMETER MESSAGE: " + message);
-//                
-//                metawear.setLED(metawear.COLOR.GREEN);   
-//                metawear.play(true);
-//                
-//                
-//                
-//                //after 5 seconds, turn off
-//                setTimeout(function () {
-//                    metawear.stop(true);
-//                    metawear.accLOCK = false;
-//                }, 1000);
-//            }
-            
-            //reset accelerometer values
-            metawear.accelerometerVALS.x = d5;
-            metawear.accelerometerVALS.y = d6;
-            metawear.accelerometerVALS.z = d7;
+            metawear.accelerometerVALS.x1 = d2;
+            metawear.accelerometerVALS.x2 = d3;
+            metawear.accelerometerVALS.y1 = d4;
+            metawear.accelerometerVALS.y2 = d5;
+            metawear.accelerometerVALS.z1 = d6;
+            metawear.accelerometerVALS.z2 = d7;
             
         }
 
@@ -257,9 +213,16 @@ var metawear = {
         metawear.writeData(data.buffer);
     },
     accelerometerVALS : {
-       x : 22,
-       y : 22,
-       z : 22
+       x1 : 22,
+       y1 : 22,
+       z1 : 22,
+		x2:22,
+		y2:22,
+		z2:22,
+
+mx:0,
+my:0,
+mz:0
     },
     startAccelerometer : function(){
 
