@@ -294,26 +294,28 @@ mz:0
 		data[2] = 0x01; 
         metawear.writeData(data.buffer);
 
-		var data = new Uint8Array(4);
-		data[0] = 0x03;
-		data[1] = 0x03;
-		data[2] = 0x27; 
-		data[2] = 0x03; 
-        metawear.writeData(data.buffer); // setting 50hz
+//		var data = new Uint8Array(4);
+//		data[0] = 0x03;
+//		data[1] = 0x03;
+//		data[2] = 0x27; 
+//		data[2] = 0x03; 
+//        metawear.writeData(data.buffer); // setting 50hz
 
-		var data = new Uint8Array(4);
-		data[0] = 0x03;
-		data[1] = 0x03;
-		data[2] = 0x28; 
-		data[2] = 0x0c; 
-        metawear.writeData(data.buffer); // setting 16G accuracy
+//		var data = new Uint8Array(4);
+//		data[0] = 0x03;
+//		data[1] = 0x03;
+//		data[2] = 0x28; 
+//		data[2] = 0x0c; 
+//        metawear.writeData(data.buffer); // setting 16G accuracy
 
         var data = new Uint8Array(3);
         data[0] = 0x03; 
         data[1] = 0x01; 
         data[2] = 0x01; 
         metawear.writeData(data.buffer);
-        
+
+//		[0x03, 0x03, 0x02, 0x00, 0x18, 0x00, 0x00] - some other G setting
+
 		data = new Uint8Array(4);
 		data[0] = 0x03;
 		data[1] = 0x02;
