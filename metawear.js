@@ -76,7 +76,7 @@ var metawear = {
     accLOCK : false,
 
 	cinax:0, cinay:0, cinaz:0,
-	cax:0, cay:0, caz:0;
+	cax:0, cay:0, caz:0,
 	firstread:1,
     
 	onDataReceived : function(buffer) { // data received from MetaWear
