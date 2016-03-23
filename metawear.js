@@ -99,34 +99,37 @@ var metawear = {
             var d5 = data[5]; // x values
             var d6 = data[6]; // y values
             var d7 = data[7]; // z values
-            metawear.accelerometerVALS.x1 = d2;
+			d3=(d3*1000+d2)/1000
+			d5=(d5*1000+d4)/1000
+			d7=(d7*1000+d6)/1000
+//            metawear.accelerometerVALS.x1 = d2;
             metawear.accelerometerVALS.x2 = d3;
-            metawear.accelerometerVALS.y1 = d4;
+//            metawear.accelerometerVALS.y1 = d4;
             metawear.accelerometerVALS.y2 = d5;
-            metawear.accelerometerVALS.z1 = d6;
+  //          metawear.accelerometerVALS.z1 = d6;
             metawear.accelerometerVALS.z2 = d7;
 			
 			if (metawear.firstread==1)
 				{
-//				metawear.cinax=d3;
-//				metawear.cinay=d5;
-//				metawear.cinaz=d7;
+				metawear.cinax=d3;
+				metawear.cinay=d5;
+				metawear.cinaz=d7;
 
-				metawear.cax=(d2*1000+d3)/1000;
-				metawear.cay=(d4*1000+d5)/1000;
-				metawear.caz=(d6*1000+d7)/1000;
+//				metawear.cax=d2;
+//				metawear.cay=d4;
+//				metawear.caz=d6;
 
 				metawear.firstread=0;
 				}
 			else
 				{
-			//	 metawear.accelerometerVALS.vgx=d3-metawear.cinax;
-//				 metawear.accelerometerVALS.vgy=d5-metawear.cinay;
-//				 metawear.accelerometerVALS.vgz=d7-metawear.cinaz;
+				 metawear.accelerometerVALS.vgx=d3-metawear.cinax;
+				 metawear.accelerometerVALS.vgy=d5-metawear.cinay;
+				 metawear.accelerometerVALS.vgz=d7-metawear.cinaz;
 
-				 metawear.accelerometerVALS.vx=d2-metawear.cax;
-				 metawear.accelerometerVALS.vy=d4-metawear.cay;
-				 metawear.accelerometerVALS.vz=d6-metawear.caz;
+//				 metawear.accelerometerVALS.vx=d2-metawear.cax;
+//				 metawear.accelerometerVALS.vy=d4-metawear.cay;
+//				 metawear.accelerometerVALS.vz=d6-metawear.caz;
 
 
 				metawear.accelerometerVALS.mgx+=metawear.accelerometerVALS.vgx;
@@ -138,12 +141,12 @@ var metawear = {
 //				metawear.accelerometerVALS.my+=metawear.accelerometerVALS.vy;
 //				metawear.accelerometerVALS.mz+=metawear.accelerometerVALS.vz;
 
-//				metawear.cinax=d3;
-//				metawear.cinay=d5;
-//				metawear.cinaz=d7;
-				metawear.cax=d2;
-				metawear.cay=d4;
-				metawear.caz=d6;
+				metawear.cinax=d3;
+				metawear.cinay=d5;
+				metawear.cinaz=d7;
+//				metawear.cax=d2;
+//				metawear.cay=d4;
+//				metawear.caz=d6;
 
 
 				}
