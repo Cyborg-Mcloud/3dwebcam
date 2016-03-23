@@ -282,46 +282,80 @@ mz:0
 	   
 	   },
     startAccelerometer : function(){
+//const OUTPUT_DATA_RATE = {
+//    "0.78125": 0x1,
+//    "1.5625":  0x2,
+//    "3.125":   0x3,
+//    "6.25":    0x4,
+//    "12.5":    0x5,
+//    "25.0":    0x6,
+//    "50.0":    0x7,
+//    "100.0":   0x8,
+//    "200.0":   0xa,
+//    "400.0":   0xb,
+//    "800.0":   0xc,
+//    "1600.0":  0xd,
+//    "3200.0":  0xe
 
+
+// Supported g-ranges for the accelerometer. Unit "g"
+//const ACC_RANGE = {
+    //g     bitmask, scale
+//    2:      [0x3,    16384],
+//    4:      [0x5,    8192],
+//    8:      [0x8,    4096],
+//    16:     [0xc,    2048]
+//};
 
 //https://github.com/brainexe/node-metawear/blob/master/src/registers/accelerometer.js
 
         console.log("startAccelerometer called");
         //start the accelerometer
-       var data = new Uint8Array(3);
+     
+	   var data = new Uint8Array(3);
 		data[0] = 0x03;
 		data[1] = 0x04;
 		data[2] = 0x01; 
-        metawear.writeData(data.buffer);
+        metawear.writeData(data.buffer); // Data Interrupt
 
 //		var data = new Uint8Array(4);
 //		data[0] = 0x03;
-//		data[1] = 0x03;
-//		data[2] = 0x27; 
-//		data[2] = 0x03; 
-//        metawear.writeData(data.buffer); // setting 50hz
+//		data[1] = 0x0d;
+//		data[2] = 0x04; 
+//		data[3] = 0x0a; 
+//        metawear.writeData(data.buffer); // TAP config
 
-//		var data = new Uint8Array(4);
+//		var data = new Uint8Array(6);
 //		data[0] = 0x03;
-//		data[1] = 0x03;
-//		data[2] = 0x28; 
-//		data[2] = 0x0c; 
-//        metawear.writeData(data.buffer); // setting 16G accuracy
+//		data[1] = 0x0a;
+//		data[2] = 0x00; 
+//		data[3] = 0x14; 
+//		data[4] = 0x14; 
+//		data[5] = 0x14; 
+//        metawear.writeData(data.buffer); // Motion Config
+
+
+		var data = new Uint8Array(4);
+		data[0] = 0x03;
+		data[1] = 0x03;
+		data[2] = 0x26;  // 0x20 + herz
+		data[3] = 0x03;  // G Sens
+        metawear.writeData(data.buffer); // setting 50hz and 2G
 
         var data = new Uint8Array(3);
         data[0] = 0x03; 
         data[1] = 0x01; 
         data[2] = 0x01; 
-        metawear.writeData(data.buffer);
+        metawear.writeData(data.buffer); // POWER enable
 
 //		[0x03, 0x03, 0x02, 0x00, 0x18, 0x00, 0x00] - some other G setting
 
-		data = new Uint8Array(4);
-		data[0] = 0x03;
-		data[1] = 0x02;
-		data[2] = 0x01;
-		data[3] = 0x00;
-        metawear.writeData(data.buffer);
+	//	data = new Uint8Array(4);
+//		data[0] = 0x03;
+//		data[1] = 0x02;
+//		data[2] = 0x01;
+//		data[3] = 0x00;
+  //      metawear.writeData(data.buffer); // AXIS sampling
 
 
 
