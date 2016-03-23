@@ -24,26 +24,68 @@
                 <button id="connectButton">Connect</button>
 
   <h3>Colors</h3>
-		<button id="ledButtonred">LEDred</button><br />
-	<button id="ledButtongreen">LEDgreen</button><br />
-	<button id="ledButtonblue">LEDblue</button>
+		<button id="ledButtonred">Red</button><br />
+	<button id="ledButtongreen">Green</button><br />
+	<button id="ledButtonblue">Blue</button>
 	<br /><br />
-	<button id="playledButton">Play LEDblue</button>
-	<br /><br />
-	<button id="pauseledButton">Pause LEDblue</button>
-	<br /><br />
-	<button id="stopledButton">Stop LEDblue</button>
+	<button id="playledButton">Play LED</button>
+	<button id="pauseledButton">Pause LED</button>
+	<button id="stopledButton">Stop LED</button>
 </td>
 <td>
 
 
-<div id='infodiv' name='infodiv' style='border:1px solid red; width:400px; height:100px; color:Black;'></div>
-<div id='infodiv2' name='infodiv2' style='border:1px solid red; width:400px; height:100px; color:Black;'></div>
-<div id='infodiv3' name='infodiv3' style='border:1px solid red; width:400px; height:100px; color:Black;'></div>
+<div id='infodiv' name='infodiv' style='border:1px solid red; width:400px; height:70px; color:Black;'></div>
+<div id='infodiv2' name='infodiv2' style='border:1px solid red; width:400px; height:70px; color:Black;'></div>
+
+<canvas name='main' id='main' style='background-color:white; border:1px solid green; width:400px; height:300px; z-index:80;' width=400px height=300px ></canvas>
 </td>
 </tr></table>
 
 <script>
+
+var c=document.getElementById("main");
+var ctx=c.getContext("2d");
+
+
+var graph_timer=1;
+
+function draw_graph()
+	{
+	//c.width=c.width;
+	ctx.fillStyle = "red";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mx,1,1);
+	ctx.stroke(); 	
+	
+	ctx.fillStyle = "green";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.my,1,1);
+	ctx.stroke(); 	
+	
+	ctx.fillStyle = "blue";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mz,1,1);
+	ctx.stroke(); 	
+	
+
+	ctx.fillStyle = "yellow";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgx,1,1);
+	ctx.stroke(); 	
+
+	ctx.fillStyle = "purple";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgy,1,1);
+	ctx.stroke(); 	
+
+	ctx.fillStyle = "black";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgz,1,1);
+	ctx.stroke(); 	
+
+	graph_timer++;
+	if (graph_timer>400)
+		{
+c.width=c.width;
+			graph_timer=1;
+		}
+	if (funcrun==1) {setTimeout("draw_graph()",50);}
+	}
 
 var funcrun=0;
 
@@ -56,6 +98,7 @@ funcrun=1;
         metawear.listenForButton(onMyError);
 		metawear.startAccelerometer();
 		setTimeout("mainfunc();",200);
+		setTimeout("draw_graph();",200);
 }
 
 function onMyError(res)
