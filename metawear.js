@@ -141,9 +141,9 @@ var metawear = {
 				metawear.accelerometerVALS.my+=metawear.accelerometerVALS.vy;
 				metawear.accelerometerVALS.mz+=metawear.accelerometerVALS.vz;
 
-				metawear.accelerometerVALS.sx+=metawear.accelerometerVALS.mgx;
-				metawear.accelerometerVALS.sy+=metawear.accelerometerVALS.mgy;
-				metawear.accelerometerVALS.sz+=metawear.accelerometerVALS.mgz;
+				metawear.accelerometerVALS.sx+=metawear.accelerometerVALS.vgx^2;
+				metawear.accelerometerVALS.sy+=metawear.accelerometerVALS.vgy^2;
+				metawear.accelerometerVALS.sz+=metawear.accelerometerVALS.vgz^2;
 				metawear.cinax=d3;
 				metawear.cinay=d5;
 				metawear.cinaz=d7;
