@@ -53,30 +53,57 @@ var graph_timer=1;
 function draw_graph()
 	{
 	//c.width=c.width;
-	ctx.fillStyle = "red";
+	ctx.fillStyle = "#FF0000";
 	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgx+150,1,1);
 	ctx.stroke(); 	
 	
-	ctx.fillStyle = "green";
+	ctx.fillStyle = "#AA0000";
 	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgy+150,1,1);
 	ctx.stroke(); 	
 	
-	ctx.fillStyle = "blue";
+	ctx.fillStyle = "#660000";
 	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgz+150,1,1);
 	ctx.stroke(); 	
 	
 
-	ctx.fillStyle = "yellow";
+	ctx.fillStyle = "#00FF00";
 	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgx+150,1,1);
 	ctx.stroke(); 	
 
-	ctx.fillStyle = "purple";
+	ctx.fillStyle = "#00AA00";
 	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgy+150,1,1);
 	ctx.stroke(); 	
 
-	ctx.fillStyle = "black";
+	ctx.fillStyle = "#006600";
 	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgz+150,1,1);
 	ctx.stroke(); 	
+
+
+	ctx.fillStyle = "#0000FF";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vx+150,1,1);
+	ctx.stroke(); 	
+
+	ctx.fillStyle = "#0000AA";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vy+150,1,1);
+	ctx.stroke(); 	
+
+	ctx.fillStyle = "#000066";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vz+150,1,1);
+	ctx.stroke(); 	
+
+
+	ctx.fillStyle = "yellow";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mx+150,1,1);
+	ctx.stroke(); 	
+
+	ctx.fillStyle = "black";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.my+150,1,1);
+	ctx.stroke(); 	
+
+	ctx.fillStyle = "gray";
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mz+150,1,1);
+	ctx.stroke(); 	
+
 
 	graph_timer++;
 	if (graph_timer>400)
@@ -84,7 +111,7 @@ function draw_graph()
 c.width=c.width;
 			graph_timer=1;
 		}
-	if (funcrun==1) {setTimeout("draw_graph()",50);}
+	if (funcrun==1) {setTimeout("draw_graph()",20);}
 	}
 
 var funcrun=0;
