@@ -35,8 +35,8 @@
 <td>
 
 
-<div id='infodiv1' name='infodiv1' style='border:1px solid red; width:200px; height:70px; color:Black;'></div>
-<div id='infodiv2' name='infodiv2' style='border:1px solid red; width:200px; height:70px; color:Black;'></div>
+<div id='infodiv1' name='infodiv1' style='border:1px solid red; width:180x; height:70px; color:Black; float:left;'></div>
+<div id='infodiv2' name='infodiv2' style='border:1px solid red; width:180px; height:70px; color:Black; float:right;'></div>
 
 <canvas name='main' id='main' style='background-color:white; border:1px solid green; width:400px; height:400px; z-index:80;' width=400px height=400px ></canvas>
 </td>
@@ -54,28 +54,28 @@ function draw_graph()
 	{
 	//c.width=c.width;
 	ctx.fillStyle = "#FF0000";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgx+150,1,1);
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgx+100,1,1);
 	ctx.stroke(); 	
 	
 	ctx.fillStyle = "#AA0000";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgy+150,1,1);
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgy+100,1,1);
 	ctx.stroke(); 	
 	
 	ctx.fillStyle = "#660000";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgz+150,1,1);
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgz+100,1,1);
 	ctx.stroke(); 	
 	
 
 	ctx.fillStyle = "#00FF00";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgx+150,1,1);
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgx+200,1,1);
 	ctx.stroke(); 	
 
 	ctx.fillStyle = "#00AA00";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgy+150,1,1);
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgy+200,1,1);
 	ctx.stroke(); 	
 
 	ctx.fillStyle = "#006600";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgz+150,1,1);
+	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgz+200,1,1);
 	ctx.stroke(); 	
 
 
