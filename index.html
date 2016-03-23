@@ -47,6 +47,18 @@
 var c=document.getElementById("main");
 var ctx=c.getContext("2d");
 
+var last_vgx=100;
+var last_vgy=100;
+var last_vgz=100;
+
+var last_mgx=200;
+var last_mgy=200;
+var last_mgz=200;
+
+var last_sgx=150;
+var last_sgy=150;
+var last_sgz=150;
+
 
 var graph_timer=1;
 
@@ -54,42 +66,73 @@ function draw_graph()
 	{
 	//c.width=c.width;
 	ctx.fillStyle = "#FF0000";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgx+100,1,1);
+	ctx.beginPath();
+	ctx.moveTo(graph_timer,last_vgx);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.vgx+100);
 	ctx.stroke(); 	
 	
 	ctx.fillStyle = "#AA0000";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgy+100,1,1);
+	ctx.beginPath();
+	ctx.moveTo(graph_timer,last_vgy);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.vgy+100);
 	ctx.stroke(); 	
 	
 	ctx.fillStyle = "#660000";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.vgz+100,1,1);
+	ctx.beginPath();
+	ctx.moveTo(graph_timer,last_vgz);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.vgz+100);
 	ctx.stroke(); 	
 	
 
 	ctx.fillStyle = "#00FF00";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgx+200,1,1);
+	ctx.beginPath();
+	ctx.moveTo(graph_timer,last_mgx);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.mgx+200);
 	ctx.stroke(); 	
 
 	ctx.fillStyle = "#00AA00";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgy+200,1,1);
+	ctx.beginPath();
+	ctx.moveTo(graph_timer,last_mgy);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.mgy+200);
 	ctx.stroke(); 	
 
 	ctx.fillStyle = "#006600";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mgz+200,1,1);
+	ctx.beginPath();
+	ctx.moveTo(graph_timer,last_mgz);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.mgz+200);
 	ctx.stroke(); 	
 
 
 	ctx.fillStyle = "#0000FF";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.sx+150,1,1);
+	ctx.beginPath();
+	ctx.moveTo(graph_timer,last_sgx);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sx+150);
 	ctx.stroke(); 	
 
 	ctx.fillStyle = "#0000AA";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.sy+150,1,1);
+	ctx.beginPath();
+	ctx.moveTo(graph_timer,last_sgy);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sy+150);
 	ctx.stroke(); 	
 
 	ctx.fillStyle = "#000066";
-	ctx.fillRect(graph_timer,metawear.accelerometerVALS.sz+150,1,1);
+	ctx.beginPath();
+	ctx.moveTo(graph_timer,last_sgz);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sz+150);
 	ctx.stroke(); 	
+
+last_vgx=metawear.accelerometerVALS.vgx;
+last_vgy=metawear.accelerometerVALS.vgy;
+last_vgz=metawear.accelerometerVALS.vgz;
+
+
+last_mgx=metawear.accelerometerVALS.mgx;
+last_mgy=metawear.accelerometerVALS.mgy;
+last_mgz=metawear.accelerometerVALS.mgz;
+
+last_sgx=metawear.accelerometerVALS.sx;
+last_sgy=metawear.accelerometerVALS.sy;
+last_sgz=metawear.accelerometerVALS.sz;
 
 
 //	ctx.fillStyle = "yellow";
@@ -111,7 +154,7 @@ function draw_graph()
 c.width=c.width;
 			graph_timer=1;
 		}
-	if (funcrun==1) {setTimeout("draw_graph()",20);}
+	if (funcrun==1) {setTimeout("draw_graph()",40);}
 	}
 
 var funcrun=0;
