@@ -110,17 +110,20 @@ d3=d3*6.28/255;
 d5=d5*6.28/255;
 d7=d7*6.28/255;
 
-            metawear.accelerometerVALS.x1 = d3;//-128;
+
             metawear.accelerometerVALS.x2 = parseInt(Math.sin(d3)*100);//-128;
-            metawear.accelerometerVALS.y1 = d5;//-128;
+
             metawear.accelerometerVALS.y2 = parseInt(Math.sin(d5)*100);//-128;
-			metawear.accelerometerVALS.z1 = d7;//-128;
+
             metawear.accelerometerVALS.z2 = parseInt(Math.sin(d7)*100);//-128;
 			
 			d3=parseInt(d3*360/6.28);
 			d5=parseInt(d5*360/6.28);
 			d7=parseInt(d7*360/6.28);
 
+            metawear.accelerometerVALS.x1 = d3;//-128;
+            metawear.accelerometerVALS.y1 = d5;//-128;
+			metawear.accelerometerVALS.z1 = d7;//-128;
 			if (d3>90 && d3<270)
 				{
 				metawear.accelerometerVALS.x2= - metawear.accelerometerVALS.x2;
