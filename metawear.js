@@ -219,6 +219,13 @@ metawear.accelerometerVALS.mgz=parseInt(metawear.accelerometerVALS.mgz*10)/10;
 				metawear.accelerometerVALS.sx+=metawear.accelerometerVALS.mgx;
 				metawear.accelerometerVALS.sy+=metawear.accelerometerVALS.mgy;
 				metawear.accelerometerVALS.sz+=metawear.accelerometerVALS.mgz;
+
+
+metawear.accelerometerVALS.sx=parseInt(metawear.accelerometerVALS.sx*10)/10;
+metawear.accelerometerVALS.sy=parseInt(metawear.accelerometerVALS.sy*10)/10;
+metawear.accelerometerVALS.sz=parseInt(metawear.accelerometerVALS.sz*10)/10;
+
+
 				metawear.cinax=metawear.accelerometerVALS.x2;
 				metawear.cinay=metawear.accelerometerVALS.y2;
 				metawear.cinaz=metawear.accelerometerVALS.z2;
