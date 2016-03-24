@@ -208,6 +208,9 @@ var metawear = {
 						{metawear.accelerometerVALS.mgz+=0.2;}
 					//metawear.accelerometerVALS.mgz=0;
 					}
+metawear.accelerometerVALS.mgx=parseInt(metawear.accelerometerVALS.mgx*10)/10;
+metawear.accelerometerVALS.mgy=parseInt(metawear.accelerometerVALS.mgy*10)/10;
+metawear.accelerometerVALS.mgz=parseInt(metawear.accelerometerVALS.mgz*10)/10;
 
 				metawear.accelerometerVALS.mx+=metawear.accelerometerVALS.vx;
 				metawear.accelerometerVALS.my+=metawear.accelerometerVALS.vy;
