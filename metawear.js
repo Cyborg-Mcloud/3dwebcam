@@ -81,7 +81,7 @@ var metawear = {
     
 	onDataReceived : function(buffer) { // data received from MetaWear
         var data = new Uint8Array(buffer);
-        console.log('the data is: ' + JSON.stringify(data));
+        console.log('recv: ' + JSON.stringify(data));
         var message = "";
 
         if (data[0] === 1 && data[1] === 1) { // module = 1, opscode = 1
@@ -92,7 +92,7 @@ var metawear = {
             }
             console.log("Metawear: " + message);
         } else if (data[0] === 3 && data[1] === 4) { // module = 1, opscode = 1
-            console.log('accelerometer data is: ' + JSON.stringify(data));
+      //      console.log('accelerometer data is: ' + JSON.stringify(data));
             var d2 = data[2]; //
             var d3 = data[3];
             var d4 = data[4]; //
@@ -173,8 +173,10 @@ var metawear = {
 				}
             
         }
+		if (message!="")
+		{        console.log("MESSAGE FROM ONDATA: " + message);
+		}
 
-        console.log("MESSAGE FROM ONDATA: " + message);
     },
     onDataReceivedError: function(res) {
         console.log(' Data Error: ' + JSON.stringify(res));
