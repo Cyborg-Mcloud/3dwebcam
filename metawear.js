@@ -111,11 +111,11 @@ d5=d5*6.28/255;
 d7=d7*6.28/255;
 
 
-            metawear.accelerometerVALS.x2 = parseInt(Math.sin(d3)*100);//-128;
+            metawear.accelerometerVALS.x2 = parseInt(Math.cos(d3)*100);//-128;
 
-            metawear.accelerometerVALS.y2 = parseInt(Math.sin(d5)*100);//-128;
+            metawear.accelerometerVALS.y2 = parseInt(Math.cos(d5)*100);//-128;
 
-            metawear.accelerometerVALS.z2 = parseInt(Math.sin(d7)*100);//-128;
+            metawear.accelerometerVALS.z2 = parseInt(Math.cos(d7)*100);//-128;
 			
 			d3=parseInt(d3*360/6.28);
 			d5=parseInt(d5*360/6.28);

@@ -61,10 +61,12 @@ var last_sgz=150;
 
 
 var graph_timer=1;
-
+var donot=1;
 function draw_graph()
 	{
 	//c.width=c.width;
+if ( donot==0)
+{
 
 	ctx.beginPath();
 	ctx.strokeStyle = '#ff0000';
@@ -88,28 +90,30 @@ function draw_graph()
 	ctx.stroke(); 	
 	
 
-
+}
 	ctx.beginPath();
-	ctx.strokeStyle = '#00ff00';
+	ctx.strokeStyle = 'blue';
 	ctx.moveTo(graph_timer,last_mgx+200);
 	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.x2+200);
 	ctx.stroke(); 	
 
 
 	ctx.beginPath();
-	ctx.strokeStyle = '#00aa00';
+	ctx.strokeStyle = 'red';
 	ctx.moveTo(graph_timer,last_mgy+200);
 	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.y2+200);
 	ctx.stroke(); 	
 
 	
 	ctx.beginPath();
-	ctx.strokeStyle = '#006600';
+	ctx.strokeStyle = 'green';
 	ctx.moveTo(graph_timer,last_mgz+200);
 	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.z2+200);
 	ctx.stroke(); 	
 
 
+if (donot==0)
+{
 
 	ctx.beginPath();
 	ctx.strokeStyle = '#0000ff';
@@ -130,7 +134,7 @@ function draw_graph()
 	ctx.moveTo(graph_timer,last_sgz+150);
 	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sz+150);
 	ctx.stroke(); 	
-
+}
 last_vgx=metawear.accelerometerVALS.vgx;
 last_vgy=metawear.accelerometerVALS.vgy;
 last_vgz=metawear.accelerometerVALS.vgz;
