@@ -170,11 +170,18 @@ var metawear = {
 				}
 			else
 				{
+				newvgx=metawear.accelerometerVALS.x2-metawear.cinax;
+				newvgy=metawear.accelerometerVALS.y2-metawear.cinay;
+				newvgz=metawear.accelerometerVALS.z2-metawear.cinaz;
 
 				// ACHQAREBA
-				 metawear.accelerometerVALS.vgx=(metawear.accelerometerVALS.x2+metawear.cinax)/2;
-				 metawear.accelerometerVALS.vgy=(metawear.accelerometerVALS.y2+metawear.cinay)/2;
-				 metawear.accelerometerVALS.vgz=(metawear.accelerometerVALS.z2+metawear.cinaz)/2;
+				 metawear.accelerometerVALS.vgx=parseInt( ((newwvgx+ metawear.accelerometerVALS.vgx)/2) * 100)/100;
+				metawear.accelerometerVALS.vgy=parseInt( ((newwvgy+ metawear.accelerometerVALS.vgy)/2) * 100)/100;
+				metawear.accelerometerVALS.vgz=parseInt( ((newwvgz+ metawear.accelerometerVALS.vgz)/2) * 100)/100;
+
+//				 metawear.accelerometerVALS.vgy=metawear.accelerometerVALS.y2-metawear.cinay;
+//				 metawear.accelerometerVALS.vgz=metawear.accelerometerVALS.z2-metawear.cinaz;
+
 
 
 
@@ -460,6 +467,15 @@ mz:0
 //		data[5] = 0x14; 
 //        metawear.writeData(data.buffer); // Motion Config
 
+    data = new Uint8Array(4);
+		data[0] = 0x03;
+    data[1] = 0x07;
+    data[2] = 0x07; // TODO configurable values
+    data[3] = 0x30;
+    data[4] = 0x81;
+    data[5] = 0x0b;
+    data[6] = 0xc0;
+        metawear.writeData(data.buffer); // LOW HIGH G CONFIG
 
 		var data = new Uint8Array(4);
 		data[0] = 0x03;
