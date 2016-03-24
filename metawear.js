@@ -170,15 +170,20 @@ var metawear = {
 				}
 			else
 				{
-				 metawear.accelerometerVALS.vgx=metawear.accelerometerVALS.x2-metawear.cinax;
-				 metawear.accelerometerVALS.vgy=metawear.accelerometerVALS.y2-metawear.cinay;
-				 metawear.accelerometerVALS.vgz=metawear.accelerometerVALS.z2-metawear.cinaz;
+
+				// ACHQAREBA
+				 metawear.accelerometerVALS.vgx=(metawear.accelerometerVALS.x2+metawear.cinax)/2;
+				 metawear.accelerometerVALS.vgy=(metawear.accelerometerVALS.y2+metawear.cinay)/2;
+				 metawear.accelerometerVALS.vgz=(metawear.accelerometerVALS.z2+metawear.cinaz)/2;
+
+
 
 				 metawear.accelerometerVALS.vx=metawear.accelerometerVALS.x1-metawear.cax;
 				 metawear.accelerometerVALS.vy=metawear.accelerometerVALS.y1-metawear.cay;
 				 metawear.accelerometerVALS.vz=metawear.accelerometerVALS.z1-metawear.caz;
 
 
+//SICHQARE
 				metawear.accelerometerVALS.mgx+=metawear.accelerometerVALS.vgx;
 				metawear.accelerometerVALS.mgy+=metawear.accelerometerVALS.vgy;
 				metawear.accelerometerVALS.mgz+=metawear.accelerometerVALS.vgz;
@@ -186,26 +191,26 @@ var metawear = {
 				if (metawear.accelerometerVALS.vgx==0)
 					{
 					if (metawear.accelerometerVALS.mgx>0)
-						{metawear.accelerometerVALS.mgx-=0.1;}
+						{metawear.accelerometerVALS.mgx-=0.5;}
 					else if (metawear.accelerometerVALS.mgx<0)
-						{metawear.accelerometerVALS.mgx+=0.1;}
+						{metawear.accelerometerVALS.mgx+=0.5;}
 //					metawear.accelerometerVALS.mgx=0;
 					}
 				if (metawear.accelerometerVALS.vgy==0)
 					{
 					if (metawear.accelerometerVALS.mgy>0)
-						{metawear.accelerometerVALS.mgy-=0.1;}
+						{metawear.accelerometerVALS.mgy-=0.5;}
 					else if (metawear.accelerometerVALS.mgy<0)
-						{metawear.accelerometerVALS.mgy+=0.1;}
+						{metawear.accelerometerVALS.mgy+=0.5;}
 //					metawear.accelerometerVALS.mgy=0;
 					}
 
 				if (metawear.accelerometerVALS.vgz==0)
 					{
 					if (metawear.accelerometerVALS.mgz>0)
-						{metawear.accelerometerVALS.mgz-=0.1;}
+						{metawear.accelerometerVALS.mgz-=0.5;}
 					else if (metawear.accelerometerVALS.mgz<0)
-						{metawear.accelerometerVALS.mgz+=0.1;}
+						{metawear.accelerometerVALS.mgz+=0.5;}
 					//metawear.accelerometerVALS.mgz=0;
 					}
 metawear.accelerometerVALS.mgx=parseInt(metawear.accelerometerVALS.mgx*10)/10;
