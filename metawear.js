@@ -113,17 +113,17 @@ var metawear = {
 			metawear.accelerometerVALS.z1 = d7;//-128;
             metawear.accelerometerVALS.z2 = parseInt(Math.sin(d7*6.28/255)*100);//-128;
 			
-			if (d3>64 and d3<192)
+			if (d3>64 && d3<192)
 				{
 				metawear.accelerometerVALS.x2= - metawear.accelerometerVALS.x2;
 				}
 
-			if (d5>64 and d5<192)
+			if (d5>64 && d5<192)
 				{
 				metawear.accelerometerVALS.y2= - metawear.accelerometerVALS.y2;
 				}
 
-			if (d7>64 and d7<192)
+			if (d7>64 && d7<192)
 				{
 				metawear.accelerometerVALS.z2= - metawear.accelerometerVALS.z2;
 				}
