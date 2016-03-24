@@ -220,6 +220,31 @@ metawear.accelerometerVALS.mgz=parseInt(metawear.accelerometerVALS.mgz*10)/10;
 				metawear.accelerometerVALS.sy+=metawear.accelerometerVALS.mgy;
 				metawear.accelerometerVALS.sz+=metawear.accelerometerVALS.mgz;
 
+	if (metawear.accelerometerVALS.mgx==0)
+		{
+		if (metawear.accelerometerVALS.sx>0)
+			{metawear.accelerometerVALS.sx-=0.1;}
+		else if (metawear.accelerometerVALS.sx<0)
+			{metawear.accelerometerVALS.sx+=0.1;}
+//					metawear.accelerometerVALS.mgx=0;
+		}
+	if (metawear.accelerometerVALS.mgy==0)
+		{
+		if (metawear.accelerometerVALS.sy>0)
+			{metawear.accelerometerVALS.sy-=0.1;}
+		else if (metawear.accelerometerVALS.sy<0)
+			{metawear.accelerometerVALS.sy+=0.1;}
+//					metawear.accelerometerVALS.mgy=0;
+		}
+
+	if (metawear.accelerometerVALS.mgz==0)
+		{
+		if (metawear.accelerometerVALS.sz>0)
+			{metawear.accelerometerVALS.sz-=0.1;}
+		else if (metawear.accelerometerVALS.sz<0)
+			{metawear.accelerometerVALS.sz+=0.1;}
+		//metawear.accelerometerVALS.mgz=0;
+		}
 
 metawear.accelerometerVALS.sx=parseInt(metawear.accelerometerVALS.sx*10)/10;
 metawear.accelerometerVALS.sy=parseInt(metawear.accelerometerVALS.sy*10)/10;
