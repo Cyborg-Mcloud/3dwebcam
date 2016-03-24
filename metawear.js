@@ -98,42 +98,57 @@ var metawear = {
         } else if (data[0] === 3 && data[1] === 4) { // module = 1, opscode = 1
       //      console.log('accelerometer data is: ' + JSON.stringify(data));
             var d2 = data[2]; //
-            var d3 = Math.cos(data[3]*6.28/255);
+            var d3 = data[3];
             var d4 = data[4]; //
-            var d5 = Math.cos(data[5]*6.28/255); // x values
+            var d5 = data[5]; // x values
             var d6 = data[6]; // y values
-            var d7 = Math.cos(data[7]*6.28/255); // z values
+            var d7 = data[7]; // z values
 //			d3=(d3*1000+d2)/1000
 //			d5=(d5*1000+d4)/1000
 //			d7=(d7*1000+d6)/1000
-            metawear.accelerometerVALS.x1 = d2;//-128;
-            metawear.accelerometerVALS.x2 = parseInt(d3*1000)/100;//-128;
-            metawear.accelerometerVALS.y1 = d4;//-128;
-            metawear.accelerometerVALS.y2 = parseInt(d5*1000)/100;//-128;
-			metawear.accelerometerVALS.z1 = d6;//-128;
-            metawear.accelerometerVALS.z2 = parseInt(d7*1000)/100;//-128;
+            metawear.accelerometerVALS.x1 = d3;//-128;
+            metawear.accelerometerVALS.x2 = parseInt(Math.sin(d3*6.28/255)*100);//-128;
+            metawear.accelerometerVALS.y1 = d5;//-128;
+            metawear.accelerometerVALS.y2 = parseInt(Math.sin(d5*6.28/255)*100);//-128;
+			metawear.accelerometerVALS.z1 = d7;//-128;
+            metawear.accelerometerVALS.z2 = parseInt(Math.sin(d7*6.28/255)*100);//-128;
 			
+			if (d3>64 and d3<192)
+				{
+				metawear.accelerometerVALS.x2= - metawear.accelerometerVALS.x2;
+				}
+
+			if (d5>64 and d5<192)
+				{
+				metawear.accelerometerVALS.y2= - metawear.accelerometerVALS.y2;
+				}
+
+			if (d7>64 and d7<192)
+				{
+				metawear.accelerometerVALS.z2= - metawear.accelerometerVALS.z2;
+				}
+
 			if (metawear.firstread==1)
 				{
-				metawear.cinax=d3;
-				metawear.cinay=d5;
-				metawear.cinaz=d7;
+				metawear.cinax=metawear.accelerometerVALS.x2;
+				metawear.cinay=metawear.accelerometerVALS.y2;
+				metawear.cinaz=metawear.accelerometerVALS.z2;
 
-				metawear.cax=d2;
-				metawear.cay=d4;
-				metawear.caz=d6;
+				metawear.cax=metawear.accelerometerVALS.x1;
+				metawear.cay=metawear.accelerometerVALS.y1;
+				metawear.caz=metawear.accelerometerVALS.z1;
 
 				metawear.firstread=0;
 				}
 			else
 				{
-				 metawear.accelerometerVALS.vgx=d3-metawear.cinax;
-				 metawear.accelerometerVALS.vgy=d5-metawear.cinay;
-				 metawear.accelerometerVALS.vgz=d7-metawear.cinaz;
+				 metawear.accelerometerVALS.vgx=metawear.accelerometerVALS.x2-metawear.cinax;
+				 metawear.accelerometerVALS.vgy=metawear.accelerometerVALS.y2-metawear.cinay;
+				 metawear.accelerometerVALS.vgz=metawear.accelerometerVALS.z2-metawear.cinaz;
 
-				 metawear.accelerometerVALS.vx=d2-metawear.cax;
-				 metawear.accelerometerVALS.vy=d4-metawear.cay;
-				 metawear.accelerometerVALS.vz=d6-metawear.caz;
+				 metawear.accelerometerVALS.vx=metawear.accelerometerVALS.x1-metawear.cax;
+				 metawear.accelerometerVALS.vy=metawear.accelerometerVALS.y1-metawear.cay;
+				 metawear.accelerometerVALS.vz=metawear.accelerometerVALS.z1-metawear.caz;
 
 
 				metawear.accelerometerVALS.mgx+=metawear.accelerometerVALS.vgx;
@@ -166,12 +181,12 @@ var metawear = {
 				metawear.accelerometerVALS.sx+=metawear.accelerometerVALS.mgx;
 				metawear.accelerometerVALS.sy+=metawear.accelerometerVALS.mgy;
 				metawear.accelerometerVALS.sz+=metawear.accelerometerVALS.mgz;
-				metawear.cinax=d3;
-				metawear.cinay=d5;
-				metawear.cinaz=d7;
-				metawear.cax=d2;
-				metawear.cay=d4;
-				metawear.caz=d6;
+				metawear.cinax=metawear.accelerometerVALS.x2;
+				metawear.cinay=metawear.accelerometerVALS.y2;
+				metawear.cinaz=metawear.accelerometerVALS.z2;
+				metawear.cax=metawear.accelerometerVALS.x1;
+				metawear.cay=metawear.accelerometerVALS.y1;
+				metawear.caz=metawear.accelerometerVALS.z1;
 
 
 				}
