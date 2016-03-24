@@ -78,6 +78,10 @@ var metawear = {
 	cinax:0, cinay:0, cinaz:0,
 	cax:0, cay:0, caz:0,
 	firstread:1,
+	sashualox:0,
+	sashualoy:0,
+	sashualoz:0,
+sash_mtvleli:10;
     
 	onDataReceived : function(buffer) { // data received from MetaWear
         var data = new Uint8Array(buffer);
@@ -94,20 +98,20 @@ var metawear = {
         } else if (data[0] === 3 && data[1] === 4) { // module = 1, opscode = 1
       //      console.log('accelerometer data is: ' + JSON.stringify(data));
             var d2 = data[2]; //
-            var d3 = data[3];
+            var d3 = cos(data[3]*6.28/255);
             var d4 = data[4]; //
-            var d5 = data[5]; // x values
+            var d5 = cos(data[5]*6.28/255); // x values
             var d6 = data[6]; // y values
-            var d7 = data[7]; // z values
+            var d7 = cos(data[7]*6.28/255); // z values
 //			d3=(d3*1000+d2)/1000
 //			d5=(d5*1000+d4)/1000
 //			d7=(d7*1000+d6)/1000
             metawear.accelerometerVALS.x1 = d2;//-128;
-            metawear.accelerometerVALS.x2 = d3;//-128;
+            metawear.accelerometerVALS.x2 = parseInt(d3*1000)/100;//-128;
             metawear.accelerometerVALS.y1 = d4;//-128;
-            metawear.accelerometerVALS.y2 = d5;//-128;
+            metawear.accelerometerVALS.y2 = parseInt(d5*1000)/100;//-128;
 			metawear.accelerometerVALS.z1 = d6;//-128;
-            metawear.accelerometerVALS.z2 = d7;//-128;
+            metawear.accelerometerVALS.z2 = parseInt(d7*1000)/100;//-128;
 			
 			if (metawear.firstread==1)
 				{
