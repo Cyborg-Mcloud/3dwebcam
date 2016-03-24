@@ -404,7 +404,7 @@ mz:0
 		data[0] = 0x03;
 		data[1] = 0x03;
 		data[2] = 0x27;  // 0x20 + herz
-		data[3] = 0xc;  // G Sens
+		data[3] = 0x8;  // G Sens
         metawear.writeData(data.buffer); // setting 50hz and 2G
 
         var data = new Uint8Array(3);
