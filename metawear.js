@@ -183,24 +183,19 @@ var metawear = {
 				metawear.accelerometerVALS.mgy+=metawear.accelerometerVALS.vgy;
 				metawear.accelerometerVALS.mgz+=metawear.accelerometerVALS.vgz;
 
-//				if (metawear.accelerometerVALS.vgx==0)
-//					{
-//					metawear.accelerometerVALS.mgx=0;
-//					if (metawear.accelerometerVALS.mgx>0)
-//						{metawear.accelerometerVALS.mgx=0;}
-//					else if (metawear.accelerometerVALS.mgx<0)
-//						{metawear.accelerometerVALS.mgx+=1;}
-//					}
+				if (metawear.accelerometerVALS.vgx==0)
+					{
+					metawear.accelerometerVALS.mgx=0;
+					}
+				if (metawear.accelerometerVALS.vgy==0)
+					{
+					metawear.accelerometerVALS.mgy=0;
+					}
 
-//				if (metawear.accelerometerVALS.vgy==0)
-//					{
-//					metawear.accelerometerVALS.mgy=0;
-//					}
-
-//				if (metawear.accelerometerVALS.vgz==0)
-//					{
-//					metawear.accelerometerVALS.mgz=0;
-//					}
+				if (metawear.accelerometerVALS.vgz==0)
+					{
+					metawear.accelerometerVALS.mgz=0;
+					}
 
 				metawear.accelerometerVALS.mx+=metawear.accelerometerVALS.vx;
 				metawear.accelerometerVALS.my+=metawear.accelerometerVALS.vy;
