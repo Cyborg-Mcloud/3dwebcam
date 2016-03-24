@@ -175,9 +175,9 @@ var metawear = {
 				newvgz=metawear.accelerometerVALS.z2-metawear.cinaz;
 
 				// ACHQAREBA
-				 metawear.accelerometerVALS.vgx=parseInt( ((newwvgx+ metawear.accelerometerVALS.vgx)/2) * 100)/100;
-				metawear.accelerometerVALS.vgy=parseInt( ((newwvgy+ metawear.accelerometerVALS.vgy)/2) * 100)/100;
-				metawear.accelerometerVALS.vgz=parseInt( ((newwvgz+ metawear.accelerometerVALS.vgz)/2) * 100)/100;
+				 metawear.accelerometerVALS.vgx=parseInt( ((newvgx+ metawear.accelerometerVALS.vgx)/2) * 100)/100;
+				metawear.accelerometerVALS.vgy=parseInt( ((newvgy+ metawear.accelerometerVALS.vgy)/2) * 100)/100;
+				metawear.accelerometerVALS.vgz=parseInt( ((newvgz+ metawear.accelerometerVALS.vgz)/2) * 100)/100;
 
 //				 metawear.accelerometerVALS.vgy=metawear.accelerometerVALS.y2-metawear.cinay;
 //				 metawear.accelerometerVALS.vgz=metawear.accelerometerVALS.z2-metawear.cinaz;
