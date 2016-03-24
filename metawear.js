@@ -477,6 +477,18 @@ mz:0
     data[6] = 0xc0;
         metawear.writeData(data.buffer); // LOW HIGH G CONFIG
 
+		  var data = new Uint8Array(3);
+		data[0] = 0x03;
+		data[1] = 0x06;
+		data[2] = 0x01; 
+        metawear.writeData(data.buffer);
+
+  var data = new Uint8Array(3);
+		data[0] = 0x03;
+		data[1] = 0x08;
+		data[2] = 0x01; 
+        metawear.writeData(data.buffer);
+
 		var data = new Uint8Array(4);
 		data[0] = 0x03;
 		data[1] = 0x03;
