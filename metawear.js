@@ -102,12 +102,12 @@ var metawear = {
 //			d3=(d3*1000+d2)/1000
 //			d5=(d5*1000+d4)/1000
 //			d7=(d7*1000+d6)/1000
-            metawear.accelerometerVALS.x1 = d2-128;
-            metawear.accelerometerVALS.x2 = d3-128;
-            metawear.accelerometerVALS.y1 = d4-128;
-            metawear.accelerometerVALS.y2 = d5-128;
-			metawear.accelerometerVALS.z1 = d6-128;
-            metawear.accelerometerVALS.z2 = d7-128;
+            metawear.accelerometerVALS.x1 = d2;//-128;
+            metawear.accelerometerVALS.x2 = d3;//-128;
+            metawear.accelerometerVALS.y1 = d4;//-128;
+            metawear.accelerometerVALS.y2 = d5;//-128;
+			metawear.accelerometerVALS.z1 = d6;//-128;
+            metawear.accelerometerVALS.z2 = d7;//-128;
 			
 			if (metawear.firstread==1)
 				{
