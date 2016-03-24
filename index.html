@@ -144,22 +144,22 @@ if (donot==1)
 
 	ctx.beginPath();
 	ctx.strokeStyle = 'blue';
-	ctx.moveTo(graph_timer,last_sgx+200);
-	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sx+200);
+	ctx.moveTo(graph_timer,last_sgx/10+200);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sx/10+200);
 	ctx.stroke(); 	
 
 
 	ctx.beginPath();
 	ctx.strokeStyle = 'red';
-	ctx.moveTo(graph_timer,last_sgy+200);
-	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sy+200);
+	ctx.moveTo(graph_timer,last_sgy/10+200);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sy/10+200);
 	ctx.stroke(); 	
 
 
 	ctx.beginPath();
 	ctx.strokeStyle = 'green';
-	ctx.moveTo(graph_timer,last_sgz+200);
-	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sz+200);
+	ctx.moveTo(graph_timer,last_sgz/10+200);
+	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sz/10+200);
 	ctx.stroke(); 	
 }
 last_vgx=metawear.accelerometerVALS.vgx;
