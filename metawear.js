@@ -369,7 +369,7 @@ mz:0
 		data[0] = 0x03;
 		data[1] = 0x03;
 		data[2] = 0x27;  // 0x20 + herz
-		data[3] = 0x03;  // G Sens
+		data[3] = 0x04;  // G Sens
         metawear.writeData(data.buffer); // setting 50hz and 2G
 
         var data = new Uint8Array(3);
@@ -380,12 +380,12 @@ mz:0
 
 //		[0x03, 0x03, 0x02, 0x00, 0x18, 0x00, 0x00] - some other G setting
 
-//		data = new Uint8Array(4);
-//		data[0] = 0x03;
-//		data[1] = 0x02;
-//		data[2] = 0x01;
-//		data[3] = 0x00;
-  //      metawear.writeData(data.buffer); // AXIS sampling
+		data = new Uint8Array(4);
+		data[0] = 0x03;
+		data[1] = 0x02;
+		data[2] = 0x01;
+		data[3] = 0x00;
+        metawear.writeData(data.buffer); // AXIS sampling
 
 
 
