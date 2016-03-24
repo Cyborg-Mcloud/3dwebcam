@@ -106,24 +106,28 @@ var metawear = {
 //			d3=(d3*1000+d2)/1000
 //			d5=(d5*1000+d4)/1000
 //			d7=(d7*1000+d6)/1000
+d3=d3*6.28/255;
+d5=d5*6.28/255;
+d7=d7*6.28/255;
+
             metawear.accelerometerVALS.x1 = d3;//-128;
-            metawear.accelerometerVALS.x2 = parseInt(Math.sin(d3*6.28/255)*100);//-128;
+            metawear.accelerometerVALS.x2 = parseInt(Math.sin(d3)*100);//-128;
             metawear.accelerometerVALS.y1 = d5;//-128;
-            metawear.accelerometerVALS.y2 = parseInt(Math.sin(d5*6.28/255)*100);//-128;
+            metawear.accelerometerVALS.y2 = parseInt(Math.sin(d5)*100);//-128;
 			metawear.accelerometerVALS.z1 = d7;//-128;
-            metawear.accelerometerVALS.z2 = parseInt(Math.sin(d7*6.28/255)*100);//-128;
+            metawear.accelerometerVALS.z2 = parseInt(Math.sin(d7)*100);//-128;
 			
-			if (d3>64 && d3<192)
+			if (d3>90 && d3<270)
 				{
 				metawear.accelerometerVALS.x2= - metawear.accelerometerVALS.x2;
 				}
 
-			if (d5>64 && d5<192)
+			if (d5>90 && d5<270)
 				{
 				metawear.accelerometerVALS.y2= - metawear.accelerometerVALS.y2;
 				}
 
-			if (d7>64 && d7<192)
+			if (d7>90 && d7<270)
 				{
 				metawear.accelerometerVALS.z2= - metawear.accelerometerVALS.z2;
 				}
@@ -376,14 +380,14 @@ mz:0
 //		data[3] = 0x0a; 
 //        metawear.writeData(data.buffer); // TAP config
 
-		var data = new Uint8Array(6);
-		data[0] = 0x03;
-		data[1] = 0x0a;
-		data[2] = 0x00; 
-		data[3] = 0x14; 
-		data[4] = 0x14; 
-		data[5] = 0x14; 
-        metawear.writeData(data.buffer); // Motion Config
+//		var data = new Uint8Array(6);
+//		data[0] = 0x03;
+//		data[1] = 0x0a;
+//		data[2] = 0x00; 
+//		data[3] = 0x14; 
+//		data[4] = 0x14; 
+//		data[5] = 0x14; 
+//        metawear.writeData(data.buffer); // Motion Config
 
 
 		var data = new Uint8Array(4);
