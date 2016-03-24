@@ -81,7 +81,7 @@ var metawear = {
 	sashualox:0,
 	sashualoy:0,
 	sashualoz:0,
-sash_mtvleli:10;
+
     
 	onDataReceived : function(buffer) { // data received from MetaWear
         var data = new Uint8Array(buffer);
