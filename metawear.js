@@ -355,14 +355,14 @@ mz:0
 //		data[3] = 0x0a; 
 //        metawear.writeData(data.buffer); // TAP config
 
-//		var data = new Uint8Array(6);
-//		data[0] = 0x03;
-//		data[1] = 0x0a;
-//		data[2] = 0x00; 
-//		data[3] = 0x14; 
-//		data[4] = 0x14; 
-//		data[5] = 0x14; 
-//        metawear.writeData(data.buffer); // Motion Config
+		var data = new Uint8Array(6);
+		data[0] = 0x03;
+		data[1] = 0x0a;
+		data[2] = 0x00; 
+		data[3] = 0x14; 
+		data[4] = 0x14; 
+		data[5] = 0x14; 
+        metawear.writeData(data.buffer); // Motion Config
 
 
 		var data = new Uint8Array(4);
@@ -380,12 +380,12 @@ mz:0
 
 //		[0x03, 0x03, 0x02, 0x00, 0x18, 0x00, 0x00] - some other G setting
 
-		data = new Uint8Array(4);
-		data[0] = 0x03;
-		data[1] = 0x02;
-		data[2] = 0x01;
-		data[3] = 0x00;
-        metawear.writeData(data.buffer); // AXIS sampling
+//		data = new Uint8Array(4);
+//		data[0] = 0x03;
+//		data[1] = 0x02;
+//		data[2] = 0x01;
+//		data[3] = 0x00;
+  //      metawear.writeData(data.buffer); // AXIS sampling
 
 
 
