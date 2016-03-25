@@ -70,7 +70,7 @@ function div_recv()
 function send_data()
 	{
 	var d = new Date();
-	var n = d.getMilliseconds(); 
+	var n =d.getTime(); 
 	
 	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=1013";
 console.log("upload data: "+url);
