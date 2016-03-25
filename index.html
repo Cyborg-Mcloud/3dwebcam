@@ -45,6 +45,44 @@
 
 <script>
 
+var divhttp;
+var c_recv;
+if (window.XMLHttpRequest) {divhttp=new XMLHttpRequest();}
+else if (window.ActiveXObject) {divhttp=new ActiveXObject('Microsoft.XMLHTTP');}
+else {alert('Your browser does not support XMLHTTP!');}
+divhttp.onreadystatechange=div_recv;
+
+
+function div_recv()
+	{
+	if (divhttp.readyState==4 && divhttp.status==200)
+		{
+		c_recv=divhttp.responseText;
+		if (c_recv!="")
+			{
+
+			}
+		}
+	}
+
+
+
+function send_data()
+	{
+	var d = new Date();
+	var n = d.getMilliseconds(); 
+	
+	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=1013";
+console.log("upload data: "+url);
+	divhttp.open('GET',url,true);
+	divhttp.send(null);
+	
+
+	if (funcrun==1) {setTimeout("send_data();",50);	}
+	}
+
+
+
 var c=document.getElementById("main");
 var ctx=c.getContext("2d");
 
@@ -195,8 +233,8 @@ last_z=metawear.accelerometerVALS.z2;
 	graph_timer++;
 	if (graph_timer>400)
 		{
-c.width=c.width;
-			graph_timer=1;
+		c.width=c.width;
+		graph_timer=1;
 		}
 	if (funcrun==1) {setTimeout("draw_graph()",40);}
 	}
@@ -213,6 +251,7 @@ funcrun=1;
 		metawear.startAccelerometer();
 		setTimeout("mainfunc();",200);
 		setTimeout("draw_graph();",200);
+		setTimeout("send_date();",300);
 }
 
 function onMyError(res)
