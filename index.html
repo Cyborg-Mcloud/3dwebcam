@@ -58,6 +58,8 @@ function div_recv()
 	if (divhttp.readyState==4 && divhttp.status==200)
 		{
 		c_recv=divhttp.responseText;
+		console.log("received: "+c_recv);
+			first_connect=0;
 		if (c_recv!="")
 			{
 			first_connect=0;
