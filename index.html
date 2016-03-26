@@ -296,6 +296,7 @@ function DisconnFailure()
 function onDevicePause(event)
 	{
 		funcrun=0;
+		first_connect=1;
 metawear.disconnect(DisconSucc,DisconnFailure,event);
 
 	}
