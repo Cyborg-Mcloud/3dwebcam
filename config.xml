@@ -36,6 +36,8 @@
 	<preference name="webviewbounce" value="false" />  
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="fullscreen" value="true" />
+	<preference name="keepRunning" value="true" />
+	<preference name="exit-on-suspend" value="false" />
 	<description>
     3D Webcam
     </description>
