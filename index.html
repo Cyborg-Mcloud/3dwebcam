@@ -19,17 +19,19 @@
   </style>
   <body style='padding:0; border:0; margin:0;'>
   <Table>
-  <tr><td width=100px>
+  <tr><td width=150px>
   
 
 <div id='infodiv1' name='infodiv1' style='border:1px solid red; color:Black;  '></div>
 <div id='infodiv2' name='infodiv2' style='border:1px solid red;  color:Black; '></div>
 
-                <button id="disconnectButton">Disconnect</button>
-                <button id="connectButton">Connect</button>
+	<button id="disconnectButton">Disconnect</button>
+    <button id="connectButton">Connect</button>
+<br>
+<input type='checkbox' id='remote' name='remote'> Send Data
 
   <h3>Colors</h3>
-		<button id="ledButtonred">Red</button><br />
+	<button id="ledButtonred">Red</button><br />
 	<button id="ledButtongreen">Green</button><br />
 	<button id="ledButtonblue">Blue</button>
 	<br /><br />
@@ -59,7 +61,7 @@ function div_recv()
 		{
 		c_recv=divhttp.responseText;
 		console.log("received: "+c_recv);
-			first_connect=0;
+		first_connect=0;
 		if (c_recv!="")
 			{
 			first_connect=0;
@@ -73,25 +75,27 @@ var first_connect=1;
 
 function send_data()
 	{
-
-	
-//	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=1013";
-	if (first_connect==1)
+	if (document.getElementById("remote").checked==true)
 		{
-		url="http://www.thika.co/upacc.php?restart=1&uid=1013";
-					first_connect=0;
-		}
-	else
-		{
-		url="http://www.thika.co/upacc.php?packet="+data_packet+"&uid=1013";
-		data_packet="";
-		}
+		
+		
+	//	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=1013";
+		if (first_connect==1)
+			{
+			url="http://www.thika.co/upacc.php?restart=1&uid=1013";
+			first_connect=0;
+			}
+		else
+			{
+			url="http://www.thika.co/upacc.php?packet="+data_packet+"&uid=1013";
+			data_packet="";
+			}
 
-	console.log("data up: "+url);
-	divhttp.open('GET',url,true);
-	divhttp.send(null);
-	
-
+		console.log("data up: "+url);
+		divhttp.open('GET',url,true);
+		divhttp.send(null);
+		
+		}
 	if (funcrun==1) {setTimeout("send_data();",200);	}
 	}
 
@@ -295,10 +299,9 @@ function DisconnFailure()
 
 function onDevicePause(event)
 	{
-		funcrun=0;
-		first_connect=1;
-metawear.disconnect(DisconSucc,DisconnFailure,event);
-
+	funcrun=0;
+	first_connect=1;
+	metawear.disconnect(DisconSucc,DisconnFailure,event);
 	}
 
 function onDeviceReady()
