@@ -282,7 +282,32 @@ var curPROP="2a00";
 
 
 /*http://phonegap-plugins.com/plugins/ldeluca/cordova-plugin-metawear*/
- document.addEventListener('deviceready', onDeviceReady, false);
+
+   document.addEventListener("backbutton", backfunction, false);
+document.addEventListener("menubutton", menufunction, false);
+document.addEventListener("searchbutton", searchfunction, false);
+
+
+function backfunction()
+{
+alert("back");
+}
+
+
+
+ function menufunction()
+{
+alert("menu");
+}
+
+
+
+function searchfunction()
+{
+alert("search");
+}
+
+document.addEventListener('deviceready', onDeviceReady, false);
  document.addEventListener("pause", onDevicePause, false);
 
 function DisconSucc()
@@ -308,7 +333,10 @@ function onDeviceReady()
 	{
         //bind events that need to wait for Cordova to be ready
 
-    
+  
+
+
+
 	disconnectButton.addEventListener('touchstart', onDevicePause, false);
     connectButton.addEventListener('touchstart', metawearStart, false);
         
