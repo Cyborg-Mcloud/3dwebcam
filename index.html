@@ -28,7 +28,11 @@
 	<button id="disconnectButton">Disconnect</button>
     <button id="connectButton">Connect</button>
 <br>
-<input type='checkbox' id='remote' name='remote'> Send Data
+<div style='color:black;'>
+<input type='checkbox' id='remote' name='remote'> Send Data<Br>
+<input type='text' id='myline' size=2 style='border:1px solid gray;' value='2'> Line to send<Br>
+<input type='checkbox' id='smooth' name='remote' onchange='smooth_click();'> Smooth<Br>
+</div>
 
   <h3>Colors</h3>
 	<button id="ledButtonred">Red</button><br />
@@ -46,6 +50,19 @@
 </tr></table>
 
 <script>
+
+function smooth_click()
+{
+if (document.getElementById("smooth").checked==true)
+	{
+	metawear.smooth=1;
+	}
+else
+	{
+	metawear.smooth=0;
+	}
+
+}
 
 var divhttp;
 var c_recv;
@@ -127,8 +144,13 @@ function draw_graph()
 	{
 	//c.width=c.width;
 if ( donot==1)
-{
+	{
 
+
+	if (document.getElementById("smooth").checked==true)
+		{
+
+		}
 	ctx.beginPath();
 	ctx.strokeStyle = 'blue';
 	ctx.moveTo(graph_timer,last_vgx*2+100);
@@ -173,7 +195,7 @@ if ( donot==1)
 	ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.mgz+150);
 	ctx.stroke(); 
 
-}
+	}
 	ctx.beginPath();
 	ctx.strokeStyle = 'blue';
 	ctx.moveTo(graph_timer,last_x+50);
@@ -364,13 +386,29 @@ function metawearStart() {
 
 
 function mainfunc()
-{console.log("displaying vars");
+{
+
+
 document.getElementById("infodiv2").innerHTML=metawear.accelerometerVALS.x1 + " - "+metawear.accelerometerVALS.y1 + " - "+ metawear.accelerometerVALS.z1+"<BR>"+metawear.accelerometerVALS.mx + " - "+metawear.accelerometerVALS.my + " - "+ metawear.accelerometerVALS.mz+"<BR>"+metawear.accelerometerVALS.vx + " - "+metawear.accelerometerVALS.vy + " - "+ metawear.accelerometerVALS.vz;
 
 document.getElementById("infodiv1").innerHTML=metawear.accelerometerVALS.x2 + " - "+metawear.accelerometerVALS.y2 + " - "+ metawear.accelerometerVALS.z2+"<BR>"+metawear.accelerometerVALS.mgx + " - "+metawear.accelerometerVALS.mgy + " - "+ metawear.accelerometerVALS.mgz+"<BR>"+metawear.accelerometerVALS.vgx + " - "+metawear.accelerometerVALS.vgy + " - "+ metawear.accelerometerVALS.vgz+"<BR>"+metawear.accelerometerVALS.sx + " - "+metawear.accelerometerVALS.sy + " - "+ metawear.accelerometerVALS.sz;
 
-
-data_packet+=metawear.accelerometerVALS.vgx+"|"+metawear.accelerometerVALS.vgy+"|"+metawear.accelerometerVALS.vgz+"|"+packet_counter+";";
+if (document.getElementById("myline").value=="1")
+	{
+	data_packet+=metawear.accelerometerVALS.x2+"|"+metawear.accelerometerVALS.y2+"|"+metawear.accelerometerVALS.z2+"|"+packet_counter+";";
+	}
+else if (document.getElementById("myline").value=="2")
+	{
+	data_packet+=metawear.accelerometerVALS.vgx+"|"+metawear.accelerometerVALS.vgy+"|"+metawear.accelerometerVALS.vgz+"|"+packet_counter+";";
+	}
+else if (document.getElementById("myline").value=="3")
+	{
+	data_packet+=metawear.accelerometerVALS.mgx+"|"+metawear.accelerometerVALS.mgy+"|"+metawear.accelerometerVALS.mgz+"|"+packet_counter+";";
+	}
+else if (document.getElementById("myline").value=="4")
+	{
+	data_packet+=metawear.accelerometerVALS.sx+"|"+metawear.accelerometerVALS.sy+"|"+metawear.accelerometerVALS.sz+"|"+packet_counter+";";
+	}
 
 packet_counter++;
 

@@ -1,24 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements. See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership. The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
-//var cordova = require('cordova'),
-  //  exec = require('cordova/exec');
 
 var metawear = {
         deviceId : "",
@@ -81,43 +60,38 @@ var metawear = {
 	sashualox:0,
 	sashualoy:0,
 	sashualoz:0,
+	smooth:0,
 
     
 	onDataReceived : function(buffer) { // data received from MetaWear
         var data = new Uint8Array(buffer);
-        console.log('recv: ' + JSON.stringify(data));
+    //    console.log('recv: ' + JSON.stringify(data));
         var message = "";
 
         if (data[0] === 1 && data[1] === 1) { // module = 1, opscode = 1
-            if (data[2] === 1) { // button state
+            if (data[2] === 1) 
+				{ // button state
                 message = "Button pressed";
-            } else {
+				} 
+			else 
+				{
                 message = "Button released";
-            }
-            console.log("Metawear: " + message);
-        } else if (data[0] === 3 && data[1] === 4) { // module = 1, opscode = 1
-      //      console.log('accelerometer data is: ' + JSON.stringify(data));
+	            }
+			console.log("Metawear: " + message);
+			} 
+		else if (data[0] === 3 && data[1] === 4) 
+			{ // module = 1, opscode = 1
+
             var d2 = data[2]; //
             var d3 = data[3];
             var d4 = data[4]; //
             var d5 = data[5]; // x values
             var d6 = data[6]; // y values
             var d7 = data[7]; // z values
-//			d3=(d3*1000+d2)/1000
-//			d5=(d5*1000+d4)/1000
-//			d7=(d7*1000+d6)/1000
 			metawear.accelerometerVALS.x1 = d3;//-128;
             metawear.accelerometerVALS.y1 = d5;//-128;
 			metawear.accelerometerVALS.z1 = d7;//-128;
 
-//d3=d3*6.28/255;
-//d5=d5*6.28/255;
-//d7=d7*6.28/255;
-
-
-//            metawear.accelerometerVALS.x2 = 100-parseInt(Math.cos(d3)*100);//-128;
-//            metawear.accelerometerVALS.y2 = 100-parseInt(Math.cos(d5)*100);//-128;
-//            metawear.accelerometerVALS.z2 =100- parseInt(Math.cos(d7)*100);//-128;
 
 			if (d3<128)
 				{metawear.accelerometerVALS.x2 = d3;}
@@ -134,27 +108,6 @@ var metawear = {
 			else
 				{metawear.accelerometerVALS.z2 = d7-256;}
 
-//			d3=parseInt(d3*360/6.28);
-//			d5=parseInt(d5*360/6.28);
-//			d7=parseInt(d7*360/6.28);
-
-         //   metawear.accelerometerVALS.x1 = d3;//-128;
-         //   metawear.accelerometerVALS.y1 = d5;//-128;
-			//metawear.accelerometerVALS.z1 = d7;//-128;
-//			if (d3>90 && d3<270)
-//				{
-//				metawear.accelerometerVALS.x2= - metawear.accelerometerVALS.x2;
-//				}
-
-//			if (d5>90 && d5<270)
-//				{
-//				metawear.accelerometerVALS.y2= - metawear.accelerometerVALS.y2;
-//				}
-
-//			if (d7>90 && d7<270)
-//				{
-//				metawear.accelerometerVALS.z2= - metawear.accelerometerVALS.z2;
-//				}
 
 			if (metawear.firstread==1)
 				{
@@ -179,18 +132,12 @@ var metawear = {
 				metawear.accelerometerVALS.vgy=parseInt( ((newvgy+ metawear.accelerometerVALS.vgy)/2) * 100)/100;
 				metawear.accelerometerVALS.vgz=parseInt( ((newvgz+ metawear.accelerometerVALS.vgz)/2) * 100)/100;
 
-//				 metawear.accelerometerVALS.vgy=metawear.accelerometerVALS.y2-metawear.cinay;
-//				 metawear.accelerometerVALS.vgz=metawear.accelerometerVALS.z2-metawear.cinaz;
-
-
-
-
 				 metawear.accelerometerVALS.vx=metawear.accelerometerVALS.x1-metawear.cax;
 				 metawear.accelerometerVALS.vy=metawear.accelerometerVALS.y1-metawear.cay;
 				 metawear.accelerometerVALS.vz=metawear.accelerometerVALS.z1-metawear.caz;
 
 
-//SICHQARE
+				//SICHQARE
 				metawear.accelerometerVALS.mgx+=metawear.accelerometerVALS.vgx;
 				metawear.accelerometerVALS.mgy+=metawear.accelerometerVALS.vgy;
 				metawear.accelerometerVALS.mgz+=metawear.accelerometerVALS.vgz;
@@ -201,7 +148,7 @@ var metawear = {
 						{metawear.accelerometerVALS.mgx-=0.5;}
 					else if (metawear.accelerometerVALS.mgx<0)
 						{metawear.accelerometerVALS.mgx+=0.5;}
-//					metawear.accelerometerVALS.mgx=0;
+
 					}
 				if (metawear.accelerometerVALS.vgy==0)
 					{
@@ -209,7 +156,7 @@ var metawear = {
 						{metawear.accelerometerVALS.mgy-=0.5;}
 					else if (metawear.accelerometerVALS.mgy<0)
 						{metawear.accelerometerVALS.mgy+=0.5;}
-//					metawear.accelerometerVALS.mgy=0;
+
 					}
 
 				if (metawear.accelerometerVALS.vgz==0)
@@ -218,11 +165,11 @@ var metawear = {
 						{metawear.accelerometerVALS.mgz-=0.5;}
 					else if (metawear.accelerometerVALS.mgz<0)
 						{metawear.accelerometerVALS.mgz+=0.5;}
-					//metawear.accelerometerVALS.mgz=0;
+
 					}
-metawear.accelerometerVALS.mgx=parseInt(metawear.accelerometerVALS.mgx*10)/10;
-metawear.accelerometerVALS.mgy=parseInt(metawear.accelerometerVALS.mgy*10)/10;
-metawear.accelerometerVALS.mgz=parseInt(metawear.accelerometerVALS.mgz*10)/10;
+				metawear.accelerometerVALS.mgx=parseInt(metawear.accelerometerVALS.mgx*10)/10;
+				metawear.accelerometerVALS.mgy=parseInt(metawear.accelerometerVALS.mgy*10)/10;
+				metawear.accelerometerVALS.mgz=parseInt(metawear.accelerometerVALS.mgz*10)/10;
 
 				metawear.accelerometerVALS.mx+=metawear.accelerometerVALS.vx;
 				metawear.accelerometerVALS.my+=metawear.accelerometerVALS.vy;
@@ -232,35 +179,49 @@ metawear.accelerometerVALS.mgz=parseInt(metawear.accelerometerVALS.mgz*10)/10;
 				metawear.accelerometerVALS.sy+=metawear.accelerometerVALS.mgy;
 				metawear.accelerometerVALS.sz+=metawear.accelerometerVALS.mgz;
 
-	if (metawear.accelerometerVALS.mgx==0)
-		{
-		if (metawear.accelerometerVALS.sx>0)
-			{metawear.accelerometerVALS.sx-=1;}
-		else if (metawear.accelerometerVALS.sx<0)
-			{metawear.accelerometerVALS.sx+=1;}
-//					metawear.accelerometerVALS.mgx=0;
-		}
-	if (metawear.accelerometerVALS.mgy==0)
-		{
-		if (metawear.accelerometerVALS.sy>0)
-			{metawear.accelerometerVALS.sy-=1;}
-		else if (metawear.accelerometerVALS.sy<0)
-			{metawear.accelerometerVALS.sy+=1;}
-//					metawear.accelerometerVALS.mgy=0;
-		}
+				if (metawear.smooth==1)
+					{
+					if (metawear.accelerometerVALS.mgx>7){metawear.accelerometerVALS.mgx=7;}
+					if (metawear.accelerometerVALS.mgy>7){metawear.accelerometerVALS.mgy=7;}
+					if (metawear.accelerometerVALS.mgz>7){metawear.accelerometerVALS.mgz=7;}
+					if (metawear.accelerometerVALS.mgx<-7){metawear.accelerometerVALS.mgx=-7;}
+					if (metawear.accelerometerVALS.mgy<-7){metawear.accelerometerVALS.mgy=-7;}
+					if (metawear.accelerometerVALS.mgz<-7){metawear.accelerometerVALS.mgz=-7;}
 
-	if (metawear.accelerometerVALS.mgz==0)
-		{
-		if (metawear.accelerometerVALS.sz>0)
-			{metawear.accelerometerVALS.sz-=1;}
-		else if (metawear.accelerometerVALS.sz<0)
-			{metawear.accelerometerVALS.sz+=1;}
-		//metawear.accelerometerVALS.mgz=0;
-		}
+					if (metawear.accelerometerVALS.vgx>3){metawear.accelerometerVALS.vgx=3;}
+					if (metawear.accelerometerVALS.vgy>3){metawear.accelerometerVALS.vgy=3;}
+					if (metawear.accelerometerVALS.vgz>3){metawear.accelerometerVALS.vgz=3;}
+					if (metawear.accelerometerVALS.vgx<-3){metawear.accelerometerVALS.vgx=-3;}
+					if (metawear.accelerometerVALS.vgy<-3){metawear.accelerometerVALS.vgy=-3;}
+					if (metawear.accelerometerVALS.vgz<-3){metawear.accelerometerVALS.vgz=-3;}
 
-metawear.accelerometerVALS.sx=parseInt(metawear.accelerometerVALS.sx*10)/10;
-metawear.accelerometerVALS.sy=parseInt(metawear.accelerometerVALS.sy*10)/10;
-metawear.accelerometerVALS.sz=parseInt(metawear.accelerometerVALS.sz*10)/10;
+					}
+				if (metawear.accelerometerVALS.mgx==0)
+					{
+					if (metawear.accelerometerVALS.sx>0)
+						{metawear.accelerometerVALS.sx-=1;}
+					else if (metawear.accelerometerVALS.sx<0)
+						{metawear.accelerometerVALS.sx+=1;}
+					}
+				if (metawear.accelerometerVALS.mgy==0)
+					{
+					if (metawear.accelerometerVALS.sy>0)
+						{metawear.accelerometerVALS.sy-=1;}
+					else if (metawear.accelerometerVALS.sy<0)
+						{metawear.accelerometerVALS.sy+=1;}
+					}
+
+				if (metawear.accelerometerVALS.mgz==0)
+					{
+					if (metawear.accelerometerVALS.sz>0)
+						{metawear.accelerometerVALS.sz-=1;}
+					else if (metawear.accelerometerVALS.sz<0)
+						{metawear.accelerometerVALS.sz+=1;}
+					}
+
+				metawear.accelerometerVALS.sx=parseInt(metawear.accelerometerVALS.sx*10)/10;
+				metawear.accelerometerVALS.sy=parseInt(metawear.accelerometerVALS.sy*10)/10;
+				metawear.accelerometerVALS.sz=parseInt(metawear.accelerometerVALS.sz*10)/10;
 
 
 				metawear.cinax=metawear.accelerometerVALS.x2;
@@ -273,10 +234,10 @@ metawear.accelerometerVALS.sz=parseInt(metawear.accelerometerVALS.sz*10)/10;
 
 				}
             
-        }
+			}
 		if (message!="")
-		{        console.log("MESSAGE FROM ONDATA: " + message);
-		}
+			{        console.log("MESSAGE FROM ONDATA: " + message);
+			}
 
     },
     onDataReceivedError: function(res) {
