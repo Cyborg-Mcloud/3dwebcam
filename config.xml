@@ -7,7 +7,7 @@
         version   = "1.0.1"
 		package="com.designge.theedwebcam"
 		>
-    <name>3D Webcam</name>
+    <name>cyberdisc</name>
 	<icon src="logo.jpg" />
 
 
@@ -39,7 +39,7 @@
 	<preference name="keepRunning" value="true" />
 	<preference name="exit-on-suspend" value="false" />
 	<description>
-    3D Webcam
+cyberdisc
     </description>
 	
 
