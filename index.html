@@ -87,12 +87,14 @@ if (document.getElementById("remote").checked==true)
 	{
 	if (funcrun==1)
 		{
-		metawear.setLED(metawear.COLOR.blue);
+		metawear.stop(true); 
+		metawear.setLED(metawear.COLOR.BLUE);
 		metawear.play(true); 
 		}
 	else
 		{
-		metawear.setLED(metawear.COLOR.red);
+		metawear.stop(true); 
+		metawear.setLED(metawear.COLOR.RED);
 		metawear.play(true); 
 		}
 	}
@@ -100,12 +102,14 @@ else
 	{
 	if (funcrun==1)
 		{
-		metawear.setLED(metawear.COLOR.green);
+		metawear.stop(true); 
+		metawear.setLED(metawear.COLOR.GREEN);
 		metawear.play(true); 
 		}
 	else
 		{
-		metawear.setLED(metawear.COLOR.red);
+		metawear.stop(true); 
+		metawear.setLED(metawear.COLOR.RED);
 		metawear.play(true); 
 		}
 	}
@@ -340,6 +344,7 @@ funcrun=1;
 		setTimeout("mainfunc();",200);
 		setTimeout("draw_graph();",200);
 		setTimeout("send_data();",300);
+		metawear.stop(true); 
 		metawear.setLED(metawear.COLOR.GREEN);
 		metawear.play(true); 
 }
@@ -398,6 +403,7 @@ function DisconnFailure()
 
 function onDevicePause(event)
 	{
+	metawear.stop(true); 
 	funcrun=0;
 	first_connect=1;
 	metawear.disconnect(DisconSucc,DisconnFailure,event);
