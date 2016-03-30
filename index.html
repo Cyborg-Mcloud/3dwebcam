@@ -37,9 +37,9 @@
     <button id="connectButton">Connect</button>
 <br>
 <div style='color:black;'>
-<input type='checkbox' id='remote' name='remote'> Send Data<Br>
+<input type='checkbox' id='remote' name='remote' onchange='remote_change();'> Send Data<Br>
 <input type='text' id='myline' size=2 style='border:1px solid gray;' value='2'> Line to send<Br>
-<input type='checkbox' id='smooth' name='remote' onchange='smooth_click();'> Smooth<Br>
+<input type='checkbox' id='smooth' name='smooth' onchange='smooth_click();'> Smooth<Br>
 </div>
 
   <h3>Colors</h3>
@@ -79,6 +79,36 @@ else
 	metawear.smooth=0;
 	}
 
+}
+
+function remote_change()
+{
+if (document.getElementById("remote").checked==true)
+	{
+	if (funcrun==1)
+		{
+		metawear.setLED(metawear.COLOR.blue);
+		metawear.play(true); 
+		}
+	else
+		{
+		metawear.setLED(metawear.COLOR.red);
+		metawear.play(true); 
+		}
+	}
+else
+	{
+	if (funcrun==1)
+		{
+		metawear.setLED(metawear.COLOR.green);
+		metawear.play(true); 
+		}
+	else
+		{
+		metawear.setLED(metawear.COLOR.red);
+		metawear.play(true); 
+		}
+	}
 }
 
 var divhttp;
@@ -310,6 +340,8 @@ funcrun=1;
 		setTimeout("mainfunc();",200);
 		setTimeout("draw_graph();",200);
 		setTimeout("send_data();",300);
+		metawear.setLED(metawear.COLOR.GREEN);
+		metawear.play(true); 
 }
 
 function onMyError(res)
@@ -383,7 +415,7 @@ function onDeviceReady()
     connectButton.addEventListener('touchstart', metawearStart, false);
     connectButton2.addEventListener('touchstart', metawearStart, false);
         
-    ledButtonred.addEventListener('touchstart', function(){		 metawear.startAccelerometer(); }, false);
+    ledButtonred.addEventListener('touchstart', function(){		 metawear.setLED(metawear.COLOR.RED);  }, false);
     ledButtongreen.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.GREEN); }, false);
     ledButtonblue.addEventListener('touchstart', function(){metawear.setLED(metawear.COLOR.BLUE); }, false);
         
