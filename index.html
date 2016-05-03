@@ -3,7 +3,7 @@
   <head>
 <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>3D Webcam</title>
+    <title>CyberDisk</title>
 
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
@@ -39,8 +39,9 @@
 <br>
 <div style='color:black;'>
 <input type='checkbox' id='remote' name='remote' onchange='remote_change();'> Send Data<Br>
-<input type='text' id='myline' size=2 style='border:1px solid gray;' value='2'> Line to send<Br>
+<input type='text' id='myline' size=2 style='border:1px solid gray;' value='3'> Line to send<Br>
 <input type='checkbox' id='smooth' name='smooth' onchange='smooth_click();'> Smooth<Br>
+<input type='checkbox' id='mserver' name='mserver' onchange='server_change();' checked> to Thika<Br>
 </div>
 
   <h3>Colors</h3>
@@ -82,6 +83,19 @@ else
 
 }
 
+var myserver="http://www.thika.co";
+
+function server_change()
+{
+if (document.getElementById("mserver").checked==true)
+	{
+	myserver="http://www.thika.co";
+	}
+else
+	{
+	myserver="http://www.design.ge/cybrdisk";
+	}
+}
 function remote_change()
 {
 if (document.getElementById("remote").checked==true)
@@ -151,12 +165,12 @@ function send_data()
 	//	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=1013";
 		if (first_connect==1)
 			{
-			url="http://www.thika.co/upacc.php?restart=1&uid=1013";
+			url=myserver+"/upacc.php?restart=1&uid=1013";
 			first_connect=0;
 			}
 		else
 			{
-			url="http://www.thika.co/upacc.php?packet="+data_packet+"&uid=1013";
+			url=myserver+"/upacc.php?packet="+data_packet+"&uid=1013";
 			data_packet="";
 			}
 
