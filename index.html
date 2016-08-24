@@ -161,7 +161,7 @@ function div_recv()
 		if (c_recv!="")
 			{
 			first_connect=0;
-			mode3c=21;
+			mode3c=60
 			}
 		}
 	}
@@ -184,12 +184,14 @@ function send_data()
 		else
 			{
 			mode3c++;
-			if (mode3c>20)
+			if (mode3c>33)
 				{
+				console.log("mode3c: "+mode3c);
 				mode3c=0;
 				sendme=1;
-				console.log("mode3c: "+mode3c);
+				
 				}
+
 			}
 	//	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=1013";
 		if (sendme==1)
@@ -224,7 +226,7 @@ function send_data()
 
 		else if (selmode==1)
 			{
-			setTimeout("send_data();",50);	
+			setTimeout("send_data();",33);	
 			}
 	
 		}
