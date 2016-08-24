@@ -42,13 +42,18 @@
 <input type='text' id='myline' size=2 style='border:1px solid gray;' value='3'> Line to send<Br>
 <input type='checkbox' id='smooth' name='smooth' onchange='smooth_click();'> Smooth<Br>
 <input type='checkbox' id='mserver' name='mserver' onchange='server_change();' checked> to Thika<Br>
+
+<input type='radio' id='mymode' name='mymode' onchange='mode_change(1);' checked>packet mode<Br>
+<input type='radio' id='mymode' name='mymode' onchange='mode_change(2);'>fast mode<Br>
+<input type='radio' id='mymode' name='mymode' onchange='mode_change(3);'>slow mode<Br>
+
 </div>
 
-  <h3>Colors</h3>
+
 	<button id="ledButtonred">Red</button>
 	<button id="ledButtongreen">Green</button>
 	<button id="ledButtonblue">Blue</button>
-	<br /><br />
+	<br />
 	<button id="playledButton">Play LED</button>
 	<button id="pauseledButton">Pause LED</button>
 	<button id="stopledButton">Stop LED</button>
@@ -62,6 +67,14 @@
 </tr></table>
 </div>
 <script>
+
+var selmode=1;
+
+function mode_change(newmode)
+{
+selmode=newmode;
+mode3c=0;
+}
 
 function showcreen(myid)
 {
@@ -148,6 +161,7 @@ function div_recv()
 		if (c_recv!="")
 			{
 			first_connect=0;
+			mode3c=21;
 			}
 		}
 	}
@@ -156,30 +170,64 @@ var data_packet="";
 var packet_counter=0;
 var first_connect=1;
 
+var mode3c=0;
+
 function send_data()
 	{
 	if (document.getElementById("remote").checked==true)
 		{
-		
-		
-	//	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=1013";
-		if (first_connect==1)
+		var sendme=0;
+		if (selmode==2 || selmode==3)
 			{
-			url=myserver+"/upacc.php?restart=1&uid=1013";
-			first_connect=0;
+			sendme=1;
 			}
 		else
 			{
-			url=myserver+"/upacc.php?packet="+data_packet+"&uid=1013";
-			data_packet="";
+			mode3c++;
+			if (mode3c>20)
+				{
+				mode3c=0;
+				sendme=1;
+				console.log("mode3c: "+mode3c);
+				}
+			}
+	//	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=1013";
+		if (sendme==1)
+			{
+		
+			if (first_connect==1)
+				{
+				url=myserver+"/upacc.php?restart=1&uid=1013";
+				first_connect=0;
+				}
+			else
+				{
+				url=myserver+"/upacc.php?packet="+data_packet+"&uid=1013";
+				data_packet="";
+				}
+
+			console.log("data up: "+url);
+			divhttp.open('GET',url,true);
+			divhttp.send(null);
+			}		
+		}
+	if (funcrun==1) 
+		{
+		if (selmode==2)
+			{
+			setTimeout("send_data();",200);	
+			}
+		else if (selmode==3)
+			{
+			setTimeout("send_data();",500);	
 			}
 
-		console.log("data up: "+url);
-		divhttp.open('GET',url,true);
-		divhttp.send(null);
-		
+		else if (selmode==1)
+			{
+			setTimeout("send_data();",50);	
+			}
+	
 		}
-	if (funcrun==1) {setTimeout("send_data();",200);	}
 	}
 
 
