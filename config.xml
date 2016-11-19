@@ -73,11 +73,11 @@ cyberdisc
 </feature>
 
 
-<plugin name="cordova-plugin-ble-central" spec="1.1.1" />
+<plugin name="cordova-plugin-ble-central" spec="1.1.1" source="npm"/>
 
-<plugin name="cordova-plugin-whitelist" spec="1.2.2" />
+<plugin name="cordova-plugin-whitelist" spec="1.2.2" source="npm"/>
 
-<plugin name="nl.x-services.plugins.insomnia" source="pgb" spec="4.0.1" />
+<plugin name="nl.x-services.plugins.insomnia" source="npm" spec="4.0.1" />
 
 <!--<gap:plugin name="com.mbientlab.metawear"   />-->
 
