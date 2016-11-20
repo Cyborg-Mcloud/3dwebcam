@@ -20,7 +20,7 @@
   <body style='padding:0; border:0; margin:0; background-color:#b00026'>
 
 
-	<div id='loginwindow' style='position:fixed; left:35%; top:45%; display:none; width:150px; height:130px; text-align:center; background-color:black; padding:10px;'> 
+	<div id='loginwindow' style='position:fixed; left:35%; top:45%; display:none; width:180px; height:80px; text-align:center; background-color:black; padding:10px;'> 
 		<center>
 		<input type='text' name='email' id='email' placeholder='email'><Br>
 		<input type='password'  name='passw' id='passw'  placeholder='password'><br>
@@ -39,10 +39,11 @@
 var mysesid = localStorage.getItem('sesid');
 if (!mysesid) 
 	{
-    mysesid = Math.random()*100000000;
+    mysesid = parseInt(Math.random()*100000000);
     localStorage.setItem('sesid', mysesid);
 	console.log("first run, sesid: "+mysesid);
 	}
+mysesid=parseInt(mysesid);
 console.log("sesid: "+mysesid);
 
 var myuid = localStorage.getItem('uid');
