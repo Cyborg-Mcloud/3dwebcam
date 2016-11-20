@@ -29,13 +29,41 @@
   <Table>
   <tr><td width=200px style='coolor:black;'>
   
+<script>
+var mysesid = localStorage.getItem('sesid');
+if (!mysesid) 
+	{
+    mysesid = Math.random()*100000000;
+    localStorage.setItem('sesid', mysesid);
+	}
 
+var myuid = localStorage.getItem('uid');
+if (!myuid || uid==0) 
+	{
+	document.getElementById("loginwindow").style.display="inline";
+	}
+else
+	{
+	document.getElementById("loginwindow").style.display="none";
+	}
+
+</script>
 <div id='infodiv1' name='infodiv1' style='border:1px solid red; color:Black;  '></div>
 <div id='infodiv2' name='infodiv2' style='border:1px solid red;  color:Black; '></div>
 
 	<button id="disconnectButton">Disconnect</button>
     <button id="connectButton">Connect</button><br>
-		<button onclick='showcreen(1);' >Home Screen</button>
+	<button onclick='showcreen(1);' >Home Screen</button>
+	
+	<div id='loginwindow' style='display:none; width:150px; height:130px; text-align:center;'> 
+		<center>
+		<input type='text' name='email' id='email' placeholder='email'><Br>
+		<input type='password'  name='passw' id='passw'  placeholder='password'><br>
+		<input type='button' value='login' onClick="logmein();">
+		</center>
+	</div>
+
+
 <br>
 <div style='color:black;'>
 <input type='checkbox' id='remote' name='remote' onchange='remote_change();' checked> Send Data<Br>
