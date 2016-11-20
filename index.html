@@ -19,15 +19,21 @@
   </style>
   <body style='padding:0; border:0; margin:0; background-color:#b00026'>
 
+
+	<div id='loginwindow' style='position:fixed; left:40%; top:40%; display:none; width:150px; height:130px; text-align:center;'> 
+		<center>
+		<input type='text' name='email' id='email' placeholder='email'><Br>
+		<input type='password'  name='passw' id='passw'  placeholder='password'><br>
+		<input type='button' value='login' onClick="logmein();">
+		</center>
+	</div>
+
   <div style='width:100%; height:100%; display:inline; background-color:#b00026;' id='screen_1'>
 		<Center><img src='logo.jpg'></center>
 		<button onclick='showcreen(2);' >Data Screen</button>
 	    <button id="connectButton2">Connect</button>
   </div>
 
- <div style='width:100%; height:100%; display:none; background-color:white;' id='screen_2'>
-  <Table>
-  <tr><td width=200px style='coolor:black;'>
   
 <script>
 var mysesid = localStorage.getItem('sesid');
@@ -48,34 +54,32 @@ else
 	}
 
 </script>
-<div id='infodiv1' name='infodiv1' style='border:1px solid red; color:Black;  '></div>
-<div id='infodiv2' name='infodiv2' style='border:1px solid red;  color:Black; '></div>
+
+<div style='width:100%; height:100%; display:none; background-color:white;' id='screen_2'>
+	<Table>
+	<tr><td width=200px style='coolor:black;'>
+  
+	<div id='infodiv1' name='infodiv1' style='border:1px solid red; color:Black;  '></div>
+	<div id='infodiv2' name='infodiv2' style='border:1px solid red;  color:Black; '></div>
 
 	<button id="disconnectButton">Disconnect</button>
     <button id="connectButton">Connect</button><br>
 	<button onclick='showcreen(1);' >Home Screen</button>
 	
-	<div id='loginwindow' style='display:none; width:150px; height:130px; text-align:center;'> 
-		<center>
-		<input type='text' name='email' id='email' placeholder='email'><Br>
-		<input type='password'  name='passw' id='passw'  placeholder='password'><br>
-		<input type='button' value='login' onClick="logmein();">
-		</center>
-	</div>
 
 
 <br>
-<div style='color:black;'>
-<input type='checkbox' id='remote' name='remote' onchange='remote_change();' checked> Send Data<Br>
-<input type='text' id='myline' size=2 style='border:1px solid gray;' value='3'> Line to send<Br>
-<input type='checkbox' id='smooth' name='smooth' onchange='smooth_click();' checked> Smooth<Br>
-<input type='checkbox' id='mserver' name='mserver' onchange='server_change();' checked> to Thika<Br>
+	<div style='color:black;'>
+	<input type='checkbox' id='remote' name='remote' onchange='remote_change();' checked> Send Data<Br>
+	<input type='text' id='myline' size=2 style='border:1px solid gray;' value='3'> Line to send<Br>
+	<input type='checkbox' id='smooth' name='smooth' onchange='smooth_click();' checked> Smooth<Br>
+	<input type='checkbox' id='mserver' name='mserver' onchange='server_change();' checked> to Thika<Br>
 
-<input type='radio' id='mymode' name='mymode' onchange='mode_change(1);' checked>packet mode<Br>
-<input type='radio' id='mymode' name='mymode' onchange='mode_change(2);'>fast mode<Br>
-<input type='radio' id='mymode' name='mymode' onchange='mode_change(3);'>slow mode<Br>
+	<input type='radio' id='mymode' name='mymode' onchange='mode_change(1);' checked>packet mode<Br>
+	<input type='radio' id='mymode' name='mymode' onchange='mode_change(2);'>fast mode<Br>
+	<input type='radio' id='mymode' name='mymode' onchange='mode_change(3);'>slow mode<Br>
 
-</div>
+	</div>
 
 
 	<button id="ledButtonred">Red</button>
@@ -87,12 +91,12 @@ else
 	<button id="stopledButton">Stop LED</button>
 	<br>
 
-</td>
-<td>
+	</td>
+	<td>
 
-<canvas name='main' id='main' style='background-color:white; border:1px solid green; width:400px; height:400px; z-index:80;' width=400px height=400px ></canvas>
-</td>
-</tr></table>
+	<canvas name='main' id='main' style='background-color:white; border:1px solid green; width:400px; height:400px; z-index:80;' width=400px height=400px ></canvas>
+	</td></tr>
+	</table>
 </div>
 <script>
 
