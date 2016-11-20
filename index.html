@@ -41,16 +41,20 @@ if (!mysesid)
 	{
     mysesid = Math.random()*100000000;
     localStorage.setItem('sesid', mysesid);
+	console.log("first run, sesid: "+mysesid);
 	}
+console.log("sesid: "+mysesid);
 
 var myuid = localStorage.getItem('uid');
 if (!myuid || uid==0) 
 	{
 	document.getElementById("loginwindow").style.display="inline";
+	console.log("no user, display login");
 	}
 else
 	{
 	document.getElementById("loginwindow").style.display="none";
+	console.log("user logged in: "+myuid);
 	}
 
 </script>
