@@ -20,13 +20,23 @@
   <body style='padding:0; border:0; margin:0; background-color:#b00026'>
 
 
-	<div id='loginwindow' style='position:fixed; left:35%; top:45%; display:none; width:180px; height:80px; text-align:center; background-color:black; padding:10px;'> 
+	<div id='loginwindow' style='position:fixed; right:35%; top:5%; display:none; width:200px; height:70px; text-align:center; background-color:black; padding:10px;'> 
 		<center>
 		<input type='text' name='email' id='email' placeholder='email'><Br>
 		<input type='password'  name='passw' id='passw'  placeholder='password'><br>
 		<input type='button' value='login' onClick="logmein();">
 		</center>
 	</div>
+
+
+	<div id='workwindow' style='position:fixed; left:5%; top:5%; display:none; width:200px; height:70px; text-align:center; background-color:black; padding:10px; color:white;'> 
+		data method:<br>
+		<input type='radio' name='dtype' id='dtype' value='1'> Cyberdisk / Metawear<br>
+		<input type='radio' name='dtype' id='dtype' value='2'> Screen Touch<br>
+		<input type='radio' name='dtype' id='dtype' value='3'> Mobile Shake<br>
+
+	</div>
+
 
   <div style='width:100%; height:100%; display:inline; background-color:#b00026;' id='screen_1'>
 		<Center><img src='logo.jpg'></center>
@@ -47,7 +57,7 @@ mysesid=parseInt(mysesid);
 console.log("sesid: "+mysesid);
 
 var myuid = localStorage.getItem('uid');
-if (!myuid || uid==0) 
+if (!myuid || myuid==0) 
 	{
 	document.getElementById("loginwindow").style.display="inline";
 	console.log("no user, display login");
@@ -57,6 +67,36 @@ else
 	document.getElementById("loginwindow").style.display="none";
 	console.log("user logged in: "+myuid);
 	}
+
+var logmehttp;
+var log_recv;
+if (window.XMLHttpRequest) {logmehttp=new XMLHttpRequest();}
+else if (window.ActiveXObject) {logmehttp=new ActiveXObject('Microsoft.XMLHTTP');}
+else {alert('Your browser does not support XMLHTTP!');}
+logmehttp.onreadystatechange=logme_recv;
+
+
+function logme_recv()
+	{
+	if (logmehttp.readyState==4 && logmehttp.status==200)
+		{
+		log_recv=logmehttp.responseText;
+		console.log("received: "+log_recv);
+		
+		if (log_recv!="")
+			{
+			if (log_recv>0)
+				{
+				uid=log_recv;
+				localStorage.setItem('uid', uid);
+				}
+			}
+		}
+	}
+function logmein()
+{
+
+}
 
 </script>
 
