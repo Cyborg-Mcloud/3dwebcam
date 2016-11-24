@@ -2,10 +2,15 @@
 var metawear = {
         deviceId : "",
     // this is MetaWear's UART service
-    serviceUUID: "326a9000-85cb-9195-d9dd-464cfbbae75a",
+//    serviceUUID: "326a9000-85cb-9195-d9dd-464cfbbae75a", //metawear
+  //  txCharacteristic: "326a9001-85cb-9195-d9dd-464cfbbae75a", // transmit is from the phone's perspective
+  //  rxCharacteristic: "326a9006-85cb-9195-d9dd-464cfbbae75a",  // receive is from the phone's perspective
+
+    serviceUUID: "0000fc00-0000-1000-8000-00805f9b34fb", //cyberdisk
     txCharacteristic: "326a9001-85cb-9195-d9dd-464cfbbae75a", // transmit is from the phone's perspective
-    rxCharacteristic: "326a9006-85cb-9195-d9dd-464cfbbae75a",  // receive is from the phone's perspective
-    
+    rxCharacteristic: "0000fc22-0000-1000-8000-00805f9b34fb",  // cyberdisk read
+
+
 	init: function (successCallback, failureCallback) {
     	console.log('initializing the metawear plugin');
         ble.isConnected(metawear.deviceId, successCallback, function (res) {metawear.isNotConnected(res, successCallback, failureCallback);});
@@ -18,6 +23,7 @@ var metawear = {
         }
     },
     onDiscoverDevice : function(device, successCallback, failureCallback) {
+		console.log("device discovered: "+device.name);
         if (device.name === "MetaWear") {
             console.log("FOUND METAWEAR" + JSON.stringify(device));
             metawear.deviceId = device.id;                
