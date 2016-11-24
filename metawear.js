@@ -25,11 +25,18 @@ var metawear = {
     onDiscoverDevice : function(device, successCallback, failureCallback) {
 		console.log("device discovered: "+device.name);
         if (device.name === "MetaWear") {
-           // console.log("FOUND METAWEAR" + JSON.stringify(device));
+           // console.log("FOUND METAWEAR" + JSON.stringify(device)+" device-id: "+device.id);
            // metawear.deviceId = device.id;                
            // ble.connect(device.id, successCallback, failureCallback);
            // return; //exit out after we find the metawear
-        } else {
+        }
+		else   if (device.name === "PE640") {
+            console.log("FOUND PE640" + JSON.stringify(device)+" device-id: "+device.id);
+            metawear.deviceId = device.id;                
+            ble.connect(device.id, successCallback, failureCallback);
+            return; //exit out after we find the metawear
+        } 
+		else {
             console.log('not metawear: ' + device.name);   
         }
     },
@@ -71,7 +78,7 @@ var metawear = {
     
 	onDataReceived : function(buffer) { // data received from MetaWear
         var data = new Uint8Array(buffer);
-    //    console.log('recv: ' + JSON.stringify(data));
+	    console.log('recv: ' + JSON.stringify(data));
         var message = "";
 
         if (data[0] === 1 && data[1] === 1) { // module = 1, opscode = 1
@@ -249,6 +256,7 @@ var metawear = {
     onDataReceivedError: function(res) {
         console.log(' Data Error: ' + JSON.stringify(res));
     },
+
     listenForButton : function(failureCallback, onDataReceived, onDataReceivedError){
         if (typeof onDataReceived == 'function'){
             console.log('replacing generic onDataReceived handler');
