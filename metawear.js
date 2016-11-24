@@ -25,12 +25,12 @@ var metawear = {
     onDiscoverDevice : function(device, successCallback, failureCallback) {
 		console.log("device discovered: "+device.name);
         if (device.name === "MetaWear") {
-            console.log("FOUND METAWEAR" + JSON.stringify(device));
-            metawear.deviceId = device.id;                
-            ble.connect(device.id, successCallback, failureCallback);
-            return; //exit out after we find the metawear
+           // console.log("FOUND METAWEAR" + JSON.stringify(device));
+           // metawear.deviceId = device.id;                
+           // ble.connect(device.id, successCallback, failureCallback);
+           // return; //exit out after we find the metawear
         } else {
-            //console.log('not metawear: ' + device.name);   
+            console.log('not metawear: ' + device.name);   
         }
     },
     writeData: function(buffer, success, failure) { // to to be sent to MetaWear
