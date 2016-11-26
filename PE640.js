@@ -7,7 +7,7 @@ var cyberdisk = {
   //  rxCharacteristic: "326a9006-85cb-9195-d9dd-464cfbbae75a",  // receive is from the phone's perspective
 
     serviceUUID: "0000fc00-0000-1000-8000-00805f9b34fb", //cyberdisk
-    txCharacteristic: "326a9001-85cb-9195-d9dd-464cfbbae75a", // transmit is from the phone's perspective
+    txCharacteristic: "0000fc21-0000-1000-8000-00805f9b34fb", // transmit is from the phone's perspective
     rxCharacteristic: "0000fc22-0000-1000-8000-00805f9b34fb",  // cyberdisk read
 
 
