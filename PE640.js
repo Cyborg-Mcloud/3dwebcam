@@ -43,7 +43,7 @@ var cyberdisk = {
 //                console.log( "Sent: " + JSON.stringify(new Uint8Array(buffer)) );
             };
         }
-  console.log( "Sent: " + JSON.stringify(new Uint8Array(buffer)) );
+  console.log( "cyberdisk Sent: " + JSON.stringify(new Uint8Array(buffer)) );
         if (!failure) {
             failure = cyberdisk.onError;
         }
@@ -75,21 +75,10 @@ var cyberdisk = {
     
 	onDataReceived : function(buffer) { // data received from cyberdisk
         var data = new Uint8Array(buffer);
-	    console.log('recv: ' + JSON.stringify(data));
+	    console.log('cyberdisk recv: ' + JSON.stringify(data));
         var message = "";
-
-        if (data[0] === 1 && data[1] === 1) { // module = 1, opscode = 1
-            if (data[2] === 1) 
-				{ // button state
-                message = "Button pressed";
-				} 
-			else 
-				{
-                message = "Button released";
-	            }
-			console.log("cyberdisk: " + message);
-			} 
-		else if (data[0] === 3 && data[1] === 4) 
+		
+		if (data[0] === 3 && data[1] === 4) 
 			{ // module = 1, opscode = 1
 
             var d2 = data[2]; //
@@ -246,7 +235,7 @@ var cyberdisk = {
             
 			}
 		if (message!="")
-			{        console.log("MESSAGE FROM ONDATA: " + message);
+			{        console.log("cyberdisk MESSAGE FROM ONDATA: " + message);
 			}
 
     },
@@ -256,12 +245,12 @@ var cyberdisk = {
 
     listenForButton : function(failureCallback, onDataReceived, onDataReceivedError){
         if (typeof onDataReceived == 'function'){
-            console.log('replacing generic onDataReceived handler');
+            console.log('cyberdisk replacing generic onDataReceived handler');
             //replace the generic one
           //  cyberdisk.onDataReceived = onDataReceived;   
         }
         if (typeof onDataReceivedError == 'function'){
-            console.log('replacing generic onDataReceivedError handler');
+            console.log(' cyberdiskreplacing generic onDataReceivedError handler');
             //replace the generic one
        //     cyberdisk.onDataReceivedError = onDataReceivedError;   
         }
@@ -301,23 +290,17 @@ mz:0
 
     },
     stopAccelerometer : function(){
-        console.log("stop Accelerometer called");
+        console.log(" cyberdisk stop Accelerometer called");
         
     },
     disconnect: function(onSuccess, onError, event) {
         //make sure that the accelerometer is stopped
 		funcrun=0;
-		console.log("stop called");
+		console.log("cyberdisk stop called");
 
         cyberdisk.stopAccelerometer();
 
-		var data = new Uint8Array(3);        
-        data[0] = 0x02; // 
-        data[1] = 0x02; // 
-        // if 0 then just stop. if 1 then cancel the pattern
-        data[2] = 0x00 ; 
         
-         cyberdisk.writeData(data.buffer);    
         ble.disconnect(cyberdisk.deviceId, onSuccess, onError);
         cyberdisk.deviceId = "";
 
