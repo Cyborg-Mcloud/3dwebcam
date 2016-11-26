@@ -10,7 +10,7 @@ var cyberdisk = {
     txCharacteristic: "0000fc21-0000-1000-8000-00805f9b34fb", // transmit is from the phone's perspective
     rxCharacteristic: "0000fc22-0000-1000-8000-00805f9b34fb",  // cyberdisk read
 
-
+//00002902-0000-1000-8000-00805f9b34fb
 	init: function (successCallback, failureCallback) {
     	console.log('initializing the cyberdisk plugin');
         ble.isConnected(cyberdisk.deviceId, successCallback, function (res) {cyberdisk.isNotConnected(res, successCallback, failureCallback);});
@@ -247,12 +247,12 @@ var cyberdisk = {
         if (typeof onDataReceived == 'function'){
             console.log('cyberdisk replacing generic onDataReceived handler');
             //replace the generic one
-          //  cyberdisk.onDataReceived = onDataReceived;   
+            cyberdisk.onDataReceived = onDataReceived;   
         }
         if (typeof onDataReceivedError == 'function'){
             console.log(' cyberdiskreplacing generic onDataReceivedError handler');
             //replace the generic one
-       //     cyberdisk.onDataReceivedError = onDataReceivedError;   
+            cyberdisk.onDataReceivedError = onDataReceivedError;   
         }
       
     },
@@ -286,6 +286,11 @@ mz:0
 	   
 	   },
     startAccelerometer : function(){
+   var data = new Uint8Array(3);
+		data[0] = 0x03;
+		data[1] = 0x04;
+		data[2] = 0x01; 
+        cyberdisk.writeData(data.buffer);
 
 
     },
