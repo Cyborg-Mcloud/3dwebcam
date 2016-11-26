@@ -254,7 +254,7 @@ var cyberdisk = {
             //replace the generic one
        //     cyberdisk.onDataReceivedError = onDataReceivedError;   
         }
-      cyberdisk.enableButtonFeedback( cyberdisk.subscribeForIncomingData, failureCallback);  
+      
     },
     accelerometerVALS : {
        x1 : 22,
