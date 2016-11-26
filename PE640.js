@@ -1,8 +1,8 @@
 
-var metawear = {
+var cyberdisk = {
         deviceId : "",
-    // this is MetaWear's UART service
-//    serviceUUID: "326a9000-85cb-9195-d9dd-464cfbbae75a", //metawear
+    // this is cyberdisk's UART service
+//    serviceUUID: "326a9000-85cb-9195-d9dd-464cfbbae75a", //cyberdisk
   //  txCharacteristic: "326a9001-85cb-9195-d9dd-464cfbbae75a", // transmit is from the phone's perspective
   //  rxCharacteristic: "326a9006-85cb-9195-d9dd-464cfbbae75a",  // receive is from the phone's perspective
 
@@ -12,35 +12,32 @@ var metawear = {
 
 
 	init: function (successCallback, failureCallback) {
-    	console.log('initializing the metawear plugin');
-        ble.isConnected(metawear.deviceId, successCallback, function (res) {metawear.isNotConnected(res, successCallback, failureCallback);});
+    	console.log('initializing the cyberdisk plugin');
+        ble.isConnected(cyberdisk.deviceId, successCallback, function (res) {cyberdisk.isNotConnected(res, successCallback, failureCallback);});
     },
     isNotConnected: function(res, successCallback, failureCallback) {
         if (cordova.platformId === 'android') { // Android filtering is broken
-            ble.scan([], 5, function (device) {metawear.onDiscoverDevice(device, successCallback, failureCallback);}, failureCallback);
+            ble.scan([], 5, function (device) {cyberdisk.onDiscoverDevice(device, successCallback, failureCallback);}, failureCallback);
         } else {
-            ble.scan([metawear.serviceUUID], 5, function (device) {metawear.onDiscoverDevice(device, successCallback, failureCallback);}, failureCallback);
+            ble.scan([cyberdisk.serviceUUID], 5, function (device) {cyberdisk.onDiscoverDevice(device, successCallback, failureCallback);}, failureCallback);
         }
     },
-    onDiscoverDevice : function(device, successCallback, failureCallback) {
+    onDiscoverDevice : function(device, successCallback, failureCallback) 
+		{
 		console.log("device discovered: "+device.name);
-        if (device.name === "MetaWear") {
-           // console.log("FOUND METAWEAR" + JSON.stringify(device)+" device-id: "+device.id);
-           // metawear.deviceId = device.id;                
-           // ble.connect(device.id, successCallback, failureCallback);
-           // return; //exit out after we find the metawear
-        }
-		else   if (device.name === "PE640") {
+		if (device.name === "PE640") 
+			{
             console.log("FOUND PE640" + JSON.stringify(device)+" device-id: "+device.id);
-            metawear.deviceId = device.id;                
+            cyberdisk.deviceId = device.id;                
             ble.connect(device.id, successCallback, failureCallback);
-            return; //exit out after we find the metawear
-        } 
-		else {
-            console.log('not metawear: ' + device.name);   
-        }
-    },
-    writeData: function(buffer, success, failure) { // to to be sent to MetaWear
+            return; //exit out after we find the cyberdisk
+			} 
+		else 
+			{
+            console.log('not cyberdisk: ' + device.name);   
+	        }
+		},
+    writeData: function(buffer, success, failure) { // to to be sent to cyberdisk
         if (!success) {
             success = function() {
 //                console.log( "Sent: " + JSON.stringify(new Uint8Array(buffer)) );
@@ -48,22 +45,22 @@ var metawear = {
         }
   console.log( "Sent: " + JSON.stringify(new Uint8Array(buffer)) );
         if (!failure) {
-            failure = metawear.onError;
+            failure = cyberdisk.onError;
         }
-     //   ble.writeCommand(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
-        ble.writeWithoutResponse(metawear.deviceId, metawear.serviceUUID, metawear.txCharacteristic, buffer, success, failure);
+     //   ble.writeCommand(cyberdisk.deviceId, cyberdisk.serviceUUID, cyberdisk.txCharacteristic, buffer, success, failure);
+        ble.writeWithoutResponse(cyberdisk.deviceId, cyberdisk.serviceUUID, cyberdisk.txCharacteristic, buffer, success, failure);
     },
   
 	
 	
 	subscribeForIncomingData: function() {
         console.log(arguments);        
-		ble.startNotification(metawear.deviceId, metawear.serviceUUID, metawear.rxCharacteristic, metawear.onDataReceived, metawear.onDataReceivedError);
-	//	ble.startNotification(metawear.deviceId, "180f", "2a19", metawear.onDataReceived, metawear.onDataReceivedError);
-//		ble.startNotification(metawear.deviceId, "326a9000-85cb-9195-d9dd-464cfbbae75a", "326a9008-85cb-9195-d9dd-464cfbbae75a", metawear.onDataReceived, metawear.onDataReceivedError);
+		ble.startNotification(cyberdisk.deviceId, cyberdisk.serviceUUID, cyberdisk.rxCharacteristic, cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
+	//	ble.startNotification(cyberdisk.deviceId, "180f", "2a19", cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
+//		ble.startNotification(cyberdisk.deviceId, "326a9000-85cb-9195-d9dd-464cfbbae75a", "326a9008-85cb-9195-d9dd-464cfbbae75a", cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
 
 
-//		ble.startNotification(metawear.deviceId, "180a", "2a24", metawear.onDataReceived, metawear.onDataReceivedError);
+//		ble.startNotification(cyberdisk.deviceId, "180a", "2a24", cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
     },
     accLOCK : false,
 
@@ -76,7 +73,7 @@ var metawear = {
 	smooth:0,
 
     
-	onDataReceived : function(buffer) { // data received from MetaWear
+	onDataReceived : function(buffer) { // data received from cyberdisk
         var data = new Uint8Array(buffer);
 	    console.log('recv: ' + JSON.stringify(data));
         var message = "";
@@ -90,7 +87,7 @@ var metawear = {
 				{
                 message = "Button released";
 	            }
-			console.log("Metawear: " + message);
+			console.log("cyberdisk: " + message);
 			} 
 		else if (data[0] === 3 && data[1] === 4) 
 			{ // module = 1, opscode = 1
@@ -101,148 +98,148 @@ var metawear = {
             var d5 = data[5]; // x values
             var d6 = data[6]; // y values
             var d7 = data[7]; // z values
-			metawear.accelerometerVALS.x1 = d3;//-128;
-            metawear.accelerometerVALS.y1 = d5;//-128;
-			metawear.accelerometerVALS.z1 = d7;//-128;
+			cyberdisk.accelerometerVALS.x1 = d3;//-128;
+            cyberdisk.accelerometerVALS.y1 = d5;//-128;
+			cyberdisk.accelerometerVALS.z1 = d7;//-128;
 
 
 			if (d3<128)
-				{metawear.accelerometerVALS.x2 = d3;}
+				{cyberdisk.accelerometerVALS.x2 = d3;}
 			else
-				{metawear.accelerometerVALS.x2 = d3-256;}
+				{cyberdisk.accelerometerVALS.x2 = d3-256;}
 
 			if (d5<128)
-				{metawear.accelerometerVALS.y2 = d5;}
+				{cyberdisk.accelerometerVALS.y2 = d5;}
 			else
-				{metawear.accelerometerVALS.y2 = d5-256;}
+				{cyberdisk.accelerometerVALS.y2 = d5-256;}
 
 			if (d7<128)
-				{metawear.accelerometerVALS.z2 = d7;}
+				{cyberdisk.accelerometerVALS.z2 = d7;}
 			else
-				{metawear.accelerometerVALS.z2 = d7-256;}
+				{cyberdisk.accelerometerVALS.z2 = d7-256;}
 
 
-			if (metawear.firstread==1)
+			if (cyberdisk.firstread==1)
 				{
-				metawear.cinax=metawear.accelerometerVALS.x2;
-				metawear.cinay=metawear.accelerometerVALS.y2;
-				metawear.cinaz=metawear.accelerometerVALS.z2;
+				cyberdisk.cinax=cyberdisk.accelerometerVALS.x2;
+				cyberdisk.cinay=cyberdisk.accelerometerVALS.y2;
+				cyberdisk.cinaz=cyberdisk.accelerometerVALS.z2;
 
-				metawear.cax=metawear.accelerometerVALS.x1;
-				metawear.cay=metawear.accelerometerVALS.y1;
-				metawear.caz=metawear.accelerometerVALS.z1;
+				cyberdisk.cax=cyberdisk.accelerometerVALS.x1;
+				cyberdisk.cay=cyberdisk.accelerometerVALS.y1;
+				cyberdisk.caz=cyberdisk.accelerometerVALS.z1;
 
-				metawear.firstread=0;
+				cyberdisk.firstread=0;
 				}
 			else
 				{
-				newvgx=metawear.accelerometerVALS.x2-metawear.cinax;
-				newvgy=metawear.accelerometerVALS.y2-metawear.cinay;
-				newvgz=metawear.accelerometerVALS.z2-metawear.cinaz;
+				newvgx=cyberdisk.accelerometerVALS.x2-cyberdisk.cinax;
+				newvgy=cyberdisk.accelerometerVALS.y2-cyberdisk.cinay;
+				newvgz=cyberdisk.accelerometerVALS.z2-cyberdisk.cinaz;
 
 				// ACHQAREBA
-				 metawear.accelerometerVALS.vgx=parseInt( ((newvgx+ metawear.accelerometerVALS.vgx)/2) * 100)/100;
-				metawear.accelerometerVALS.vgy=parseInt( ((newvgy+ metawear.accelerometerVALS.vgy)/2) * 100)/100;
-				metawear.accelerometerVALS.vgz=parseInt( ((newvgz+ metawear.accelerometerVALS.vgz)/2) * 100)/100;
+				 cyberdisk.accelerometerVALS.vgx=parseInt( ((newvgx+ cyberdisk.accelerometerVALS.vgx)/2) * 100)/100;
+				cyberdisk.accelerometerVALS.vgy=parseInt( ((newvgy+ cyberdisk.accelerometerVALS.vgy)/2) * 100)/100;
+				cyberdisk.accelerometerVALS.vgz=parseInt( ((newvgz+ cyberdisk.accelerometerVALS.vgz)/2) * 100)/100;
 
-				 metawear.accelerometerVALS.vx=metawear.accelerometerVALS.x1-metawear.cax;
-				 metawear.accelerometerVALS.vy=metawear.accelerometerVALS.y1-metawear.cay;
-				 metawear.accelerometerVALS.vz=metawear.accelerometerVALS.z1-metawear.caz;
+				 cyberdisk.accelerometerVALS.vx=cyberdisk.accelerometerVALS.x1-cyberdisk.cax;
+				 cyberdisk.accelerometerVALS.vy=cyberdisk.accelerometerVALS.y1-cyberdisk.cay;
+				 cyberdisk.accelerometerVALS.vz=cyberdisk.accelerometerVALS.z1-cyberdisk.caz;
 
 
 				//SICHQARE
-				metawear.accelerometerVALS.mgx+=metawear.accelerometerVALS.vgx;
-				metawear.accelerometerVALS.mgy+=metawear.accelerometerVALS.vgy;
-				metawear.accelerometerVALS.mgz+=metawear.accelerometerVALS.vgz;
+				cyberdisk.accelerometerVALS.mgx+=cyberdisk.accelerometerVALS.vgx;
+				cyberdisk.accelerometerVALS.mgy+=cyberdisk.accelerometerVALS.vgy;
+				cyberdisk.accelerometerVALS.mgz+=cyberdisk.accelerometerVALS.vgz;
 
-				if (metawear.accelerometerVALS.vgx==0)
+				if (cyberdisk.accelerometerVALS.vgx==0)
 					{
-					if (metawear.accelerometerVALS.mgx>0)
-						{metawear.accelerometerVALS.mgx-=0.5;}
-					else if (metawear.accelerometerVALS.mgx<0)
-						{metawear.accelerometerVALS.mgx+=0.5;}
+					if (cyberdisk.accelerometerVALS.mgx>0)
+						{cyberdisk.accelerometerVALS.mgx-=0.5;}
+					else if (cyberdisk.accelerometerVALS.mgx<0)
+						{cyberdisk.accelerometerVALS.mgx+=0.5;}
 
 					}
-				if (metawear.accelerometerVALS.vgy==0)
+				if (cyberdisk.accelerometerVALS.vgy==0)
 					{
-					if (metawear.accelerometerVALS.mgy>0)
-						{metawear.accelerometerVALS.mgy-=0.5;}
-					else if (metawear.accelerometerVALS.mgy<0)
-						{metawear.accelerometerVALS.mgy+=0.5;}
+					if (cyberdisk.accelerometerVALS.mgy>0)
+						{cyberdisk.accelerometerVALS.mgy-=0.5;}
+					else if (cyberdisk.accelerometerVALS.mgy<0)
+						{cyberdisk.accelerometerVALS.mgy+=0.5;}
 
 					}
 
-				if (metawear.accelerometerVALS.vgz==0)
+				if (cyberdisk.accelerometerVALS.vgz==0)
 					{
-					if (metawear.accelerometerVALS.mgz>0)
-						{metawear.accelerometerVALS.mgz-=0.5;}
-					else if (metawear.accelerometerVALS.mgz<0)
-						{metawear.accelerometerVALS.mgz+=0.5;}
+					if (cyberdisk.accelerometerVALS.mgz>0)
+						{cyberdisk.accelerometerVALS.mgz-=0.5;}
+					else if (cyberdisk.accelerometerVALS.mgz<0)
+						{cyberdisk.accelerometerVALS.mgz+=0.5;}
 
 					}
-				metawear.accelerometerVALS.mgx=parseInt(metawear.accelerometerVALS.mgx*10)/10;
-				metawear.accelerometerVALS.mgy=parseInt(metawear.accelerometerVALS.mgy*10)/10;
-				metawear.accelerometerVALS.mgz=parseInt(metawear.accelerometerVALS.mgz*10)/10;
+				cyberdisk.accelerometerVALS.mgx=parseInt(cyberdisk.accelerometerVALS.mgx*10)/10;
+				cyberdisk.accelerometerVALS.mgy=parseInt(cyberdisk.accelerometerVALS.mgy*10)/10;
+				cyberdisk.accelerometerVALS.mgz=parseInt(cyberdisk.accelerometerVALS.mgz*10)/10;
 
-				metawear.accelerometerVALS.mx+=metawear.accelerometerVALS.vx;
-				metawear.accelerometerVALS.my+=metawear.accelerometerVALS.vy;
-				metawear.accelerometerVALS.mz+=metawear.accelerometerVALS.vz;
+				cyberdisk.accelerometerVALS.mx+=cyberdisk.accelerometerVALS.vx;
+				cyberdisk.accelerometerVALS.my+=cyberdisk.accelerometerVALS.vy;
+				cyberdisk.accelerometerVALS.mz+=cyberdisk.accelerometerVALS.vz;
 
-				metawear.accelerometerVALS.sx+=metawear.accelerometerVALS.mgx;
-				metawear.accelerometerVALS.sy+=metawear.accelerometerVALS.mgy;
-				metawear.accelerometerVALS.sz+=metawear.accelerometerVALS.mgz;
+				cyberdisk.accelerometerVALS.sx+=cyberdisk.accelerometerVALS.mgx;
+				cyberdisk.accelerometerVALS.sy+=cyberdisk.accelerometerVALS.mgy;
+				cyberdisk.accelerometerVALS.sz+=cyberdisk.accelerometerVALS.mgz;
 
-				if (metawear.smooth==1)
+				if (cyberdisk.smooth==1)
 					{
-					if (metawear.accelerometerVALS.mgx>7){metawear.accelerometerVALS.mgx=7;}
-					if (metawear.accelerometerVALS.mgy>7){metawear.accelerometerVALS.mgy=7;}
-					if (metawear.accelerometerVALS.mgz>7){metawear.accelerometerVALS.mgz=7;}
-					if (metawear.accelerometerVALS.mgx<-7){metawear.accelerometerVALS.mgx=-7;}
-					if (metawear.accelerometerVALS.mgy<-7){metawear.accelerometerVALS.mgy=-7;}
-					if (metawear.accelerometerVALS.mgz<-7){metawear.accelerometerVALS.mgz=-7;}
+					if (cyberdisk.accelerometerVALS.mgx>7){cyberdisk.accelerometerVALS.mgx=7;}
+					if (cyberdisk.accelerometerVALS.mgy>7){cyberdisk.accelerometerVALS.mgy=7;}
+					if (cyberdisk.accelerometerVALS.mgz>7){cyberdisk.accelerometerVALS.mgz=7;}
+					if (cyberdisk.accelerometerVALS.mgx<-7){cyberdisk.accelerometerVALS.mgx=-7;}
+					if (cyberdisk.accelerometerVALS.mgy<-7){cyberdisk.accelerometerVALS.mgy=-7;}
+					if (cyberdisk.accelerometerVALS.mgz<-7){cyberdisk.accelerometerVALS.mgz=-7;}
 
-					if (metawear.accelerometerVALS.vgx>3){metawear.accelerometerVALS.vgx=3;}
-					if (metawear.accelerometerVALS.vgy>3){metawear.accelerometerVALS.vgy=3;}
-					if (metawear.accelerometerVALS.vgz>3){metawear.accelerometerVALS.vgz=3;}
-					if (metawear.accelerometerVALS.vgx<-3){metawear.accelerometerVALS.vgx=-3;}
-					if (metawear.accelerometerVALS.vgy<-3){metawear.accelerometerVALS.vgy=-3;}
-					if (metawear.accelerometerVALS.vgz<-3){metawear.accelerometerVALS.vgz=-3;}
+					if (cyberdisk.accelerometerVALS.vgx>3){cyberdisk.accelerometerVALS.vgx=3;}
+					if (cyberdisk.accelerometerVALS.vgy>3){cyberdisk.accelerometerVALS.vgy=3;}
+					if (cyberdisk.accelerometerVALS.vgz>3){cyberdisk.accelerometerVALS.vgz=3;}
+					if (cyberdisk.accelerometerVALS.vgx<-3){cyberdisk.accelerometerVALS.vgx=-3;}
+					if (cyberdisk.accelerometerVALS.vgy<-3){cyberdisk.accelerometerVALS.vgy=-3;}
+					if (cyberdisk.accelerometerVALS.vgz<-3){cyberdisk.accelerometerVALS.vgz=-3;}
 
 					}
-				if (metawear.accelerometerVALS.mgx==0)
+				if (cyberdisk.accelerometerVALS.mgx==0)
 					{
-					if (metawear.accelerometerVALS.sx>0)
-						{metawear.accelerometerVALS.sx-=1;}
-					else if (metawear.accelerometerVALS.sx<0)
-						{metawear.accelerometerVALS.sx+=1;}
+					if (cyberdisk.accelerometerVALS.sx>0)
+						{cyberdisk.accelerometerVALS.sx-=1;}
+					else if (cyberdisk.accelerometerVALS.sx<0)
+						{cyberdisk.accelerometerVALS.sx+=1;}
 					}
-				if (metawear.accelerometerVALS.mgy==0)
+				if (cyberdisk.accelerometerVALS.mgy==0)
 					{
-					if (metawear.accelerometerVALS.sy>0)
-						{metawear.accelerometerVALS.sy-=1;}
-					else if (metawear.accelerometerVALS.sy<0)
-						{metawear.accelerometerVALS.sy+=1;}
-					}
-
-				if (metawear.accelerometerVALS.mgz==0)
-					{
-					if (metawear.accelerometerVALS.sz>0)
-						{metawear.accelerometerVALS.sz-=1;}
-					else if (metawear.accelerometerVALS.sz<0)
-						{metawear.accelerometerVALS.sz+=1;}
+					if (cyberdisk.accelerometerVALS.sy>0)
+						{cyberdisk.accelerometerVALS.sy-=1;}
+					else if (cyberdisk.accelerometerVALS.sy<0)
+						{cyberdisk.accelerometerVALS.sy+=1;}
 					}
 
-				metawear.accelerometerVALS.sx=parseInt(metawear.accelerometerVALS.sx*10)/10;
-				metawear.accelerometerVALS.sy=parseInt(metawear.accelerometerVALS.sy*10)/10;
-				metawear.accelerometerVALS.sz=parseInt(metawear.accelerometerVALS.sz*10)/10;
+				if (cyberdisk.accelerometerVALS.mgz==0)
+					{
+					if (cyberdisk.accelerometerVALS.sz>0)
+						{cyberdisk.accelerometerVALS.sz-=1;}
+					else if (cyberdisk.accelerometerVALS.sz<0)
+						{cyberdisk.accelerometerVALS.sz+=1;}
+					}
+
+				cyberdisk.accelerometerVALS.sx=parseInt(cyberdisk.accelerometerVALS.sx*10)/10;
+				cyberdisk.accelerometerVALS.sy=parseInt(cyberdisk.accelerometerVALS.sy*10)/10;
+				cyberdisk.accelerometerVALS.sz=parseInt(cyberdisk.accelerometerVALS.sz*10)/10;
 
 
-				metawear.cinax=metawear.accelerometerVALS.x2;
-				metawear.cinay=metawear.accelerometerVALS.y2;
-				metawear.cinaz=metawear.accelerometerVALS.z2;
-				metawear.cax=metawear.accelerometerVALS.x1;
-				metawear.cay=metawear.accelerometerVALS.y1;
-				metawear.caz=metawear.accelerometerVALS.z1;
+				cyberdisk.cinax=cyberdisk.accelerometerVALS.x2;
+				cyberdisk.cinay=cyberdisk.accelerometerVALS.y2;
+				cyberdisk.cinaz=cyberdisk.accelerometerVALS.z2;
+				cyberdisk.cax=cyberdisk.accelerometerVALS.x1;
+				cyberdisk.cay=cyberdisk.accelerometerVALS.y1;
+				cyberdisk.caz=cyberdisk.accelerometerVALS.z1;
 
 
 				}
@@ -261,14 +258,14 @@ var metawear = {
         if (typeof onDataReceived == 'function'){
             console.log('replacing generic onDataReceived handler');
             //replace the generic one
-          //  metawear.onDataReceived = onDataReceived;   
+          //  cyberdisk.onDataReceived = onDataReceived;   
         }
         if (typeof onDataReceivedError == 'function'){
             console.log('replacing generic onDataReceivedError handler');
             //replace the generic one
-       //     metawear.onDataReceivedError = onDataReceivedError;   
+       //     cyberdisk.onDataReceivedError = onDataReceivedError;   
         }
-      metawear.enableButtonFeedback( metawear.subscribeForIncomingData, failureCallback);  
+      cyberdisk.enableButtonFeedback( cyberdisk.subscribeForIncomingData, failureCallback);  
     },
     accelerometerVALS : {
        x1 : 22,
@@ -312,7 +309,7 @@ mz:0
 		funcrun=0;
 		console.log("stop called");
 
-        metawear.stopAccelerometer();
+        cyberdisk.stopAccelerometer();
 
 		var data = new Uint8Array(3);        
         data[0] = 0x02; // 
@@ -320,9 +317,9 @@ mz:0
         // if 0 then just stop. if 1 then cancel the pattern
         data[2] = 0x00 ; 
         
-         metawear.writeData(data.buffer);    
-        ble.disconnect(metawear.deviceId, onSuccess, onError);
-        metawear.deviceId = "";
+         cyberdisk.writeData(data.buffer);    
+        ble.disconnect(cyberdisk.deviceId, onSuccess, onError);
+        cyberdisk.deviceId = "";
 
     }
 };

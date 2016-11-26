@@ -30,7 +30,7 @@
 	</div>
 
 
-	<div id='workwindow' style='position:fixed; left:5%; top:5%; display:none; width:200px; height:70px; text-align:center; background-color:black; padding:10px; color:white;'> 
+	<div id='workwindow' style='position:absolute; left:5px; top:5px; display:none; width:200px; height:70px; text-align:center; background-color:black; padding:10px; color:white;'> 
 		data method:<br>
 		<input type='radio' name='dtype' id='dtype' value='1'> Cyberdisk / Metawear<br>
 		<input type='radio' name='dtype' id='dtype' value='2'> Screen Touch<br>
@@ -166,6 +166,7 @@ function smooth_click()
 if (document.getElementById("smooth").checked==true)
 	{
 	metawear.smooth=1;
+
 	}
 else
 	{
@@ -492,6 +493,25 @@ funcrun=1;
 		metawear.play(true); 
 }
 
+
+function cyber_onConnSucc(res)
+{
+		connectButton.style.display = "none";
+		connectButton2.style.display = "none";
+		funcrun=1;
+		console.log('Cyber connected! ' + JSON.stringify(res));
+         //listen for the button on the metawear
+        metawear.listenForButton(onMyError);
+		metawear.startAccelerometer();
+		setTimeout("mainfunc();",200);
+		setTimeout("draw_graph();",200);
+		setTimeout("send_data();",300);
+		metawear.stop(true); 
+		metawear.setLED(metawear.COLOR.GREEN);
+		metawear.play(true); 
+}
+
+
 function onMyError(res)
 {
  console.log(' generic error handler: ' + JSON.stringify(res));
@@ -533,8 +553,8 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function DisconSucc()
 	{
 	
-	 connectButton.style.display = "inline";
-connectButton2.style.display = "inline";
+	connectButton.style.display = "inline";
+	connectButton2.style.display = "inline";
 
 	console.log("stopped");
 	}	
@@ -547,9 +567,11 @@ function DisconnFailure()
 function onDevicePause(event)
 	{
 	metawear.stop(true); 
+	cyberdisk.stop(true); 
 	funcrun=0;
 	first_connect=1;
 	metawear.disconnect(DisconSucc,DisconnFailure,event);
+	cyberdisk.disconnect(DisconSucc,DisconnFailure,event);
 	}
 
 function onDeviceReady()
@@ -574,17 +596,22 @@ function onDeviceReady()
         
        
     metawearStart();
+	//cyberStart();
     }
 
 
 
-function metawearStart() {
+function metawearStart()
+	{
     console.log('metawearStart');
+	metawear.init(onConnSucc, onMyError);
+	}
 
-    metawear.init(onConnSucc, onMyError);
-
-}
-
+function cyberStart()
+	{
+    console.log('metawearStart');
+	cyberdisk.init(cyber_onConnSucc, onMyError);
+	}
 
 
 function mainfunc()
