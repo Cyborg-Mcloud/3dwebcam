@@ -8,7 +8,7 @@ var cyberdisk = {
 
     serviceUUID: "0000fc00-0000-1000-8000-00805f9b34fb", //cyberdisk
     txCharacteristic: "00002902-0000-1000-8000-00805f9b34fb", // transmit is from the phone's perspective
-    rxCharacteristic: "00002a19-0000-1000-8000-00805f9b34fb",  // cyberdisk read
+    rxCharacteristic: "00002a01-0000-1000-8000-00805f9b34fb",  // cyberdisk read
 
 //00002902-0000-1000-8000-00805f9b34fb
 	init: function (successCallback, failureCallback) {
