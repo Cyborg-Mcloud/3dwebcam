@@ -506,9 +506,10 @@ function onConnSucc(res)
 	}
 	else
 	{
-		cyberdisk.listenForButton(onMyError);
 		cyberdisk.subscribeForIncomingData();
-		cyberdisk.startAccelerometer();
+		cyberdisk.listenForButton(onMyError);
+
+		//cyberdisk.startAccelerometer();
 
 		setTimeout("mainfunc();",200);
 		setTimeout("draw_graph();",200);
