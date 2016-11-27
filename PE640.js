@@ -8,7 +8,7 @@ var cyberdisk = {
 
     serviceUUID: "0000fc00-0000-1000-8000-00805f9b34fb", //cyberdisk
     txCharacteristic: "00002902-0000-1000-8000-00805f9b34fb", // transmit is from the phone's perspective
-    rxCharacteristic: "00002a01-0000-1000-8000-00805f9b34fb",  // cyberdisk read
+    rxCharacteristic: "0000fc22-0000-1000-8000-00805f9b34fb",  // cyberdisk read
 
 //00002902-0000-1000-8000-00805f9b34fb
 	init: function (successCallback, failureCallback) {
@@ -291,13 +291,17 @@ mz:0
 
 	   
 	   },
-    startAccelerometer : function(){
+    startAccelerometer : function()
+		   {
+		   console.log("start accel");
+
+
    var data = new Uint8Array(3);
 		data[0] = 0x01;
 		data[1] = 0x01;
 		data[2] = 0x01; 
         cyberdisk.writeData(data.buffer);
-		cyberdisk.subscribeForIncomingData;
+
 
     },
     stopAccelerometer : function(){
