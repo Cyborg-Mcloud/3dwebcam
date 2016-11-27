@@ -60,6 +60,8 @@ var cyberdisk = {
 	subscribeForIncomingData: function() {
         console.log("subscribing");        
 		ble.startNotification(cyberdisk.deviceId, cyberdisk.serviceUUID, cyberdisk.rxCharacteristic, cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
+
+		ble.startNotification(cyberdisk.deviceId, "fc00", "fc22", cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
 	//	ble.startNotification(cyberdisk.deviceId, "180f", "2a19", cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
 //		ble.startNotification(cyberdisk.deviceId, "326a9000-85cb-9195-d9dd-464cfbbae75a", "326a9008-85cb-9195-d9dd-464cfbbae75a", cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
 
