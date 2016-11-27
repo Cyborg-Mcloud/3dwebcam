@@ -293,7 +293,7 @@ mz:0
 	   },
     startAccelerometer : function()
 		   {
-		   console.log("start accel");
+		   console.log("start acce WTF is going on");
 
 
    var data = new Uint8Array(3);
