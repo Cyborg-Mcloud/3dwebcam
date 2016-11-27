@@ -7,7 +7,7 @@ var cyberdisk = {
   //  rxCharacteristic: "326a9006-85cb-9195-d9dd-464cfbbae75a",  // receive is from the phone's perspective
 
     serviceUUID: "0000fc00-0000-1000-8000-00805f9b34fb", //cyberdisk
-    txCharacteristic: "0000fc21-0000-1000-8000-00805f9b34fb", // transmit is from the phone's perspective
+    txCharacteristic: "00002902-0000-1000-8000-00805f9b34fb", // transmit is from the phone's perspective
     rxCharacteristic: "0000fc22-0000-1000-8000-00805f9b34fb",  // cyberdisk read
 
 //00002902-0000-1000-8000-00805f9b34fb
@@ -54,7 +54,7 @@ var cyberdisk = {
 	
 	
 	subscribeForIncomingData: function() {
-        console.log(arguments);        
+        console.log("subscribing");        
 		ble.startNotification(cyberdisk.deviceId, cyberdisk.serviceUUID, cyberdisk.rxCharacteristic, cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
 	//	ble.startNotification(cyberdisk.deviceId, "180f", "2a19", cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
 //		ble.startNotification(cyberdisk.deviceId, "326a9000-85cb-9195-d9dd-464cfbbae75a", "326a9008-85cb-9195-d9dd-464cfbbae75a", cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
@@ -287,11 +287,11 @@ mz:0
 	   },
     startAccelerometer : function(){
    var data = new Uint8Array(3);
-		data[0] = 0x03;
-		data[1] = 0x04;
+		data[0] = 0x01;
+		data[1] = 0x01;
 		data[2] = 0x01; 
         cyberdisk.writeData(data.buffer);
-
+		cyberdisk.subscribeForIncomingData;
 
     },
     stopAccelerometer : function(){
