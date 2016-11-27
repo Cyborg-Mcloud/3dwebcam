@@ -490,8 +490,7 @@ function onConnSucc(res)
 	 connectButton.style.display = "none";
 	  connectButton2.style.display = "none";
 	funcrun=1;
-	if (curuse==2)
-	{
+
 
 		 console.log('Meta connected! ' + JSON.stringify(res));
          //listen for the button on the metawear
@@ -503,20 +502,8 @@ function onConnSucc(res)
 		metawear.stop(true); 
 		metawear.setLED(metawear.COLOR.GREEN);
 		metawear.play(true); 
-	}
-	else
-	{
-		console.log("axali");
-		cyberdisk.subscribeForIncomingData();
-		cyberdisk.listenForButton(onMyError);
-
-		//cyberdisk.startAccelerometer();
-
-		setTimeout("mainfunc();",200);
-		setTimeout("draw_graph();",200);
-		setTimeout("send_data();",300);
-		
-	}
+	
+	
 }
 
 
@@ -528,7 +515,8 @@ function cyber_onConnSucc(res)
 		console.log('Cyber connected! ' + JSON.stringify(res));
          //listen for the button on the metawear
         cyberdisk.listenForButton(onMyError);
-		cyberdisk.startAccelerometer();
+		cyberdisk.subscribeForIncomingData();
+//		cyberdisk.startAccelerometer();
 		setTimeout("mainfunc();",200);
 		setTimeout("draw_graph();",200);
 		setTimeout("send_data();",300);
