@@ -55,7 +55,7 @@ var cyberdisk = {
 	{
 		console.log("reading");
 	ble.read(cyberdisk.deviceId, cyberdisk.serviceUUID, cyberdisk.rxCharacteristic, cyberdisk.onDataReceived, cyberdisk.onDataReceivedError);
-	}
+	},
 	
 	subscribeForIncomingData: function() {
         console.log("subscribing");        
