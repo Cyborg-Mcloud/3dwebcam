@@ -93,6 +93,15 @@ var cyberdisk = {
             var d5 = data[5]; // x values
             var d6 = data[6]; // y values
             var d7 = data[7]; // z values
+
+ var d8 = data[8]; 
+ var d9 = data[9]; 
+ var d10 = data[10]; 
+ var d11 = data[11]; 
+ var d12 = data[12]; 
+ var d13 = data[13]; 
+
+
 			cyberdisk.accelerometerVALS.x1 = d3;//-128;
             cyberdisk.accelerometerVALS.y1 = d5;//-128;
 			cyberdisk.accelerometerVALS.z1 = d7;//-128;
