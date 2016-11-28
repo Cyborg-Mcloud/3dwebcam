@@ -84,8 +84,7 @@ var cyberdisk = {
 	    console.log('cyberdisk recv: ' + JSON.stringify(data));
         var message = "";
 		
-		if (data[0] === 3 && data[1] === 4) 
-			{ // module = 1, opscode = 1
+		 // module = 1, opscode = 1
 
             var d2 = data[2]; //
             var d3 = data[3];
@@ -245,10 +244,7 @@ var cyberdisk = {
 				cyberdisk.caz=cyberdisk.accelerometerVALS.z1;
 				}
             
-			}
-		if (message!="")
-			{        console.log("cyberdisk MESSAGE FROM ONDATA: " + message);
-			}
+		
 
     },
     onDataReceivedError: function(res) {
