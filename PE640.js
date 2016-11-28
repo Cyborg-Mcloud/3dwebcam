@@ -102,25 +102,25 @@ var cyberdisk = {
  var d13 = data[13]; 
 
 
-			cyberdisk.accelerometerVALS.x1 = d3;//-128;
-            cyberdisk.accelerometerVALS.y1 = d5;//-128;
-			cyberdisk.accelerometerVALS.z1 = d7;//-128;
+			cyberdisk.accelerometerVALS.x1 = d2;//-128;
+            cyberdisk.accelerometerVALS.y1 = d4;//-128;
+			cyberdisk.accelerometerVALS.z1 = d6;//-128;
 
 
 			if (d3<128)
-				{cyberdisk.accelerometerVALS.x2 = d3;}
+				{cyberdisk.accelerometerVALS.x2 = d2;}
 			else
-				{cyberdisk.accelerometerVALS.x2 = d3-256;}
+				{cyberdisk.accelerometerVALS.x2 = d2-256;}
 
 			if (d5<128)
-				{cyberdisk.accelerometerVALS.y2 = d5;}
+				{cyberdisk.accelerometerVALS.y2 = d4;}
 			else
-				{cyberdisk.accelerometerVALS.y2 = d5-256;}
+				{cyberdisk.accelerometerVALS.y2 = d4-256;}
 
 			if (d7<128)
-				{cyberdisk.accelerometerVALS.z2 = d7;}
+				{cyberdisk.accelerometerVALS.z2 = d6;}
 			else
-				{cyberdisk.accelerometerVALS.z2 = d7-256;}
+				{cyberdisk.accelerometerVALS.z2 = d6-256;}
 
 
 			if (cyberdisk.firstread==1)
