@@ -341,6 +341,23 @@ var last_x=50;
 var last_y=50;
 var last_z=50;
 
+var cur_vgx=100;
+var cur_vgy=100;
+var cur_vgz=100;
+
+var cur_mgx=200;
+var cur_mgy=200;
+var cur_mgz=200;
+
+var cur_x=50;
+var cur_y=50;
+var cur_z=50;
+
+var cur_sx=150;
+var cur_sy=150;
+var cur_sz=150;
+
+
 
 var graph_timer=1;
 var donot=1;
@@ -349,7 +366,46 @@ function draw_graph()
 		//c.width=c.width;
 	if ( donot==1)
 		{
+		if (curuse==1)
+			{
+			cur_vgx=cyberdisk.accelerometerVALS.vgx;
+			cur_vgy=cyberdisk.accelerometerVALS.vgy;
+			cur_vgz=cyberdisk.accelerometerVALS.vgz;
 
+			cur_mgx=cyberdisk.accelerometerVALS.mgx;
+			cur_mgy=cyberdisk.accelerometerVALS.mgy;
+			cur_mgz=cyberdisk.accelerometerVALS.mgz;
+
+			cur_sx=cyberdisk.accelerometerVALS.sx;
+			cur_sy=cyberdisk.accelerometerVALS.sy;
+			cur_sz=cyberdisk.accelerometerVALS.sz;
+
+			cur_x=cyberdisk.accelerometerVALS.x2;
+			cur_y=cyberdisk.accelerometerVALS.y2;
+			cur_z=cyberdisk.accelerometerVALS.z2;
+
+
+
+			}
+		else
+			{
+			cur_vgx=metawear.accelerometerVALS.vgx;
+			cur_vgy=metawear.accelerometerVALS.vgy;
+			cur_vgz=metawear.accelerometerVALS.vgz;
+
+			cur_mgx=metawear.accelerometerVALS.mgx;
+			cur_mgy=metawear.accelerometerVALS.mgy;
+			cur_mgz=metawear.accelerometerVALS.mgz;
+
+			cur_sx=metawear.accelerometerVALS.sx;
+			cur_sy=metawear.accelerometerVALS.sy;
+			cur_sz=metawear.accelerometerVALS.sz;
+
+			cur_x=metawear.accelerometerVALS.x2;
+			cur_y=metawear.accelerometerVALS.y2;
+			cur_z=metawear.accelerometerVALS.z2;
+
+			}
 
 		if (document.getElementById("smooth").checked==true)
 			{
@@ -358,14 +414,14 @@ function draw_graph()
 		ctx.beginPath();
 		ctx.strokeStyle = 'blue';
 		ctx.moveTo(graph_timer,last_vgx*2+100);
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.vgx*2+100);
+		ctx.lineTo(graph_timer+1,vgx*2+100);
 		ctx.stroke(); 	
 		
 
 		ctx.beginPath();
 		ctx.strokeStyle = 'red';
 		ctx.moveTo(graph_timer,last_vgy*2+100);
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.vgy*2+100);
+		ctx.lineTo(graph_timer+1,cur_vgy*2+100);
 		ctx.stroke(); 	
 		
 
@@ -373,7 +429,7 @@ function draw_graph()
 		ctx.strokeStyle = 'green';
 		ctx.moveTo(graph_timer,last_vgz*2+100);
 
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.vgz*2+100);
+		ctx.lineTo(graph_timer+1cur_vgz*2+100);
 		ctx.stroke(); 	
 		
 		
@@ -381,14 +437,14 @@ function draw_graph()
 		ctx.beginPath();
 		ctx.strokeStyle = 'blue';
 		ctx.moveTo(graph_timer,last_mgx+150);
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.mgx+150);
+		ctx.lineTo(graph_timer+1,cur_mgx+150);
 		ctx.stroke(); 	
 		
 
 		ctx.beginPath();
 		ctx.strokeStyle = 'red';
 		ctx.moveTo(graph_timer,last_mgy+150);
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.mgy+150);
+		ctx.lineTo(graph_timer+1,cur_mgy+150);
 		ctx.stroke(); 	
 		
 
@@ -396,28 +452,28 @@ function draw_graph()
 		ctx.strokeStyle = 'green';
 		ctx.moveTo(graph_timer,last_mgz+150);
 
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.mgz+150);
+		ctx.lineTo(graph_timer+1,cur_mgz+150);
 		ctx.stroke(); 
 
 		}
 		ctx.beginPath();
 		ctx.strokeStyle = 'blue';
 		ctx.moveTo(graph_timer,last_x+50);
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.x2+50);
+		ctx.lineTo(graph_timer+1,cur_x+50);
 		ctx.stroke(); 	
 
 
 		ctx.beginPath();
 		ctx.strokeStyle = 'red';
 		ctx.moveTo(graph_timer,last_y+50);
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.y2+50);
+		ctx.lineTo(graph_timer+1,cur_y+50);
 		ctx.stroke(); 	
 
 		
 		ctx.beginPath();
 		ctx.strokeStyle = 'green';
 		ctx.moveTo(graph_timer,last_z+50);
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.z2+50);
+		ctx.lineTo(graph_timer+1,cur_z+50);
 		ctx.stroke(); 	
 
 
@@ -427,39 +483,39 @@ function draw_graph()
 		ctx.beginPath();
 		ctx.strokeStyle = 'blue';
 		ctx.moveTo(graph_timer,last_sgx/10+200);
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sx/10+200);
+		ctx.lineTo(graph_timer+1,cur_sx/10+200);
 		ctx.stroke(); 	
 
 
 		ctx.beginPath();
 		ctx.strokeStyle = 'red';
 		ctx.moveTo(graph_timer,last_sgy/10+200);
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sy/10+200);
+		ctx.lineTo(graph_timer+1,cur_sy/10+200);
 		ctx.stroke(); 	
 
 
 		ctx.beginPath();
 		ctx.strokeStyle = 'green';
 		ctx.moveTo(graph_timer,last_sgz/10+200);
-		ctx.lineTo(graph_timer+1,metawear.accelerometerVALS.sz/10+200);
+		ctx.lineTo(graph_timer+1,cur_sz/10+200);
 		ctx.stroke(); 	
 	}
-	last_vgx=metawear.accelerometerVALS.vgx;
-	last_vgy=metawear.accelerometerVALS.vgy;
-	last_vgz=metawear.accelerometerVALS.vgz;
+	last_vgx=cur_vgx;
+	last_vgy=cur_vgy;
+	last_vgz=cur_vgz;
 
 
-	last_mgx=metawear.accelerometerVALS.mgx;
-	last_mgy=metawear.accelerometerVALS.mgy;
-	last_mgz=metawear.accelerometerVALS.mgz;
+	last_mgx=cur_mgx;
+	last_mgy=cur_mgy;
+	last_mgz=cur_mgz;
 
-	last_sgx=metawear.accelerometerVALS.sx;
-	last_sgy=metawear.accelerometerVALS.sy;
-	last_sgz=metawear.accelerometerVALS.sz;
+	last_sgx=cur_sx;
+	last_sgy=cur_sy;
+	last_sgz=cur_sz;
 
-	last_x=metawear.accelerometerVALS.x2;
-	last_y=metawear.accelerometerVALS.y2;
-	last_z=metawear.accelerometerVALS.z2;
+	last_x=cur_x;
+	last_y=cur_y;
+	last_z=cur_z;
 
 	//	ctx.fillStyle = "yellow";
 	//	ctx.fillRect(graph_timer,metawear.accelerometerVALS.mx+150,1,1);
@@ -646,23 +702,23 @@ function mainfunc()
 
 		document.getElementById("infodiv2").innerHTML=metawear.accelerometerVALS.x1 + " - "+metawear.accelerometerVALS.y1 + " - "+ metawear.accelerometerVALS.z1+"<BR>"+metawear.accelerometerVALS.mx + " - "+metawear.accelerometerVALS.my + " - "+ metawear.accelerometerVALS.mz+"<BR>"+metawear.accelerometerVALS.vx + " - "+metawear.accelerometerVALS.vy + " - "+ metawear.accelerometerVALS.vz;
 
-		document.getElementById("infodiv1").innerHTML=metawear.accelerometerVALS.x2 + " - "+metawear.accelerometerVALS.y2 + " - "+ metawear.accelerometerVALS.z2+"<BR>"+metawear.accelerometerVALS.mgx + " - "+metawear.accelerometerVALS.mgy + " - "+ metawear.accelerometerVALS.mgz+"<BR>"+metawear.accelerometerVALS.vgx + " - "+metawear.accelerometerVALS.vgy + " - "+ metawear.accelerometerVALS.vgz+"<BR>"+metawear.accelerometerVALS.sx + " - "+metawear.accelerometerVALS.sy + " - "+ metawear.accelerometerVALS.sz;
+		document.getElementById("infodiv1").innerHTML=cur_x + " - "+cur_y + " - "+ cur_z+"<BR>"+cur_mgx + " - "+cur_mgy + " - "+ cur_mgz+"<BR>"+cur_vgx + " - "+cur_vgy + " - "+ cur_vgz+"<BR>"+cur_x + " - "+cur_y + " - "+ cur_z;
 
 		if (document.getElementById("myline").value=="1")
 			{
-			data_packet+=metawear.accelerometerVALS.x2+"|"+metawear.accelerometerVALS.y2+"|"+metawear.accelerometerVALS.z2+"|"+packet_counter+";";
+			data_packet+=cur_x+"|"+cur_y+"|"+cur_z+"|"+packet_counter+";";
 			}
 		else if (document.getElementById("myline").value=="2")
 			{
-			data_packet+=metawear.accelerometerVALS.vgx+"|"+metawear.accelerometerVALS.vgy+"|"+metawear.accelerometerVALS.vgz+"|"+packet_counter+";";
+			data_packet+=cur_vgx+"|"+cur_vgy+"|"+cur_vgz+"|"+packet_counter+";";
 			}
 		else if (document.getElementById("myline").value=="3")
 			{
-			data_packet+=metawear.accelerometerVALS.mgx+"|"+metawear.accelerometerVALS.mgy+"|"+metawear.accelerometerVALS.mgz+"|"+packet_counter+";";
+			data_packet+=cur_mgx+"|"+cur_mgy+"|"+cur_mgz+"|"+packet_counter+";";
 			}
 		else if (document.getElementById("myline").value=="4")
 			{
-			data_packet+=metawear.accelerometerVALS.sx+"|"+metawear.accelerometerVALS.sy+"|"+metawear.accelerometerVALS.sz+"|"+packet_counter+";";
+			data_packet+=cur_sx+"|"+cur_sy+"|"+cur_sz+"|"+packet_counter+";";
 			}
 		}
 	else
