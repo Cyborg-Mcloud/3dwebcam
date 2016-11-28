@@ -107,17 +107,17 @@ var cyberdisk = {
 			cyberdisk.accelerometerVALS.z1 = d6;//-128;
 
 
-			if (d3<128)
+			if (d2<128)
 				{cyberdisk.accelerometerVALS.x2 = d2;}
 			else
 				{cyberdisk.accelerometerVALS.x2 = d2-256;}
 
-			if (d5<128)
+			if (d4<128)
 				{cyberdisk.accelerometerVALS.y2 = d4;}
 			else
 				{cyberdisk.accelerometerVALS.y2 = d4-256;}
 
-			if (d7<128)
+			if (d6<128)
 				{cyberdisk.accelerometerVALS.z2 = d6;}
 			else
 				{cyberdisk.accelerometerVALS.z2 = d6-256;}
