@@ -228,15 +228,12 @@ var cyberdisk = {
 				cyberdisk.accelerometerVALS.sy=parseInt(cyberdisk.accelerometerVALS.sy*10)/10;
 				cyberdisk.accelerometerVALS.sz=parseInt(cyberdisk.accelerometerVALS.sz*10)/10;
 
-
 				cyberdisk.cinax=cyberdisk.accelerometerVALS.x2;
 				cyberdisk.cinay=cyberdisk.accelerometerVALS.y2;
 				cyberdisk.cinaz=cyberdisk.accelerometerVALS.z2;
 				cyberdisk.cax=cyberdisk.accelerometerVALS.x1;
 				cyberdisk.cay=cyberdisk.accelerometerVALS.y1;
 				cyberdisk.caz=cyberdisk.accelerometerVALS.z1;
-
-
 				}
             
 			}
