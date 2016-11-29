@@ -696,33 +696,33 @@ function mainfunc()
 		{
 
 		document.getElementById("infodiv2").innerHTML=metawear.accelerometerVALS.x1 + " - "+metawear.accelerometerVALS.y1 + " - "+ metawear.accelerometerVALS.z1+"<BR>"+metawear.accelerometerVALS.mx + " - "+metawear.accelerometerVALS.my + " - "+ metawear.accelerometerVALS.mz+"<BR>"+metawear.accelerometerVALS.vx + " - "+metawear.accelerometerVALS.vy + " - "+ metawear.accelerometerVALS.vz;
-
-		document.getElementById("infodiv1").innerHTML=cur_x + " - "+cur_y + " - "+ cur_z+"<BR>"+cur_mgx + " - "+cur_mgy + " - "+ cur_mgz+"<BR>"+cur_vgx + " - "+cur_vgy + " - "+ cur_vgz+"<BR>"+cur_x + " - "+cur_y + " - "+ cur_z;
-
-		if (document.getElementById("myline").value=="1")
-			{
-			data_packet+=cur_x+"|"+cur_y+"|"+cur_z+"|"+packet_counter+";";
-			}
-		else if (document.getElementById("myline").value=="2")
-			{
-			data_packet+=cur_vgx+"|"+cur_vgy+"|"+cur_vgz+"|"+packet_counter+";";
-			}
-		else if (document.getElementById("myline").value=="3")
-			{
-			data_packet+=cur_mgx+"|"+cur_mgy+"|"+cur_mgz+"|"+packet_counter+";";
-			}
-		else if (document.getElementById("myline").value=="4")
-			{
-			data_packet+=cur_sx+"|"+cur_sy+"|"+cur_sz+"|"+packet_counter+";";
-			}
 		}
-	else
+	document.getElementById("infodiv1").innerHTML=cur_x + " - "+cur_y + " - "+ cur_z+"<BR>"+cur_mgx + " - "+cur_mgy + " - "+ cur_mgz+"<BR>"+cur_vgx + " - "+cur_vgy + " - "+ cur_vgz+"<BR>"+cur_x + " - "+cur_y + " - "+ cur_z;
+
+	if (document.getElementById("myline").value=="1")
 		{
+		data_packet+=cur_x+"|"+cur_y+"|"+cur_z+"|"+packet_counter+";";
+		}
+	else if (document.getElementById("myline").value=="2")
+		{
+		data_packet+=cur_vgx+"|"+cur_vgy+"|"+cur_vgz+"|"+packet_counter+";";
+		}
+	else if (document.getElementById("myline").value=="3")
+		{
+		data_packet+=cur_mgx+"|"+cur_mgy+"|"+cur_mgz+"|"+packet_counter+";";
+		}
+	else if (document.getElementById("myline").value=="4")
+		{
+		data_packet+=cur_sx+"|"+cur_sy+"|"+cur_sz+"|"+packet_counter+";";
+		}
+	//	}
+//	else
+//		{
 		// it is cyberdisk
 
-		cyberdisk.forceread();
+//		cyberdisk.forceread();
 	
-		}
+//		}
 	packet_counter++;
 
 	if (funcrun==1) {setTimeout("mainfunc();",20);	}
