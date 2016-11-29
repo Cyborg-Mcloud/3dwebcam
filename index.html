@@ -260,64 +260,63 @@ var mode3c=0;
 
 function send_data()
 	{
-	if (curuse==2)
-		{
+	
 		
-		if (document.getElementById("remote").checked==true)
+	if (document.getElementById("remote").checked==true)
+		{
+		var sendme=0;
+		if (selmode==2 || selmode==3)
 			{
-			var sendme=0;
-			if (selmode==2 || selmode==3)
+			sendme=1;
+			}
+		else
+			{
+			mode3c++;
+			if (mode3c>33)
 				{
+				console.log("mode3c: "+mode3c);
+				mode3c=0;
 				sendme=1;
+				}
+			}
+	//	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=1013";
+		if (sendme==1)
+			{
+		
+			if (first_connect==1)
+				{
+				url=myserver+"/upacc.php?restart=1&uid=1013";
+				first_connect=0;
 				}
 			else
 				{
-				mode3c++;
-				if (mode3c>33)
-					{
-					console.log("mode3c: "+mode3c);
-					mode3c=0;
-					sendme=1;
-					}
-				}
-		//	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=1013";
-			if (sendme==1)
-				{
-			
-				if (first_connect==1)
-					{
-					url=myserver+"/upacc.php?restart=1&uid=1013";
-					first_connect=0;
-					}
-				else
-					{
-					url=myserver+"/upacc.php?packet="+data_packet+"&uid=1013";
-					data_packet="";
-					}
-
-				console.log("data up: "+url);
-				divhttp.open('GET',url,true);
-				divhttp.send(null);
-				}		
-			}
-		if (funcrun==1) 
-			{
-			if (selmode==2)
-				{
-				setTimeout("send_data();",200);	
-				}
-			else if (selmode==3)
-				{
-				setTimeout("send_data();",500);	
+				url=myserver+"/upacc.php?packet="+data_packet+"&uid=1013";
+				data_packet="";
 				}
 
-			else if (selmode==1)
-				{
-				setTimeout("send_data();",33);	
-				}
-		
-			}
+			console.log("data up: "+url);
+			divhttp.open('GET',url,true);
+			divhttp.send(null);
+			}		
 		}
+	if (funcrun==1) 
+		{
+		if (selmode==2)
+			{
+			setTimeout("send_data();",200);	
+			}
+		else if (selmode==3)
+			{
+			setTimeout("send_data();",500);	
+			}
+
+		else if (selmode==1)
+			{
+			setTimeout("send_data();",33);	
+			}
+	
+		}
+	
 	}
 
 
@@ -384,7 +383,7 @@ function draw_graph()
 			cur_y=cyberdisk.accelerometerVALS.y2;
 			cur_z=cyberdisk.accelerometerVALS.z2;
 
-			console.log("drwaring: "+cur_vgx+" : "+cur_mgx+" : "+cur_x);
+		
 			}
 		else
 			{
