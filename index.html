@@ -85,17 +85,24 @@ function logme_recv()
 		
 		if (log_recv!="")
 			{
-			if (log_recv>0)
+			if (log_recv=="ERROR")
 				{
-				uid=log_recv;
-				localStorage.setItem('uid', uid);
+				alert("email or password incorrect");
+				}
+			else if (log_recv>0)
+				{
+				myuid=log_recv;
+				localStorage.setItem('uid', myuid);
 				}
 			}
 		}
 	}
 function logmein()
 {
-
+	url=myserver+"/login.php?login=1&email="+document.getElementById("email").value+"&passw="+document.getElementById("passw").value;
+	console.log("login: "+url);
+	logmehttp.open('GET',url,true);
+	logmehttp.send(null);
 }
 
 </script>
@@ -285,12 +292,12 @@ function send_data()
 		
 			if (first_connect==1)
 				{
-				url=myserver+"/upacc.php?restart=1&uid="+uid;
+				url=myserver+"/upacc.php?restart=1&uid="+myuid;
 				first_connect=0;
 				}
 			else
 				{
-				url=myserver+"/upacc.php?packet="+data_packet+"&uid="+uid;
+				url=myserver+"/upacc.php?packet="+data_packet+"&uid="+myuid;
 				data_packet="";
 				}
 
