@@ -270,55 +270,39 @@ function send_data()
 	{
 	
 		
-	if (document.getElementById("remote").checked==true)
+	var sendme=0;
+	
+	mode3c++;
+	if (mode3c>33)
 		{
-		var sendme=0;
-		if (selmode==2 || selmode==3)
+		console.log("mode3c: "+mode3c);
+		mode3c=0;
+		sendme=1;
+		}
+	
+	if (sendme==1)
+		{
+	
+		if (first_connect==1)
 			{
-			sendme=1;
+			url=myserver+"/upacc.php?restart=1&uid="+myuid;
+			first_connect=0;
 			}
 		else
 			{
-			mode3c++;
-			if (mode3c>33)
-				{
-				console.log("mode3c: "+mode3c);
-				mode3c=0;
-				sendme=1;
-				}
+			url=myserver+"/upacc.php?packet="+data_packet+"&uid="+myuid;
+			data_packet="";
 			}
-	//	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=";
-		if (sendme==1)
-			{
-		
-			if (first_connect==1)
-				{
-				url=myserver+"/upacc.php?restart=1&uid="+myuid;
-				first_connect=0;
-				}
-			else
-				{
-				url=myserver+"/upacc.php?packet="+data_packet+"&uid="+myuid;
-				data_packet="";
-				}
 
-			console.log("data up: "+url);
-			divhttp.open('GET',url,true);
-			divhttp.send(null);
-			}		
-		}
+		console.log("data up: "+url);
+		divhttp.open('GET',url,true);
+		divhttp.send(null);
+		}		
+	
 
 	if (funcrun==1) 
 		{
-		//if (selmode==2)	{	setTimeout("send_data();",200);			}
-
-//		else if (selmode==3)	{		setTimeout("send_data();",500);			}
-
-		 if (selmode==1)
-			{
-			setTimeout("send_data();",30);	
-			}
-	
+		setTimeout("send_data();",33);	
 		}
 	
 	}
@@ -409,10 +393,7 @@ function draw_graph()
 
 			}
 
-		if (document.getElementById("smooth").checked==true)
-			{
-
-			}
+		
 		ctx.beginPath();
 		ctx.strokeStyle = 'blue';
 		ctx.moveTo(graph_timer,last_vgx*2+100);
@@ -477,7 +458,7 @@ function draw_graph()
 
 
 	if (donot==1)
-	{
+		{
 
 		ctx.beginPath();
 		ctx.strokeStyle = 'blue';
@@ -498,7 +479,7 @@ function draw_graph()
 		ctx.moveTo(graph_timer,last_sgz/10+200);
 		ctx.lineTo(graph_timer+1,cur_sz/10+200);
 		ctx.stroke(); 	
-	}
+		}
 	last_vgx=cur_vgx;
 	last_vgy=cur_vgy;
 	last_vgz=cur_vgz;
@@ -604,14 +585,14 @@ function backfunction()
 
  function menufunction()
 {
-alert("menu");
+
 }
 
 
 
 function searchfunction()
 {
-alert("search");
+
 }
 
 document.addEventListener('deviceready', onDeviceReady, false);
@@ -699,9 +680,9 @@ function mainfunc()
 	if (curuse==2)
 		{
 
-		document.getElementById("infodiv2").innerHTML=metawear.accelerometerVALS.x1 + " - "+metawear.accelerometerVALS.y1 + " - "+ metawear.accelerometerVALS.z1+"<BR>"+metawear.accelerometerVALS.mx + " - "+metawear.accelerometerVALS.my + " - "+ metawear.accelerometerVALS.mz+"<BR>"+metawear.accelerometerVALS.vx + " - "+metawear.accelerometerVALS.vy + " - "+ metawear.accelerometerVALS.vz;
+	//	document.getElementById("infodiv2").innerHTML=metawear.accelerometerVALS.x1 + " - "+metawear.accelerometerVALS.y1 + " - "+ metawear.accelerometerVALS.z1+"<BR>"+metawear.accelerometerVALS.mx + " - "+metawear.accelerometerVALS.my + " - "+ metawear.accelerometerVALS.mz+"<BR>"+metawear.accelerometerVALS.vx + " - "+metawear.accelerometerVALS.vy + " - "+ metawear.accelerometerVALS.vz;
 		}
-	document.getElementById("infodiv1").innerHTML=cur_x + " - "+cur_y + " - "+ cur_z+"<BR>"+cur_mgx + " - "+cur_mgy + " - "+ cur_mgz+"<BR>"+cur_vgx + " - "+cur_vgy + " - "+ cur_vgz+"<BR>"+cur_x + " - "+cur_y + " - "+ cur_z;
+	//document.getElementById("infodiv1").innerHTML=cur_x + " - "+cur_y + " - "+ cur_z+"<BR>"+cur_mgx + " - "+cur_mgy + " - "+ cur_mgz+"<BR>"+cur_vgx + " - "+cur_vgy + " - "+ cur_vgz+"<BR>"+cur_x + " - "+cur_y + " - "+ cur_z;
 
 	if (document.getElementById("myline").value=="1")
 		{
@@ -719,14 +700,7 @@ function mainfunc()
 		{
 		data_packet+=cur_sx+"|"+cur_sy+"|"+cur_sz+"|"+packet_counter+";";
 		}
-	//	}
-//	else
-//		{
-		// it is cyberdisk
-
-//		cyberdisk.forceread();
 	
-//		}
 	packet_counter++;
 
 	if (funcrun==1) {setTimeout("mainfunc();",20);	}
