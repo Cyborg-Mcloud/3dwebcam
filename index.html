@@ -120,9 +120,9 @@ function logmein()
 	<input type='checkbox' id='smooth' name='smooth' onchange='smooth_click();' checked> Smooth<Br>
 	<input type='checkbox' id='mserver' name='mserver' onchange='server_change();' checked> to Thika<Br>
 
-	<input type='radio' id='mymode' name='mymode' onchange='mode_change(1);' checked>packet mode<Br>
+<!--	<input type='radio' id='mymode' name='mymode' onchange='mode_change(1);' checked>packet mode<Br>
 	<input type='radio' id='mymode' name='mymode' onchange='mode_change(2);'>fast mode<Br>
-	<input type='radio' id='mymode' name='mymode' onchange='mode_change(3);'>slow mode<Br>
+	<input type='radio' id='mymode' name='mymode' onchange='mode_change(3);'>slow mode<Br>-->
 
 	</div>
 
@@ -148,10 +148,10 @@ function logmein()
 var selmode=1;
 
 function mode_change(newmode)
-{
-selmode=newmode;
-mode3c=0;
-}
+	{
+	selmode=newmode;
+	mode3c=0;
+	}
 
 function showcreen(myid)
 {
@@ -279,18 +279,18 @@ function send_data()
 				sendme=1;
 				}
 			}
-	//	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=1013";
+	//	url='http://www.thika.co/upacc.php?id='+n+"&ax="+last_vgx+"&ay="+last_vgy+"&az="+last_vgz+"&uid=";
 		if (sendme==1)
 			{
 		
 			if (first_connect==1)
 				{
-				url=myserver+"/upacc.php?restart=1&uid=1013";
+				url=myserver+"/upacc.php?restart=1&uid="+uid;
 				first_connect=0;
 				}
 			else
 				{
-				url=myserver+"/upacc.php?packet="+data_packet+"&uid=1013";
+				url=myserver+"/upacc.php?packet="+data_packet+"&uid="+uid;
 				data_packet="";
 				}
 
@@ -299,20 +299,16 @@ function send_data()
 			divhttp.send(null);
 			}		
 		}
+
 	if (funcrun==1) 
 		{
-		if (selmode==2)
-			{
-			setTimeout("send_data();",200);	
-			}
-		else if (selmode==3)
-			{
-			setTimeout("send_data();",500);	
-			}
+		//if (selmode==2)	{	setTimeout("send_data();",200);			}
 
-		else if (selmode==1)
+//		else if (selmode==3)	{		setTimeout("send_data();",500);			}
+
+		 if (selmode==1)
 			{
-			setTimeout("send_data();",33);	
+			setTimeout("send_data();",30);	
 			}
 	
 		}
